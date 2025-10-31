@@ -75,6 +75,8 @@ export function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const [isVisible, setIsVisible] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [direction, setDirection] = useState(0) // -1 for left, 1 for right
 
   useEffect(() => {
     setIsVisible(true)
@@ -91,17 +93,29 @@ export function HeroSection() {
   }, [isAutoPlaying])
 
   const nextSlide = () => {
+    if (isTransitioning) return
+    setIsTransitioning(true)
+    setDirection(1)
     setCurrentSlide((prev) => (prev + 1) % slides.length)
+    setTimeout(() => setIsTransitioning(false), 800)
     setIsAutoPlaying(false)
   }
 
   const prevSlide = () => {
+    if (isTransitioning) return
+    setIsTransitioning(true)
+    setDirection(-1)
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
+    setTimeout(() => setIsTransitioning(false), 800)
     setIsAutoPlaying(false)
   }
 
   const goToSlide = (index: number) => {
+    if (isTransitioning || index === currentSlide) return
+    setIsTransitioning(true)
+    setDirection(index > currentSlide ? 1 : -1)
     setCurrentSlide(index)
+    setTimeout(() => setIsTransitioning(false), 800)
     setIsAutoPlaying(false)
   }
 
@@ -159,123 +173,270 @@ export function HeroSection() {
           {/* Navigation Arrows */}
           <motion.button
             onClick={prevSlide}
-            className="absolute -left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white dark:bg-gray-900 shadow-lg rounded-full flex items-center justify-center hover:shadow-xl transition-all duration-300"
+            disabled={isTransitioning}
+            className={`absolute -left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white dark:bg-gray-900 shadow-lg rounded-full flex items-center justify-center hover:shadow-xl transition-all duration-300 ${isTransitioning ? 'opacity-50 cursor-not-allowed' : ''}`}
             aria-label="Previous slide"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={!isTransitioning ? { scale: 1.1, x: -4 } : {}}
+            whileTap={!isTransitioning ? { scale: 0.95 } : {}}
+            animate={isTransitioning && direction === -1 ? {
+              x: [-4, 4, -4, 0],
+              transition: { duration: 0.3 }
+            } : {}}
           >
             <ChevronLeft className="w-6 h-6 text-gray-800 dark:text-gray-200" />
           </motion.button>
 
           <motion.button
             onClick={nextSlide}
-            className="absolute -right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white dark:bg-gray-900 shadow-lg rounded-full flex items-center justify-center hover:shadow-xl transition-all duration-300"
+            disabled={isTransitioning}
+            className={`absolute -right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white dark:bg-gray-900 shadow-lg rounded-full flex items-center justify-center hover:shadow-xl transition-all duration-300 ${isTransitioning ? 'opacity-50 cursor-not-allowed' : ''}`}
             aria-label="Next slide"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={!isTransitioning ? { scale: 1.1, x: 4 } : {}}
+            whileTap={!isTransitioning ? { scale: 0.95 } : {}}
+            animate={isTransitioning && direction === 1 ? {
+              x: [4, -4, 4, 0],
+              transition: { duration: 0.3 }
+            } : {}}
           >
             <ChevronRight className="w-6 h-6 text-gray-800 dark:text-gray-200" />
           </motion.button>
 
-          {/* Cards Container */}
-          <div className="relative overflow-hidden">
-            <motion.div 
-              className="flex gap-6 lg:gap-8 transition-transform duration-700 ease-out"
-              animate={{ x: `${-currentSlide * (100 / 3)}%` }}
-            >
-              {slides.concat(slides.slice(0, 2)).map((slide, index) => {
-                const actualIndex = index % slides.length
-                const isActive = actualIndex === currentSlide
-                
+          {/* Coverflow Container */}
+          <motion.div 
+            className="relative h-[520px] lg:h-[580px] overflow-hidden mx-auto" 
+            style={{ width: '100%', minWidth: '1200px', maxWidth: '1400px' }}
+            animate={isTransitioning ? {
+              scale: [1, 0.98, 1],
+              transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
+            } : {}}
+          >
+            <AnimatePresence initial={false}>
+              {getVisibleSlides().map((slide, index) => {
+                const isCenter = index === 2
+                const isLeft = index === 1
+                const isRight = index === 3
+                const isFarLeft = index === 0
+                const isFarRight = index === 4
+
+                // Define card properties with non-overlapping positioning
+                const getCardProps = () => {
+                  const centerWidth = 400
+                  const sideWidth = 300  
+                  const farWidth = 220
+                  const margin = 40 // Margin between cards
+                  
+                  if (isCenter) return {
+                    scale: 1.0,
+                    x: 0,
+                    z: 30,
+                    opacity: 1.0,
+                    blur: 0,
+                    width: 'w-[400px]',
+                    height: 'h-[520px]',
+                    rotateY: 0
+                  }
+                  if (isLeft || isRight) return {
+                    scale: 0.75,
+                    x: isLeft ? -(centerWidth/2 + margin + sideWidth/2) : (centerWidth/2 + margin + sideWidth/2),
+                    z: 20,
+                    opacity: 0.8,
+                    blur: 1,
+                    width: 'w-[300px]',
+                    height: 'h-[390px]',
+                    rotateY: isLeft ? 15 : -15
+                  }
+                  if (isFarLeft || isFarRight) return {
+                    scale: 0.55,
+                    x: isFarLeft 
+                      ? -(centerWidth/2 + margin + sideWidth + margin + farWidth/2)
+                      : (centerWidth/2 + margin + sideWidth + margin + farWidth/2),
+                    z: 10,
+                    opacity: 0.5,
+                    blur: 2,
+                    width: 'w-[220px]',
+                    height: 'h-[286px]',
+                    rotateY: isFarLeft ? 25 : -25
+                  }
+                  return { scale: 0, x: 0, z: 0, opacity: 0, blur: 4, width: 'w-0', height: 'h-0', rotateY: 0 }
+                }
+
+                const cardProps = getCardProps()
+                if (cardProps.scale === 0) return null
+
                 return (
                   <motion.div
-                    key={`${slide.id}-${index}`}
-                    className="flex-none w-full md:w-1/2 lg:w-1/3 cursor-pointer"
-                    onClick={() => goToSlide(actualIndex)}
-                    whileHover={{ y: -8 }}
-                    transition={{ duration: 0.3 }}
+                    key={`card-${slide.id}-${index}`}
+                    className={`absolute top-1/2 left-1/2 cursor-pointer ${cardProps.width} ${cardProps.height}`}
+                    style={{ 
+                      zIndex: cardProps.z,
+                      perspective: '1000px'
+                    }}
+                    initial={false}
+                    animate={{
+                      x: `calc(-50% + ${cardProps.x}px)`,
+                      y: '-50%',
+                      scale: cardProps.scale,
+                      opacity: cardProps.opacity,
+                      filter: `blur(${cardProps.blur}px)`,
+                      rotateY: cardProps.rotateY,
+                      rotateX: 0
+                    }}
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                      delay: index * 0.05
+                    }}
+                    onClick={() => !isCenter && goToSlide((currentSlide + index) % slides.length)}
+                    whileHover={!isTransitioning ? (isCenter ? { 
+                      scale: 1.02,
+                      y: '-48%',
+                      transition: { duration: 0.3 }
+                    } : { 
+                      scale: cardProps.scale * 1.08,
+                      rotateY: cardProps.rotateY * 0.7,
+                      y: '-48%',
+                      transition: { duration: 0.3 }
+                    }) : {}}
                   >
                     {/* Card */}
-                    <div className="relative h-[420px] lg:h-[480px] rounded-2xl shadow-xl overflow-hidden group bg-white dark:bg-gray-900">
+                    <div className="relative w-full h-full rounded-3xl shadow-2xl overflow-hidden group bg-white dark:bg-gray-900">
                       {/* Background Image */}
                       <div className="absolute inset-0">
                         <Image
                           src={slide.image}
                           alt={slide.title}
                           fill
-                          className="object-cover transition-all duration-500 group-hover:blur-sm group-hover:scale-110"
-                          priority={isActive}
+                          className="object-cover transition-all duration-500 group-hover:blur-md group-hover:scale-105"
+                          priority={isCenter}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent group-hover:from-black/90 group-hover:via-black/50 group-hover:to-black/20 transition-all duration-500" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/10 group-hover:from-black/85 group-hover:via-black/45 group-hover:to-black/25 transition-all duration-500" />
                       </div>
 
-                      {/* Content Overlay */}
-                      <div className="absolute inset-0 flex flex-col justify-between p-6 lg:p-8 text-white">
-                        {/* Top Section */}
-                        <div className="flex items-start justify-between">
-                          <span className="inline-flex items-center bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full group-hover:bg-white/90 group-hover:text-black transition-all duration-500">
-                            {slide.subtitle}
-                          </span>
-                          {slide.type === 'video' && (
-                            <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all duration-500">
-                              <Play className="w-4 h-4 text-white" />
-                            </div>
-                          )}
-                        </div>
+                      {/* Content Overlay - Full content for center, minimal for sides */}
+                      {isCenter ? (
+                        <motion.div 
+                          className="absolute inset-0 flex flex-col justify-end p-8 lg:p-12 text-white"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.3 }}
+                        >
+                          {/* Category Badge */}
+                          <div className="flex items-center justify-between mb-6">
+                            <span className="inline-flex items-center bg-gray-200/90 backdrop-blur-sm text-gray-800 text-sm font-medium px-4 py-2 rounded-full group-hover:bg-white/95 group-hover:text-black transition-all duration-500">
+                              {slide.subtitle} • {slide.date}
+                            </span>
+                            {slide.type === 'video' && (
+                              <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all duration-500">
+                                <Play className="w-5 h-5 text-white" />
+                              </div>
+                            )}
+                          </div>
 
-                        {/* Bottom Section */}
-                        <div>
-                          <p className="text-xs font-medium opacity-80 mb-2 uppercase tracking-wider group-hover:opacity-100 transition-all duration-500">
-                            {slide.date}
-                          </p>
-                          <h3 className="text-xl lg:text-2xl xl:text-3xl font-light leading-tight mb-3 group-hover:text-white group-hover:drop-shadow-lg transition-all duration-500">
-                            {slide.title}
-                          </h3>
-                          <p className="text-sm lg:text-base opacity-90 leading-relaxed mb-4 line-clamp-3 group-hover:opacity-100 group-hover:text-white group-hover:drop-shadow-md transition-all duration-500">
-                            {slide.description}
-                          </p>
-                          
-                          {/* Read More Link */}
-                          <button className="text-white hover:text-[#a7d26d] text-sm font-medium transition-colors group-hover:underline flex items-center">
-                            Read More 
-                            <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                          </button>
+                          {/* Title and Description */}
+                          <div className="max-w-md">
+                            <h3 className="text-2xl lg:text-3xl xl:text-4xl font-light leading-tight mb-4 group-hover:text-white group-hover:drop-shadow-lg transition-all duration-500">
+                              {slide.title}
+                            </h3>
+                            <p className="text-base lg:text-lg opacity-90 leading-relaxed mb-6 group-hover:opacity-100 group-hover:text-white group-hover:drop-shadow-md transition-all duration-500">
+                              {slide.description}
+                            </p>
+                            
+                            {/* CTA Button */}
+                            {slide.cta && (
+                              <motion.button 
+                                className="inline-flex items-center bg-[#a7d26d] text-black px-6 py-3 rounded-full font-medium text-base hover:bg-[#95c255] transition-all duration-300 group-hover:shadow-xl"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                              >
+                                {slide.cta}
+                                <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                              </motion.button>
+                            )}
+                          </div>
+                        </motion.div>
+                      ) : (
+                        // Side cards content
+                        <div className="absolute inset-0 flex flex-col justify-end p-4 lg:p-6 text-white">
+                          <div className="space-y-2">
+                            <span className="inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-2 py-1 rounded-full">
+                              {slide.subtitle}
+                            </span>
+                            <h4 className="text-sm lg:text-base font-medium leading-tight line-clamp-2 group-hover:drop-shadow-lg transition-all duration-500">
+                              {slide.title}
+                            </h4>
+                            {(isLeft || isRight) && (
+                              <p className="text-xs opacity-80 line-clamp-2 group-hover:opacity-100 transition-all duration-500">
+                                {slide.description}
+                              </p>
+                            )}
+                          </div>
                         </div>
-                      </div>
+                      )}
 
-                      {/* Active Indicator */}
-                      {isActive && (
+                      {/* Center Card Indicator */}
+                      {isCenter && (
                         <motion.div
-                          className="absolute top-4 right-4 w-3 h-3 bg-[#a7d26d] rounded-full shadow-lg"
+                          className="absolute top-6 right-6 w-3 h-3 bg-[#a7d26d] rounded-full shadow-lg"
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
-                          transition={{ duration: 0.3 }}
+                          transition={{ duration: 0.3, delay: 0.4 }}
                         />
                       )}
                     </div>
                   </motion.div>
                 )
               })}
-            </motion.div>
-          </div>
+            </AnimatePresence>
+          </motion.div>
 
           {/* Dots Indicator */}
-          <div className="flex justify-center mt-8 space-x-3">
+          <motion.div 
+            className="flex justify-center mt-8 space-x-3"
+            animate={isTransitioning ? {
+              y: [0, -4, 0],
+              transition: { duration: 0.4, delay: 0.2 }
+            } : {}}
+          >
             {slides.map((_, index) => (
               <motion.button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`transition-all duration-500 ${
+                disabled={isTransitioning}
+                className={`transition-all duration-500 relative overflow-hidden ${
                   index === currentSlide
                     ? 'w-8 h-3 bg-gray-900 dark:bg-white rounded-full'
                     : 'w-3 h-3 bg-gray-400 dark:bg-gray-600 rounded-full hover:bg-gray-600 dark:hover:bg-gray-400'
-                }`}
+                } ${isTransitioning ? 'cursor-not-allowed' : ''}`}
                 aria-label={`Go to slide ${index + 1}`}
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-              />
+                whileHover={!isTransitioning ? { 
+                  scale: 1.2,
+                  y: -2
+                } : {}}
+                whileTap={!isTransitioning ? { scale: 0.9 } : {}}
+                animate={index === currentSlide ? {
+                  scale: [1, 1.1, 1],
+                  transition: { duration: 0.5, delay: 0.3 }
+                } : {}}
+              >
+                {/* Active dot glow effect */}
+                {index === currentSlide && (
+                  <motion.div
+                    className="absolute inset-0 bg-[#a7d26d] rounded-full"
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ 
+                      scale: [0, 1.5, 0],
+                      opacity: [0, 0.6, 0],
+                    }}
+                    transition={{ 
+                      duration: 1.2, 
+                      repeat: Infinity,
+                      repeatDelay: 2 
+                    }}
+                  />
+                )}
+              </motion.button>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* Category Navigation */}
