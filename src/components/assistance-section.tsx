@@ -67,10 +67,10 @@ export function AssistanceSection() {
 
                 {/* Bottom Section */}
                 <div className="max-w-2xl">
-                  <h2 className="text-3xl lg:text-4xl xl:text-5xl font-light leading-tight mb-4 group-hover:transform group-hover:translate-y-[-2px] transition-all duration-500">
+                  <h2 className="text-2xl lg:text-3xl xl:text-4xl font-light leading-tight mb-4 group-hover:transform group-hover:translate-y-[-2px] transition-all duration-500">
                     {featuredContent[0].title}
                   </h2>
-                  <p className="text-lg lg:text-xl opacity-90 leading-relaxed mb-8 group-hover:opacity-100 transition-all duration-500">
+                  <p className="text-base lg:text-lg opacity-90 leading-relaxed mb-8 group-hover:opacity-100 transition-all duration-500">
                     {featuredContent[0].description}
                   </p>
                   
@@ -120,10 +120,10 @@ export function AssistanceSection() {
 
                 {/* Bottom Section */}
                 <div>
-                  <h3 className="text-2xl lg:text-3xl font-light leading-tight mb-4 group-hover:transform group-hover:translate-y-[-2px] transition-all duration-500">
+                  <h3 className="text-xl lg:text-2xl font-light leading-tight mb-4 group-hover:transform group-hover:translate-y-[-2px] transition-all duration-500">
                     {featuredContent[1].title}
                   </h3>
-                  <p className="text-base lg:text-lg opacity-90 leading-relaxed mb-6 group-hover:opacity-100 transition-all duration-500">
+                  <p className="text-sm lg:text-base opacity-90 leading-relaxed mb-6 group-hover:opacity-100 transition-all duration-500">
                     {featuredContent[1].description}
                   </p>
                   

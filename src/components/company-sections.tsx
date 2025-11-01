@@ -8,7 +8,7 @@ export function CompanySections() {
     <div className="bg-white dark:bg-black">
       {/* Location Section - BCG in Africa style */}
       <section className="relative py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
             {/* Image */}
             <div className="mb-8 lg:mb-0">
@@ -55,7 +55,7 @@ export function CompanySections() {
 
       {/* Careers Section */}
       <section className="py-20 bg-gray-50 dark:bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
             {/* Content */}
             <div className="mb-8 lg:mb-0">
@@ -109,7 +109,7 @@ export function CompanySections() {
 
       {/* Additional Info Section */}
       <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             {/* Alumni Network */}
             <div className="text-center">

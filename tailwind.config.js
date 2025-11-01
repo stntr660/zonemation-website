@@ -55,30 +55,30 @@ module.exports = {
         'black': 900,
       },
       fontSize: {
-        // BCG Typography Scale
-        'xs': ['0.75rem', { lineHeight: '1rem' }],         // 12px - metadata
-        'sm': ['0.875rem', { lineHeight: '1.25rem' }],     // 14px - small text
-        'base': ['1rem', { lineHeight: '1.5rem' }],        // 16px - body text (min)
-        'lg': ['1.125rem', { lineHeight: '1.75rem' }],     // 18px - body text (max)
-        'xl': ['1.5rem', { lineHeight: '2rem' }],          // 24px - H3 (min)
-        '2xl': ['1.75rem', { lineHeight: '2.25rem' }],     // 28px - H3 (max)
-        '3xl': ['2rem', { lineHeight: '2.5rem' }],         // 32px - H2 (min)
-        '4xl': ['2.25rem', { lineHeight: '2.75rem' }],     // 36px - H2 (max)
-        '5xl': ['2.5rem', { lineHeight: '3rem' }],         // 40px - H1 (min)
-        '6xl': ['3rem', { lineHeight: '3.5rem' }],         // 48px - H1 (max)/Display (min)
-        '7xl': ['4rem', { lineHeight: '4rem' }],           // 64px - Display (max)
+        // Reduced Typography Scale (30% smaller)
+        'xs': ['0.525rem', { lineHeight: '0.7rem' }],      // ~8.4px - metadata
+        'sm': ['0.6125rem', { lineHeight: '0.875rem' }],   // ~9.8px - small text
+        'base': ['0.7rem', { lineHeight: '1.05rem' }],     // ~11.2px - body text (min)
+        'lg': ['0.7875rem', { lineHeight: '1.225rem' }],   // ~12.6px - body text (max)
+        'xl': ['1.05rem', { lineHeight: '1.4rem' }],       // ~16.8px - H3 (min)
+        '2xl': ['1.225rem', { lineHeight: '1.575rem' }],   // ~19.6px - H3 (max)
+        '3xl': ['1.4rem', { lineHeight: '1.75rem' }],      // ~22.4px - H2 (min)
+        '4xl': ['1.575rem', { lineHeight: '1.925rem' }],   // ~25.2px - H2 (max)
+        '5xl': ['1.75rem', { lineHeight: '2.1rem' }],      // ~28px - H1 (min)
+        '6xl': ['2.1rem', { lineHeight: '2.45rem' }],      // ~33.6px - H1 (max)/Display (min)
+        '7xl': ['2.8rem', { lineHeight: '2.8rem' }],       // ~44.8px - Display (max)
       },
       letterSpacing: {
-        'tighter': '-0.05em',
-        'tight': '-0.025em', 
-        'normal': '0',
-        'wide': '0.025em',
-        'wider': '0.05em',
-        'widest': '0.1em',
-        'display': '-0.025em',      // BCG display text
-        'heading': '-0.015em',      // BCG headings
-        'body': '0',                // BCG body text
-        'caption': '0.05em',        // BCG captions/metadata
+        'tighter': '-0.1em',        // Ultra tight
+        'tight': '-0.075em',        // Very tight  
+        'normal': '-0.05em',        // Tight default
+        'wide': '-0.035em',         // Less tight
+        'wider': '-0.025em',        // Slightly tight
+        'widest': '-0.015em',       // Minimal tight
+        'display': '-0.08em',       // Very tight display
+        'heading': '-0.06em',       // Very tight headings
+        'body': '-0.05em',          // Very tight body
+        'caption': '-0.04em',       // Tight captions
       },
       lineHeight: {
         'none': '1',

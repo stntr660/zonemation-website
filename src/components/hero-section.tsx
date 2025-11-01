@@ -134,7 +134,7 @@ export function HeroSection() {
 
   return (
     <section className="relative bg-white dark:bg-black pt-16 pb-20 overflow-hidden min-h-[90vh]">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-8 xl:px-12">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
         {/* Welcome Text with Animation */}
         <motion.div 
           className="text-center mb-16"
@@ -151,7 +151,7 @@ export function HeroSection() {
             WELCOME TO ZONEMATION
           </motion.p>
           <motion.h1 
-            className="text-[3.5rem] lg:text-[4.5rem] xl:text-[5.5rem] font-light leading-[1.1] text-gray-900 dark:text-white tracking-tight"
+            className="text-[2.45rem] lg:text-[3.15rem] xl:text-[3.85rem] font-light leading-[1.1] text-gray-900 dark:text-white tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -203,8 +203,8 @@ export function HeroSection() {
 
           {/* Coverflow Container */}
           <motion.div 
-            className="relative h-[520px] lg:h-[580px] overflow-hidden mx-auto" 
-            style={{ width: '100%', minWidth: '1200px', maxWidth: '1400px' }}
+            className="relative h-[520px] lg:h-[580px] overflow-hidden mx-auto w-full" 
+            style={{ maxWidth: '1200px' }}
             animate={isTransitioning ? {
               scale: [1, 0.98, 1],
               transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
@@ -361,11 +361,11 @@ export function HeroSection() {
                             <span className="inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-2 py-1 rounded-full">
                               {slide.subtitle}
                             </span>
-                            <h4 className="text-sm lg:text-base font-medium leading-tight line-clamp-2 group-hover:drop-shadow-lg transition-all duration-500">
+                            <h4 className="text-base lg:text-lg font-medium leading-tight line-clamp-2 group-hover:drop-shadow-lg transition-all duration-500">
                               {slide.title}
                             </h4>
                             {(isLeft || isRight) && (
-                              <p className="text-xs opacity-80 line-clamp-2 group-hover:opacity-100 transition-all duration-500">
+                              <p className="text-sm opacity-80 line-clamp-2 group-hover:opacity-100 transition-all duration-500">
                                 {slide.description}
                               </p>
                             )}
@@ -439,28 +439,25 @@ export function HeroSection() {
           </motion.div>
         </motion.div>
 
-        {/* Category Navigation */}
+        {/* Category Navigation - Exact BCG Style */}
         <motion.div 
-          className="mt-16 flex flex-wrap justify-center gap-8 lg:gap-12"
+          className="mt-8 flex justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
           transition={{ duration: 0.8, delay: 1.2 }}
         >
-          {['ZONEMATION SPOTLIGHT', 'M&A, TRANSACTIONS, AND PMI', 'ARTIFICIAL INTELLIGENCE', 'RISK MANAGEMENT AND COMPLIANCE'].map((category) => (
-            <motion.button
-              key={category}
-              className="relative px-1 py-3 text-sm lg:text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors group"
-              whileHover={{ y: -2 }}
-            >
-              {category}
-              <motion.div
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-900 dark:bg-white origin-left"
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.3 }}
-              />
-            </motion.button>
-          ))}
+          <div className="bg-white dark:bg-gray-900 rounded-lg px-6 py-3 shadow-sm border border-gray-300 dark:border-gray-700">
+            <div className="flex flex-wrap justify-center gap-6">
+              {['BCG SPOTLIGHT', 'M&A, TRANSACTIONS, AND PMI', 'ARTIFICIAL INTELLIGENCE', 'RISK MANAGEMENT AND COMPLIANCE'].map((category) => (
+                <button
+                  key={category}
+                  className="px-4 py-2 text-sm font-bold text-gray-800 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-200 uppercase tracking-tighter"
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

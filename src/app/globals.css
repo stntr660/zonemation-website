@@ -239,7 +239,7 @@ a {
 
 .caption {
   @apply text-xs font-medium leading-normal uppercase tracking-caption;
-  /* 12px, 500 weight, uppercase, wide tracking */
+  /* 12px, 500 weight, uppercase, tight tracking */
 }
 
 /* Button base styles */
