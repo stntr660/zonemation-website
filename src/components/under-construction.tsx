@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
 const quotes = [
-  "L'agence qui digitalise tout le monde n'a pas encore son propre site",
+  "Le cabinet qui digitalise tout le monde n'a pas encore son propre site",
   "C'est à peine paradoxal quand on est trop occupés à livrer pour nos clients.",
   "Votre avantage concurrentiel n'attend pas. Notre vitrine, si."
 ]
@@ -80,7 +80,7 @@ function AnimatedLogo() {
             }
             .logo-stroke {
               fill: none;
-              stroke: #A7D26D;
+              stroke: #94a3b8;
               stroke-width: 8;
               stroke-dasharray: 5000;
               stroke-dashoffset: 5000;
