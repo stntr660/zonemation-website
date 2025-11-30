@@ -40,9 +40,11 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Henderson Sans'],
+        sans: ['Poppins', 'Henderson Sans', 'sans-serif'],
         serif: ['Henderson Sans'],
-        headline: ['Henderson Sans'],
+        headline: ['Poppins', 'Henderson Sans'],
+        mono: ['JetBrains Mono', 'monospace'],
+        poppins: ['Poppins', 'sans-serif'],
       },
       fontWeight: {
         'thin': 200,

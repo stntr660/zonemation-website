@@ -1,19 +1,5 @@
-import { Header } from '@/components/header'
-import { HeroSection } from '@/components/hero-section'
-import { ConsultationSection } from '@/components/consultation-section'
-import { AssistanceSection } from '@/components/assistance-section'
-import { CompanySections } from '@/components/company-sections'
-import { Footer } from '@/components/footer'
+import { UnderConstruction } from '@/components/under-construction'
 
 export default function Home() {
-  return (
-    <main className="min-h-screen">
-      <Header />
-      <HeroSection />
-      <ConsultationSection />
-      <AssistanceSection />
-      <CompanySections />
-      <Footer />
-    </main>
-  )
+  return <UnderConstruction />
 }

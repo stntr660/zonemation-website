@@ -50,7 +50,7 @@ export function AnimatedLogo({
       pathLength: 1,
       opacity: 0.8,
       transition: {
-        pathLength: { duration: 1.5, ease: "easeInOut" },
+        pathLength: { duration: 1.5, ease: "easeInOut" as const },
         opacity: { duration: 0.3 }
       }
     }
@@ -74,7 +74,7 @@ export function AnimatedLogo({
         duration: 2,
         repeat: Infinity,
         delay: 1.5,
-        ease: "easeInOut"
+        ease: "easeInOut" as const
       }
     }
   }
@@ -85,7 +85,7 @@ export function AnimatedLogo({
       opacity: [0, 1, 1, 0],
       transition: {
         duration: 1.2,
-        ease: "easeInOut"
+        ease: "easeInOut" as const
       }
     }
   }
