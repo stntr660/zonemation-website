@@ -15,11 +15,10 @@ export function Footer() {
   const { theme } = useTheme()
 
   const footerLinks = [
-    { name: 'PRIVACY POLICY', href: '#' },
-    { name: 'TERMS OF USE', href: '#' },
-    { name: 'SITEMAP', href: '#' },
-    { name: 'RESPONSIBLE DISCLOSURE', href: '#' },
-    { name: 'COOKIE PREFERENCES', href: '#' }
+    { name: 'PRIVACY POLICY', href: '/privacy-policy' },
+    { name: 'TERMS OF USE', href: '/terms-of-use' },
+    { name: 'COOKIE POLICY', href: '/cookie-policy' },
+    { name: 'MENTIONS LEGALES', href: '/legal' },
   ]
 
   const socialLinks = [
@@ -77,9 +76,9 @@ export function Footer() {
             
             {/* Language Selector */}
             <div className="flex items-center gap-1 text-xs font-medium text-gray-700 dark:text-gray-300">
-              <span className="hover:text-gray-900 dark:hover:text-white cursor-pointer transition-colors">EN</span>
+              <span className="hover:text-gray-900 dark:hover:text-white cursor-pointer transition-colors">FR</span>
               <span className="text-gray-400 dark:text-gray-600">|</span>
-              <span className="hover:text-gray-900 dark:hover:text-white cursor-pointer transition-colors">ES</span>
+              <span className="hover:text-gray-900 dark:hover:text-white cursor-pointer transition-colors">EN</span>
             </div>
 
             {/* Social Links */}
@@ -101,29 +100,14 @@ export function Footer() {
         {/* Equal Opportunity Statement */}
         <div className="mb-3">
           <p className="text-[10px] text-gray-600 dark:text-gray-400 leading-relaxed">
-            Zonemation is an Equal Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, age, religion, sex, sexual orientation, gender identity / expression, national origin, protected veteran status, or any other characteristic protected under federal, state or local law, where applicable, and those with criminal histories will be considered in a manner consistent with applicable state and local laws.
-          </p>
-        </div>
-
-        {/* Transparency Disclosure */}
-        <div className="mb-3">
-          <p className="text-[10px] text-gray-600 dark:text-gray-400 leading-relaxed">
-            Pursuant to Transparency in Coverage final rules (85 FR 72158) set forth in the United States by The Departments of the Treasury, Labor, and Health and Human Services click{' '}
-            <a href="#" className="underline hover:text-gray-800 dark:hover:text-gray-200 transition-colors">
-              here
-            </a>
-            {' '}to access required Machine Readable Files or{' '}
-            <a href="#" className="underline hover:text-gray-800 dark:hover:text-gray-200 transition-colors">
-              here
-            </a>
-            {' '}to access the Federal No Surprises Bill Act Disclosure.
+            Zonemation is an Equal Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, age, religion, sex, sexual orientation, gender identity / expression, national origin, or any other characteristic protected under applicable law.
           </p>
         </div>
 
         {/* Copyright */}
         <div className="pt-2 border-t border-gray-200 dark:border-gray-700">
           <p className="text-[10px] text-gray-600 dark:text-gray-400">
-            © 2025 Zonemation Consulting Group
+            &copy; {new Date().getFullYear()} Zonemation Consulting Group. All rights reserved.
           </p>
         </div>
       </div>

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 const quotes = [
   "Le cabinet qui digitalise tout le monde n'a pas encore son propre site",
@@ -11,83 +11,24 @@ const quotes = [
 
 function AnimatedDots() {
   const [dots, setDots] = useState('')
-  
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
+
   useEffect(() => {
-    const interval = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       setDots(prev => prev.length >= 3 ? '' : prev + '.')
     }, 800)
-    return () => clearInterval(interval)
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current)
+    }
   }, [])
-  
+
   return <span className="text-[#a7d26d]">{dots}</span>
 }
 
 function AnimatedLogo() {
   return (
     <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
-      <svg viewBox="0 0 1200 1200" className="w-full h-full">
-        <style>
-          {`
-            .st0{clip-path:url(#SVGID_2_);}
-            .st1{fill:none;stroke:#A7D26D;stroke-width:62;stroke-miterlimit:10;}
-            @keyframes offset_one {
-              20%, 60% { stroke-dashoffset: 3354; }
-              80%, 100% { stroke-dashoffset: 1677; }
-            }
-            .sub_one polyline {
-              stroke-dasharray: 1677;
-              stroke-dashoffset: 5031;
-              animation: offset_one 6s ease infinite;
-            }
-            @keyframes offset_two {
-              13% { stroke-dashoffset: 1500; }
-              37%, 76% { stroke-dashoffset: 1000; }
-              93%, 100% { stroke-dashoffset: 500; }
-            }
-            .sub_two line {
-              stroke-dasharray: 500;
-              stroke-dashoffset: 1500;
-              animation: offset_two 6s ease infinite;
-            }
-            @keyframes grow_one {
-              15% { transform: scale(0); }
-              23%, 75% { transform: scale(1); }
-              81%, 100% { transform: scale(0); }
-            }
-            .sub_one circle {
-              transform-origin: 168px 253px;
-              transform: scale(0);
-              animation: grow_one 6s ease infinite;
-            }
-            @keyframes grow_two {
-              26.2% { transform: scale(0); }
-              34.2%, 85% { transform: scale(1); }
-              88%, 100% { transform: scale(0); }
-            }
-            .sub_two circle {
-              transform-origin: 183px 516px;
-              transform: scale(0);
-              animation: grow_two 6s ease infinite;
-            }
-            .feat {
-              transform-origin: 600px 600px;
-              transform: rotateX(180deg) rotateY(180deg);
-            }
-            @keyframes draw-border {
-              0% { stroke-dashoffset: 5000; }
-              50% { stroke-dashoffset: 0; }
-              100% { stroke-dashoffset: 5000; }
-            }
-            .logo-stroke {
-              fill: none;
-              stroke: #94a3b8;
-              stroke-width: 8;
-              stroke-dasharray: 5000;
-              stroke-dashoffset: 5000;
-              animation: draw-border 6s ease-in-out infinite alternate;
-            }
-          `}
-        </style>
+      <svg viewBox="0 0 1200 1200" className="w-full h-full" suppressHydrationWarning>
         <g>
           <path fill="#0C130B" d="M1065.5,1178H140.5C73.4,1178,19,1123.6,19,1056.5V138.5C19,71.4,73.4,17,140.5,17h924.9c67.1,0,121.5,54.4,121.5,121.5v917.9C1187,1123.6,1132.6,1178,1065.5,1178z"/>
           <path className="logo-stroke" d="M1065.5,1178H140.5C73.4,1178,19,1123.6,19,1056.5V138.5C19,71.4,73.4,17,140.5,17h924.9c67.1,0,121.5,54.4,121.5,121.5v917.9C1187,1123.6,1132.6,1178,1065.5,1178z"/>
@@ -130,12 +71,7 @@ function AnimatedLogo() {
 }
 
 export function UnderConstruction() {
-  const [mounted, setMounted] = useState(false)
   const [quoteIndex, setQuoteIndex] = useState(0)
-  
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -144,10 +80,8 @@ export function UnderConstruction() {
     return () => clearInterval(interval)
   }, [])
 
-  if (!mounted) return null
-
   return (
-    <div className="min-h-screen bg-[#181a0e] flex items-center justify-center px-4 relative overflow-hidden">
+    <div className="min-h-[calc(100vh-160px)] flex items-center justify-center px-6 py-12 relative overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#a7d26d]/5 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/[0.03] rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />

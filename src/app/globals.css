@@ -303,6 +303,138 @@ a {
   animation: slideUp 0.5s ease-out;
 }
 
+/* Main Logo SVG Animations (under-construction, contact, merci) */
+.st0 { clip-path: url(#SVGID_2_); }
+.st1 { fill: none; stroke: #A7D26D; stroke-width: 62; stroke-miterlimit: 10; }
+
+@keyframes offset_one {
+  20%, 60% { stroke-dashoffset: 3354; }
+  80%, 100% { stroke-dashoffset: 1677; }
+}
+.sub_one polyline {
+  stroke-dasharray: 1677;
+  stroke-dashoffset: 5031;
+  animation: offset_one 6s ease infinite;
+}
+
+@keyframes offset_two {
+  13% { stroke-dashoffset: 1500; }
+  37%, 76% { stroke-dashoffset: 1000; }
+  93%, 100% { stroke-dashoffset: 500; }
+}
+.sub_two line {
+  stroke-dasharray: 500;
+  stroke-dashoffset: 1500;
+  animation: offset_two 6s ease infinite;
+}
+
+@keyframes grow_one {
+  15% { transform: scale(0); }
+  23%, 75% { transform: scale(1); }
+  81%, 100% { transform: scale(0); }
+}
+.sub_one circle {
+  transform-origin: 168px 253px;
+  transform: scale(0);
+  animation: grow_one 6s ease infinite;
+}
+
+@keyframes grow_two {
+  26.2% { transform: scale(0); }
+  34.2%, 85% { transform: scale(1); }
+  88%, 100% { transform: scale(0); }
+}
+.sub_two circle {
+  transform-origin: 183px 516px;
+  transform: scale(0);
+  animation: grow_two 6s ease infinite;
+}
+
+.feat {
+  transform-origin: 600px 600px;
+  transform: rotateX(180deg) rotateY(180deg);
+}
+
+@keyframes draw-border {
+  0% { stroke-dashoffset: 5000; }
+  50% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 5000; }
+}
+.logo-stroke {
+  fill: none;
+  stroke: #A7D26D;
+  stroke-width: 8;
+  stroke-dasharray: 5000;
+  stroke-dashoffset: 5000;
+  animation: draw-border 6s ease-in-out infinite alternate;
+}
+
+/* PageShell MiniLogo SVG Animations */
+.ps-st0 { clip-path: url(#PS_SVGID_2_); }
+.ps-st1 { fill: none; stroke: #A7D26D; stroke-width: 62; stroke-miterlimit: 10; }
+
+@keyframes ps_offset_one {
+  20%, 60% { stroke-dashoffset: 3354; }
+  80%, 100% { stroke-dashoffset: 1677; }
+}
+.ps-sub_one polyline {
+  stroke-dasharray: 1677;
+  stroke-dashoffset: 5031;
+  animation: ps_offset_one 6s ease infinite;
+}
+
+@keyframes ps_offset_two {
+  13% { stroke-dashoffset: 1500; }
+  37%, 76% { stroke-dashoffset: 1000; }
+  93%, 100% { stroke-dashoffset: 500; }
+}
+.ps-sub_two line {
+  stroke-dasharray: 500;
+  stroke-dashoffset: 1500;
+  animation: ps_offset_two 6s ease infinite;
+}
+
+@keyframes ps_grow_one {
+  15% { transform: scale(0); }
+  23%, 75% { transform: scale(1); }
+  81%, 100% { transform: scale(0); }
+}
+.ps-sub_one circle {
+  transform-origin: 168px 253px;
+  transform: scale(0);
+  animation: ps_grow_one 6s ease infinite;
+}
+
+@keyframes ps_grow_two {
+  26.2% { transform: scale(0); }
+  34.2%, 85% { transform: scale(1); }
+  88%, 100% { transform: scale(0); }
+}
+.ps-sub_two circle {
+  transform-origin: 183px 516px;
+  transform: scale(0);
+  animation: ps_grow_two 6s ease infinite;
+}
+
+.ps-feat {
+  transform-origin: 600px 600px;
+  transform: rotateX(180deg) rotateY(180deg);
+}
+
+@keyframes ps_draw_border {
+  0% { stroke-dashoffset: 5000; }
+  50% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 5000; }
+}
+.ps-logo-stroke {
+  fill: none;
+  stroke: #A7D26D;
+  stroke-width: 8;
+  stroke-dasharray: 5000;
+  stroke-dashoffset: 5000;
+  animation: ps_draw_border 6s ease-in-out infinite alternate;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
