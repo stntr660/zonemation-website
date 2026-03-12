@@ -1,0 +1,9 @@
+node_modules
+.next
+.git
+.env*
+*.md
+.DS_Store
+playwright-report
+test-results
+coverage

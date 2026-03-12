@@ -21,6 +21,18 @@ module.exports = {
           800: '#41602a',
           900: '#385026',
         },
+        surface: {
+          DEFAULT: '#181a0e',   // Page bg
+          raised: '#1e2112',    // Cards, elevated surfaces
+          overlay: '#252819',   // Modals, dropdowns
+          border: 'rgba(167, 210, 109, 0.08)', // Subtle borders
+        },
+        text: {
+          primary: '#ffffff',
+          secondary: 'rgba(255, 255, 255, 0.55)',
+          tertiary: 'rgba(255, 255, 255, 0.30)',
+          muted: 'rgba(255, 255, 255, 0.15)',
+        },
         neutral: {
           beige: '#F1EEEA',
           sand: '#DCD5CE',
@@ -71,38 +83,36 @@ module.exports = {
         '7xl': ['2.8rem', { lineHeight: '2.8rem' }],       // ~44.8px - Display (max)
       },
       letterSpacing: {
-        'tighter': '-0.1em',        // Ultra tight
-        'tight': '-0.075em',        // Very tight  
-        'normal': '-0.05em',        // Tight default
-        'wide': '-0.035em',         // Less tight
-        'wider': '-0.025em',        // Slightly tight
-        'widest': '-0.015em',       // Minimal tight
-        'display': '-0.08em',       // Very tight display
-        'heading': '-0.06em',       // Very tight headings
-        'body': '-0.05em',          // Very tight body
-        'caption': '-0.04em',       // Tight captions
+        'tighter': '-0.1em',
+        'tight': '-0.075em',
+        'normal': '-0.05em',
+        'wide': '-0.035em',
+        'wider': '-0.025em',
+        'widest': '-0.015em',
+        'display': '-0.08em',
+        'heading': '-0.06em',
+        'body': '-0.05em',
+        'caption': '-0.04em',
       },
       lineHeight: {
         'none': '1',
         'tight': '1.1',
-        'snug': '1.2', 
+        'snug': '1.2',
         'normal': '1.5',
         'relaxed': '1.6',
         'loose': '1.75',
-        'display': '1.1',           // BCG display text
-        'heading': '1.2',           // BCG headings
-        'body': '1.5',              // BCG body text
+        'display': '1.1',
+        'heading': '1.2',
+        'body': '1.5',
       },
       spacing: {
-        // BCG 8-point spacing system
         'micro': '0.25rem',    // 4px
-        'small': '0.5rem',     // 8px  
+        'small': '0.5rem',     // 8px
         'base': '1rem',        // 16px
         'medium': '1.5rem',    // 24px
         'large': '2rem',       // 32px
         'xlarge': '3rem',      // 48px
         'xxlarge': '4rem',     // 64px
-        // Standard spacing
         '18': '4.5rem',
         '88': '22rem',
       },
