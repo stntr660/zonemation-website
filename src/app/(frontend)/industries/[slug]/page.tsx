@@ -1,10 +1,14 @@
-import { getPayload } from 'payload'
-import config from '@payload-config'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 
 export const dynamic = 'force-dynamic'
+
+async function getPayloadClient() {
+  const { getPayload } = await import('payload')
+  const config = (await import('@payload-config')).default
+  return getPayload({ config })
+}
 
 type Args = {
   params: Promise<{ slug: string }>
@@ -13,7 +17,7 @@ type Args = {
 export async function generateMetadata({ params }: Args) {
   try {
     const { slug } = await params
-    const payload = await getPayload({ config })
+    const payload = await getPayloadClient()
     const { docs } = await payload.find({
       collection: 'industries',
       where: { slug: { equals: slug } },
@@ -32,7 +36,7 @@ export async function generateMetadata({ params }: Args) {
 
 export default async function IndustryPage({ params }: Args) {
   const { slug } = await params
-  const payload = await getPayload({ config })
+  const payload = await getPayloadClient()
 
   const { docs } = await payload.find({
     collection: 'industries',
@@ -54,7 +58,6 @@ export default async function IndustryPage({ params }: Args) {
 
   return (
     <main className="pt-24 pb-20">
-      {/* Hero */}
       <div className="relative h-[400px] mb-16">
         {industry.coverImage && typeof industry.coverImage === 'object' && (
           <Image

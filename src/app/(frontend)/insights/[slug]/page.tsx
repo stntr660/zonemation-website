@@ -1,11 +1,15 @@
-import { getPayload } from 'payload'
-import config from '@payload-config'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 
 export const dynamic = 'force-dynamic'
+
+async function getPayloadClient() {
+  const { getPayload } = await import('payload')
+  const config = (await import('@payload-config')).default
+  return getPayload({ config })
+}
 
 type Args = {
   params: Promise<{ slug: string }>
@@ -14,7 +18,7 @@ type Args = {
 export async function generateMetadata({ params }: Args) {
   try {
     const { slug } = await params
-    const payload = await getPayload({ config })
+    const payload = await getPayloadClient()
     const { docs } = await payload.find({
       collection: 'insights',
       where: { slug: { equals: slug } },
@@ -33,7 +37,7 @@ export async function generateMetadata({ params }: Args) {
 
 export default async function InsightPage({ params }: Args) {
   const { slug } = await params
-  const payload = await getPayload({ config })
+  const payload = await getPayloadClient()
 
   const { docs } = await payload.find({
     collection: 'insights',
@@ -66,7 +70,6 @@ export default async function InsightPage({ params }: Args) {
 
   return (
     <main className="pt-24 pb-20">
-      {/* Hero */}
       <div className="relative h-[500px] mb-12">
         {insight.coverImage && typeof insight.coverImage === 'object' && (
           <Image
@@ -80,7 +83,7 @@ export default async function InsightPage({ params }: Args) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         <div className="absolute inset-0 flex items-end">
           <div className="max-w-[1400px] mx-auto px-6 lg:px-8 pb-12 w-full">
-            <span className="caption text-white/70 mb-4 inline-block">
+            <span className="caption text-white/80 mb-4 inline-block">
               {insight.type?.toUpperCase()} {publishedDate && `\u2022 ${publishedDate}`}
             </span>
             <h1 className="heading-display text-white max-w-3xl">{insight.title}</h1>
@@ -90,7 +93,6 @@ export default async function InsightPage({ params }: Args) {
 
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
         <div className="max-w-3xl">
-          {/* Author */}
           {author && (
             <div className="flex items-center gap-4 mb-8 pb-8 border-b border-gray-200 dark:border-gray-800">
               {author.photo && typeof author.photo === 'object' && (
@@ -114,12 +116,10 @@ export default async function InsightPage({ params }: Args) {
             </div>
           )}
 
-          {/* Excerpt */}
           <p className="body-large text-gray-700 dark:text-gray-300 mb-8 font-medium">
             {insight.excerpt}
           </p>
 
-          {/* Content */}
           {insight.content && (
             <div className="prose dark:prose-invert prose-lg max-w-none mb-16">
               <RichText data={insight.content} />
@@ -127,7 +127,6 @@ export default async function InsightPage({ params }: Args) {
           )}
         </div>
 
-        {/* Related */}
         {related.length > 0 && (
           <section className="border-t border-gray-200 dark:border-gray-800 pt-16">
             <h2 className="heading-h2 text-gray-900 dark:text-white mb-8">Related Insights</h2>

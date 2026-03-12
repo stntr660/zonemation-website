@@ -1,10 +1,14 @@
-import { getPayload } from 'payload'
-import config from '@payload-config'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 
 export const dynamic = 'force-dynamic'
+
+async function getPayloadClient() {
+  const { getPayload } = await import('payload')
+  const config = (await import('@payload-config')).default
+  return getPayload({ config })
+}
 
 type Args = {
   params: Promise<{ slug: string }>
@@ -13,7 +17,7 @@ type Args = {
 export async function generateMetadata({ params }: Args) {
   try {
     const { slug } = await params
-    const payload = await getPayload({ config })
+    const payload = await getPayloadClient()
     const { docs } = await payload.find({
       collection: 'projects',
       where: { slug: { equals: slug } },
@@ -32,7 +36,7 @@ export async function generateMetadata({ params }: Args) {
 
 export default async function ProjectPage({ params }: Args) {
   const { slug } = await params
-  const payload = await getPayload({ config })
+  const payload = await getPayloadClient()
 
   const { docs } = await payload.find({
     collection: 'projects',
@@ -45,7 +49,6 @@ export default async function ProjectPage({ params }: Args) {
 
   return (
     <main className="pt-24 pb-20">
-      {/* Hero */}
       <div className="relative h-[500px] mb-12">
         {project.coverImage && typeof project.coverImage === 'object' && (
           <Image
@@ -68,7 +71,6 @@ export default async function ProjectPage({ params }: Args) {
       </div>
 
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
-        {/* Stats */}
         {project.stats && project.stats.length > 0 && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 p-8 bg-gray-50 dark:bg-gray-900 rounded-2xl">
             {project.stats.map((stat: { value: string; label: string }, i: number) => (
@@ -80,7 +82,6 @@ export default async function ProjectPage({ params }: Args) {
           </div>
         )}
 
-        {/* Content */}
         <div className="max-w-3xl">
           <p className="body-large text-gray-700 dark:text-gray-300 mb-8 font-medium">
             {project.excerpt}
@@ -93,7 +94,6 @@ export default async function ProjectPage({ params }: Args) {
           )}
         </div>
 
-        {/* Testimonial */}
         {project.testimonial?.quote && (
           <div className="max-w-3xl bg-gray-50 dark:bg-gray-900 rounded-2xl p-8 mb-16">
             <blockquote className="text-xl text-gray-700 dark:text-gray-300 italic mb-4">

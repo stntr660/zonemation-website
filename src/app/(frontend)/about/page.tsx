@@ -1,8 +1,12 @@
-import { getPayload } from 'payload'
-import config from '@payload-config'
 import Image from 'next/image'
 
 export const dynamic = 'force-dynamic'
+
+async function getPayloadClient() {
+  const { getPayload } = await import('payload')
+  const config = (await import('@payload-config')).default
+  return getPayload({ config })
+}
 
 export const metadata = {
   title: 'About - Zonemation',
@@ -10,7 +14,7 @@ export const metadata = {
 }
 
 export default async function AboutPage() {
-  const payload = await getPayload({ config })
+  const payload = await getPayloadClient()
 
   const { docs: team } = await payload.find({
     collection: 'team',
