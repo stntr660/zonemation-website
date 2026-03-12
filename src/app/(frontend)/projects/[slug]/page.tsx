@@ -10,33 +10,23 @@ type Args = {
   params: Promise<{ slug: string }>
 }
 
-export async function generateStaticParams() {
+export async function generateMetadata({ params }: Args) {
   try {
+    const { slug } = await params
     const payload = await getPayload({ config })
     const { docs } = await payload.find({
       collection: 'projects',
-      where: { status: { equals: 'published' } },
-      limit: 100,
+      where: { slug: { equals: slug } },
+      limit: 1,
     })
-    return docs.map((doc) => ({ slug: doc.slug }))
+    const project = docs[0]
+    if (!project) return {}
+    return {
+      title: `${project.title} - Zonemation`,
+      description: project.excerpt,
+    }
   } catch {
-    return []
-  }
-}
-
-export async function generateMetadata({ params }: Args) {
-  const { slug } = await params
-  const payload = await getPayload({ config })
-  const { docs } = await payload.find({
-    collection: 'projects',
-    where: { slug: { equals: slug } },
-    limit: 1,
-  })
-  const project = docs[0]
-  if (!project) return {}
-  return {
-    title: `${project.title} - Zonemation`,
-    description: project.excerpt,
+    return {}
   }
 }
 

@@ -10,29 +10,23 @@ type Args = {
   params: Promise<{ slug: string }>
 }
 
-export async function generateStaticParams() {
-  try {
-    const payload = await getPayload({ config })
-    const { docs } = await payload.find({ collection: 'industries', limit: 100 })
-    return docs.map((doc) => ({ slug: doc.slug }))
-  } catch {
-    return []
-  }
-}
-
 export async function generateMetadata({ params }: Args) {
-  const { slug } = await params
-  const payload = await getPayload({ config })
-  const { docs } = await payload.find({
-    collection: 'industries',
-    where: { slug: { equals: slug } },
-    limit: 1,
-  })
-  const industry = docs[0]
-  if (!industry) return {}
-  return {
-    title: `${industry.name} - Zonemation`,
-    description: industry.description,
+  try {
+    const { slug } = await params
+    const payload = await getPayload({ config })
+    const { docs } = await payload.find({
+      collection: 'industries',
+      where: { slug: { equals: slug } },
+      limit: 1,
+    })
+    const industry = docs[0]
+    if (!industry) return {}
+    return {
+      title: `${industry.name} - Zonemation`,
+      description: industry.description,
+    }
+  } catch {
+    return {}
   }
 }
 
