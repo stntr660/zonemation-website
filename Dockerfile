@@ -24,6 +24,10 @@ ENV NEXT_PUBLIC_SHOW_BRANDS=$NEXT_PUBLIC_SHOW_BRANDS
 ENV DATABASE_URL=$DATABASE_URL
 ENV PAYLOAD_SECRET=$PAYLOAD_SECRET
 
+# Polyfill browser globals that Payload references at build time
+ENV NODE_OPTIONS="--require /app/polyfill.js"
+RUN echo "if (typeof globalThis.File === 'undefined') { globalThis.File = class File { constructor() {} }; }" > /app/polyfill.js
+
 RUN npm run build
 
 # --- Runner ---
