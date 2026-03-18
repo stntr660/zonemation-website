@@ -47,8 +47,8 @@ export default async function CapabilityPage({ params }: Args) {
   const capability = docs[0]
   if (!capability) notFound()
 
-  const { docs: relatedProjects } = await payload.find({
-    collection: 'projects',
+  const { docs: relatedCaseStudies } = await payload.find({
+    collection: 'case-studies',
     where: {
       capabilities: { contains: capability.id },
       status: { equals: 'published' },
@@ -90,21 +90,21 @@ export default async function CapabilityPage({ params }: Args) {
           </div>
         )}
 
-        {relatedProjects.length > 0 && (
+        {relatedCaseStudies.length > 0 && (
           <section>
-            <h2 className="heading-h2 text-gray-900 dark:text-white mb-8">Related Projects</h2>
+            <h2 className="heading-h2 text-gray-900 dark:text-white mb-8">Related Case Studies</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {relatedProjects.map((project) => (
+              {relatedCaseStudies.map((cs) => (
                 <a
-                  key={project.id}
-                  href={`/projects/${project.slug}`}
+                  key={cs.id}
+                  href={`/case-studies/${cs.slug}`}
                   className="card p-6 group"
                 >
                   <h3 className="heading-h4 text-gray-900 dark:text-white group-hover:text-primary-400 transition-colors mb-2">
-                    {project.title}
+                    {cs.title}
                   </h3>
                   <p className="body-small text-gray-600 dark:text-gray-400 text-clamp-2">
-                    {project.excerpt}
+                    {cs.excerpt}
                   </p>
                 </a>
               ))}

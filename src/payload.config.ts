@@ -11,7 +11,7 @@ import { Pages } from './collections/Pages'
 import { Insights } from './collections/Insights'
 import { Industries } from './collections/Industries'
 import { Capabilities } from './collections/Capabilities'
-import { Projects } from './collections/Projects'
+import { CaseStudies } from './collections/CaseStudies'
 import { Team } from './collections/Team'
 import { Clients } from './collections/Clients'
 import { ContactSubmissions } from './collections/ContactSubmissions'
@@ -38,7 +38,7 @@ export default buildConfig({
     Insights,
     Industries,
     Capabilities,
-    Projects,
+    CaseStudies,
     Team,
     Clients,
     ContactSubmissions,

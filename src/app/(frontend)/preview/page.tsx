@@ -5,7 +5,7 @@ export default function PreviewHomepage() {
     <HomepageSections
       homepage={null}
       capabilities={[]}
-      projects={[]}
+      caseStudies={[]}
       clients={[]}
       featuredInsights={[]}
     />

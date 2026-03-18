@@ -14,7 +14,7 @@ import { CTASection } from './cta-section'
 interface HomepageSectionsProps {
   homepage: any
   capabilities: any[]
-  projects: any[]
+  caseStudies: any[]
   clients: any[]
   featuredInsights: any[]
 }
@@ -22,7 +22,7 @@ interface HomepageSectionsProps {
 export function HomepageSections({
   homepage,
   capabilities,
-  projects,
+  caseStudies,
   clients,
   featuredInsights,
 }: HomepageSectionsProps) {
@@ -33,19 +33,19 @@ export function HomepageSections({
   const ctaButtonText = homepage?.ctaButtonText || 'Parlons de votre projet'
   const ctaButtonLink = homepage?.ctaButtonLink || '/contact'
 
-  const transformedProjects = projects
-    .filter((p: any) => p.coverImage)
-    .map((p: any) => ({
-      id: p.id,
-      title: p.title,
-      slug: p.slug,
-      client: p.client,
-      excerpt: p.excerpt,
+  const transformedCaseStudies = caseStudies
+    .filter((cs: any) => cs.coverImage)
+    .map((cs: any) => ({
+      id: cs.id,
+      title: cs.title,
+      slug: cs.slug,
+      client: cs.clientDisplay === 'named' ? cs.clientName : cs.clientAnonymous,
+      excerpt: cs.excerpt,
       coverImage: {
-        url: typeof p.coverImage === 'object' ? p.coverImage.url : p.coverImage,
-        alt: typeof p.coverImage === 'object' ? p.coverImage.alt : p.title,
+        url: typeof cs.coverImage === 'object' ? cs.coverImage.url : cs.coverImage,
+        alt: typeof cs.coverImage === 'object' ? cs.coverImage.alt : cs.title,
       },
-      stats: p.stats,
+      stats: cs.headlineMetrics,
     }))
 
   const transformedInsights = featuredInsights
@@ -87,7 +87,7 @@ export function HomepageSections({
       <HeroStatement heading={heroHeading} subheading={heroSubheading} />
       <ImpactStats stats={stats} />
       <StrategicQuadrant />
-      {transformedProjects.length > 0 && <CaseStudies projects={transformedProjects} />}
+      {transformedCaseStudies.length > 0 && <CaseStudies projects={transformedCaseStudies} />}
       <ProcessArchitecture />
       <IndustryRadar />
       {transformedCapabilities.length > 0 && <CapabilitiesMatrix capabilities={transformedCapabilities} />}

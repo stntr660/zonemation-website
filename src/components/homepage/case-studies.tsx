@@ -65,7 +65,7 @@ export function CaseStudies({ projects }: CaseStudiesProps) {
 
 function Card({ project, large }: { project: Project; large?: boolean }) {
   return (
-    <Link href={`/projects/${project.slug}`}
+    <Link href={`/case-studies/${project.slug}`}
       className={`group relative block overflow-hidden bg-[#181a0e] hover:bg-[#1e2112] transition-colors duration-300 ${large ? 'h-full min-h-[420px] md:min-h-0' : 'h-[280px]'}`}
     >
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#a7d26d] scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left z-10" />
