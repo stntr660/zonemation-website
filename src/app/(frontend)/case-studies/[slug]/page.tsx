@@ -85,11 +85,11 @@ export default async function CaseStudyPage({ params }: Args) {
         <div className="absolute inset-0 flex items-end">
           <div className="max-w-[1400px] mx-auto px-6 lg:px-8 pb-12 w-full">
             {clientLabel && (
-              <p className="font-mono text-[0.7rem] tracking-[0.15em] uppercase text-[#a7d26d] mb-4">
+              <p className="font-mono text-[0.8rem] tracking-[0.15em] uppercase text-[#a7d26d] mb-5">
                 {clientLabel}
               </p>
             )}
-            <h1 className="font-light text-3xl lg:text-5xl tracking-wider text-white/90 max-w-3xl leading-snug">
+            <h1 className="font-light text-4xl lg:text-6xl tracking-wider text-white/90 max-w-3xl leading-tight">
               {cs.title}
             </h1>
           </div>
@@ -98,20 +98,20 @@ export default async function CaseStudyPage({ params }: Args) {
 
       {/* ─── META BAR ─── */}
       <div className="bg-[#181a0e] border-b border-white/[0.06]">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-8 py-6 flex flex-wrap items-center gap-6 text-[0.75rem]">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-8 py-7 flex flex-wrap items-center gap-8 text-[0.9rem]">
           {author && (
             <div className="flex items-center gap-3">
               {author.photo && typeof author.photo === 'object' && (
-                <Image src={author.photo.url || ''} alt={author.name} width={32} height={32} className="rounded-full" />
+                <Image src={author.photo.url || ''} alt={author.name} width={36} height={36} className="rounded-full" />
               )}
               <div>
-                <span className="text-white/60">{author.name}</span>
-                {author.role && <span className="text-white/25 ml-2">{author.role}</span>}
+                <span className="text-white/80 font-medium">{author.name}</span>
+                {author.role && <span className="text-white/45 ml-2">{author.role}</span>}
               </div>
             </div>
           )}
-          {publishedDate && <span className="text-white/25 font-mono">{publishedDate}</span>}
-          {cs.readTime && <span className="text-white/25 font-mono">{cs.readTime} min de lecture</span>}
+          {publishedDate && <span className="text-white/50 font-mono text-[0.85rem]">{publishedDate}</span>}
+          {cs.readTime && <span className="text-white/50 font-mono text-[0.85rem]">{cs.readTime} min de lecture</span>}
 
           {/* Industry/capability tags */}
           <div className="flex gap-2 ml-auto">
@@ -139,14 +139,14 @@ export default async function CaseStudyPage({ params }: Args) {
 
       {/* ─── HEADLINE METRICS ─── */}
       {cs.headlineMetrics && cs.headlineMetrics.length > 0 && (
-        <div className="bg-[#181a0e]">
-          <div className="max-w-[1400px] mx-auto px-6 lg:px-8 py-12">
-            <div className={`grid grid-cols-2 md:grid-cols-${Math.min(cs.headlineMetrics.length, 4)} gap-8`}>
+        <div className="bg-[#181a0e] border-b border-white/[0.06]">
+          <div className="max-w-[1400px] mx-auto px-6 lg:px-8 py-14">
+            <div className={`grid grid-cols-2 md:grid-cols-${Math.min(cs.headlineMetrics.length, 4)} gap-0`}>
               {cs.headlineMetrics.map((m: any, i: number) => (
-                <div key={i} className="text-center md:text-left">
-                  <p className="text-[#a7d26d] text-[2.5rem] md:text-[3rem] font-thin tracking-wider">{m.value}</p>
-                  <p className="text-white/40 text-[0.85rem] font-light">{m.label}</p>
-                  {m.context && <p className="text-white/15 text-[0.7rem] font-mono mt-1">{m.context}</p>}
+                <div key={i} className={`py-6 md:py-0 md:px-8 ${i > 0 ? 'border-l border-white/[0.08]' : ''}`}>
+                  <p className="text-[#a7d26d] text-[2.8rem] md:text-[3.2rem] font-normal tracking-tight leading-none mb-3">{m.value}</p>
+                  <p className="text-white/70 text-[0.95rem] font-medium leading-snug">{m.label}</p>
+                  {m.context && <p className="text-white/35 text-[0.8rem] font-normal mt-2 leading-snug">{m.context}</p>}
                 </div>
               ))}
             </div>
@@ -185,6 +185,8 @@ export default async function CaseStudyPage({ params }: Args) {
                 number="01"
                 heading={cs.situationHeading || 'Situation'}
                 content={cs.situation}
+                image={cs.situationImage}
+                imageCaption={cs.situationImageCaption}
               />
             )}
 
@@ -208,16 +210,21 @@ export default async function CaseStudyPage({ params }: Args) {
               >
                 {/* Approach diagrams */}
                 {cs.approachDiagrams && cs.approachDiagrams.length > 0 && (
-                  <div className="grid md:grid-cols-2 gap-6 mt-8">
+                  <div className={`grid gap-6 mt-8 ${cs.approachDiagrams.length > 1 ? 'md:grid-cols-2' : ''}`}>
                     {cs.approachDiagrams.map((d: any, i: number) => {
                       const img = typeof d.image === 'object' ? d.image : null
                       if (!img) return null
                       return (
                         <figure key={i}>
-                          <div className="relative aspect-[16/10] bg-white/[0.02] border border-white/[0.06]">
-                            <Image src={img.url || ''} alt={d.caption || ''} fill className="object-contain p-2" />
+                          <div className="relative aspect-[16/9] overflow-hidden border border-white/[0.06]">
+                            <Image src={img.url || ''} alt={d.caption || ''} fill className="object-cover" />
                           </div>
-                          {d.caption && <figcaption className="text-white/20 text-[0.7rem] font-mono mt-2">{d.caption}</figcaption>}
+                          {d.caption && (
+                            <figcaption className="flex items-baseline gap-2 mt-3">
+                              <span className="text-[#a7d26d]/50 text-[0.7rem] font-mono shrink-0">Fig.</span>
+                              <span className="text-white/50 text-[0.8rem] font-normal leading-snug">{d.caption}</span>
+                            </figcaption>
+                          )}
                         </figure>
                       )
                     })}
@@ -235,17 +242,24 @@ export default async function CaseStudyPage({ params }: Args) {
                 image={cs.resultsImage}
                 imageCaption={cs.resultsImageCaption}
               >
-                {/* Detailed metrics table */}
+                {/* Detailed metrics */}
                 {cs.detailedMetrics && cs.detailedMetrics.length > 0 && (
-                  <div className="mt-10 border border-white/[0.06]">
-                    {cs.detailedMetrics.map((m: any, i: number) => (
-                      <div key={i} className={`flex items-baseline gap-6 p-5 ${i > 0 ? 'border-t border-white/[0.04]' : ''}`}>
-                        {m.category && <span className="text-white/15 text-[0.7rem] font-mono w-24 shrink-0">{m.category}</span>}
-                        <span className="text-[#a7d26d] text-[1.3rem] font-light">{m.value}</span>
-                        <span className="text-white/50 text-[0.85rem]">{m.label}</span>
-                        {m.description && <span className="text-white/20 text-[0.75rem] ml-auto">{m.description}</span>}
-                      </div>
-                    ))}
+                  <div className="mt-12">
+                    <p className="font-mono text-[0.7rem] tracking-[0.15em] uppercase text-[#a7d26d] mb-6">Indicateurs detailles</p>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {cs.detailedMetrics.map((m: any, i: number) => (
+                        <div key={i} className="bg-white/[0.02] border border-white/[0.06] p-6">
+                          {m.category && (
+                            <span className="text-[#a7d26d]/60 text-[0.7rem] font-mono font-medium uppercase tracking-[0.1em] mb-3 block">{m.category}</span>
+                          )}
+                          <div className="flex items-baseline gap-3 mb-2">
+                            <span className="text-[#a7d26d] text-[1.8rem] font-normal leading-none">{m.value}</span>
+                          </div>
+                          <p className="text-white/70 text-[0.9rem] font-medium leading-snug">{m.label}</p>
+                          {m.description && <p className="text-white/40 text-[0.8rem] font-normal mt-1.5">{m.description}</p>}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
 
@@ -273,7 +287,7 @@ export default async function CaseStudyPage({ params }: Args) {
             {/* ─── TESTIMONIAL ─── */}
             {cs.testimonial?.quote && (
               <div className="max-w-3xl py-12 border-t border-white/[0.06]">
-                <blockquote className="text-white/50 text-[1.2rem] font-light leading-relaxed italic mb-6">
+                <blockquote className="text-white/60 text-[1.25rem] font-normal leading-relaxed italic mb-6">
                   &ldquo;{cs.testimonial.quote}&rdquo;
                 </blockquote>
                 <div className="flex items-center gap-4">
@@ -281,8 +295,8 @@ export default async function CaseStudyPage({ params }: Args) {
                     <Image src={cs.testimonial.photo.url || ''} alt={cs.testimonial.author || ''} width={40} height={40} className="rounded-full" />
                   )}
                   <div>
-                    <p className="text-white/60 text-[0.9rem]">{cs.testimonial.author}</p>
-                    <p className="text-white/25 text-[0.75rem]">
+                    <p className="text-white/80 text-[0.95rem] font-medium">{cs.testimonial.author}</p>
+                    <p className="text-white/45 text-[0.85rem] font-normal">
                       {cs.testimonial.role}
                       {cs.testimonial.company && `, ${cs.testimonial.company}`}
                     </p>
@@ -300,12 +314,15 @@ export default async function CaseStudyPage({ params }: Args) {
                     const img = typeof item.image === 'object' ? item.image : null
                     if (!img) return null
                     return (
-                      <figure key={i} className="bg-white/[0.02] border border-white/[0.06]">
-                        <div className="relative aspect-[4/3]">
+                      <figure key={i}>
+                        <div className="relative aspect-[16/9] overflow-hidden border border-white/[0.06]">
                           <Image src={img.url || ''} alt={item.caption || ''} fill className="object-cover" />
                         </div>
                         {item.caption && (
-                          <figcaption className="p-3 text-white/20 text-[0.7rem] font-mono">{item.caption}</figcaption>
+                          <figcaption className="flex items-baseline gap-2 mt-3">
+                            <span className="text-[#a7d26d]/50 text-[0.7rem] font-mono shrink-0">Fig.</span>
+                            <span className="text-white/50 text-[0.8rem] font-normal leading-snug">{item.caption}</span>
+                          </figcaption>
                         )}
                       </figure>
                     )
@@ -401,10 +418,15 @@ function NarrativeSection({
       </div>
       {img && (
         <figure className="mt-8">
-          <div className="relative aspect-[16/9] bg-white/[0.02] border border-white/[0.06]">
-            <Image src={img.url || ''} alt={imageCaption || ''} fill className="object-contain p-2" />
+          <div className="relative aspect-[16/9] overflow-hidden border border-white/[0.06]">
+            <Image src={img.url || ''} alt={imageCaption || ''} fill className="object-cover" />
           </div>
-          {imageCaption && <figcaption className="text-white/20 text-[0.7rem] font-mono mt-2">{imageCaption}</figcaption>}
+          {imageCaption && (
+            <figcaption className="flex items-baseline gap-2 mt-3">
+              <span className="text-[#a7d26d]/50 text-[0.7rem] font-mono shrink-0">Fig.</span>
+              <span className="text-white/50 text-[0.8rem] font-normal leading-snug">{imageCaption}</span>
+            </figcaption>
+          )}
         </figure>
       )}
       {children}
@@ -419,11 +441,13 @@ function BeforeAfterPanel({ label, image, caption }: { label: string; image: any
 
   return (
     <div className="bg-[#181a0e] p-4">
-      <p className="text-white/25 text-[0.7rem] font-mono mb-3">{label}</p>
-      <div className="relative aspect-[16/10]">
-        <Image src={img.url || ''} alt={caption || label} fill className="object-contain" />
+      <p className="text-white/50 text-[0.75rem] font-mono font-medium mb-3">{label}</p>
+      <div className="relative aspect-[16/9] overflow-hidden border border-white/[0.06]">
+        <Image src={img.url || ''} alt={caption || label} fill className="object-cover" />
       </div>
-      {caption && <p className="text-white/15 text-[0.65rem] font-mono mt-2">{caption}</p>}
+      {caption && (
+        <p className="text-white/45 text-[0.8rem] font-normal mt-3">{caption}</p>
+      )}
     </div>
   )
 }

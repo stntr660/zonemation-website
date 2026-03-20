@@ -147,6 +147,16 @@ export const CaseStudies: CollectionConfig = {
                 description: 'Industry context, client profile, market forces. Set the scene.',
               },
             },
+            {
+              name: 'situationImage',
+              type: 'upload',
+              relationTo: 'media',
+              admin: { description: 'Optional contextual image for the situation' },
+            },
+            {
+              name: 'situationImageCaption',
+              type: 'text',
+            },
           ],
         },
 
