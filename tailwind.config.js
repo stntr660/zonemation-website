@@ -57,6 +57,7 @@ module.exports = {
         headline: ['Poppins', 'Henderson Sans'],
         mono: ['JetBrains Mono', 'monospace'],
         poppins: ['Poppins', 'sans-serif'],
+        arabic: ['"Noto Kufi Arabic"', 'Poppins', 'sans-serif'],
       },
       fontWeight: {
         'thin': 200,

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import Image from 'next/image'
 
 export const dynamic = 'force-dynamic'
@@ -10,15 +10,15 @@ async function getPayloadClient() {
 }
 
 export const metadata = {
-  title: 'Industries - Zonemation',
-  description: 'Explore the industries we serve with deep expertise and transformative solutions.',
+  title: 'Capabilities - Zonemation',
+  description: 'Our capabilities span strategy, digital transformation, operations, and beyond.',
 }
 
-export default async function IndustriesPage() {
+export default async function CapabilitiesPage() {
   const payload = await getPayloadClient()
 
-  const { docs: industries } = await payload.find({
-    collection: 'industries',
+  const { docs: capabilities } = await payload.find({
+    collection: 'capabilities',
     sort: 'order',
     limit: 50,
   })
@@ -27,25 +27,25 @@ export default async function IndustriesPage() {
     <main className="pt-24 pb-20">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="caption text-gray-600 dark:text-gray-400 mb-4">OUR EXPERTISE</p>
-          <h1 className="heading-h1 text-gray-900 dark:text-white mb-6">Industries</h1>
+          <p className="caption text-gray-600 dark:text-gray-400 mb-4">WHAT WE DO</p>
+          <h1 className="heading-h1 text-gray-900 dark:text-white mb-6">Capabilities</h1>
           <p className="body-large text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Deep expertise across the industries that shape the future.
+            Comprehensive capabilities to drive lasting transformation.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {industries.map((industry) => (
+          {capabilities.map((capability) => (
             <Link
-              key={industry.id}
-              href={`/industries/${industry.slug}`}
+              key={capability.id}
+              href={`/capabilities/${capability.slug}`}
               className="group card p-0"
             >
-              {industry.coverImage && typeof industry.coverImage === 'object' && (
+              {capability.coverImage && typeof capability.coverImage === 'object' && (
                 <div className="relative h-48 overflow-hidden">
                   <Image
-                    src={industry.coverImage.url || ''}
-                    alt={industry.coverImage.alt || industry.name}
+                    src={capability.coverImage.url || ''}
+                    alt={capability.coverImage.alt || capability.name}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -53,11 +53,11 @@ export default async function IndustriesPage() {
               )}
               <div className="p-6">
                 <h2 className="heading-h3 text-gray-900 dark:text-white mb-2 group-hover:text-primary-400 transition-colors">
-                  {industry.name}
+                  {capability.name}
                 </h2>
-                {industry.description && (
+                {capability.description && (
                   <p className="body-base text-gray-600 dark:text-gray-400 text-clamp-3">
-                    {industry.description}
+                    {capability.description}
                   </p>
                 )}
               </div>

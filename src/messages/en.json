@@ -1,0 +1,68 @@
+{
+  "header": {
+    "contact": "Contact"
+  },
+  "footer": {
+    "copyright": "Zonemation Consulting Group",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "cookies": "Cookies",
+    "legal": "Legal"
+  },
+  "caseStudy": {
+    "impactTitle": "MEASURABLE IMPACT",
+    "pageTitle": "Case Studies",
+    "pageDescription": "How we help our clients exceed their transformation objectives.",
+    "readTime": "min read",
+    "detailedMetrics": "Detailed indicators",
+    "beforeAfter": "Before / After",
+    "before": "Before",
+    "after": "After",
+    "documentation": "Documentation",
+    "downloadPdf": "Download as PDF",
+    "relatedStudies": "Related case studies",
+    "similarChallenge": "Facing a similar challenge?",
+    "talkProject": "Let's talk about your project",
+    "gatedMessage": "To read the full case study, contact us.",
+    "continueReading": "Continue reading",
+    "fig": "Fig."
+  },
+  "contact": {
+    "title": "Let's connect",
+    "titleAccent": " our visions",
+    "subtitle": "Share your vision",
+    "form": {
+      "name": "Your name *",
+      "company": "Company",
+      "email": "Email *",
+      "phone": "Phone",
+      "projectType": "Project type",
+      "projectTransformation": "Digital transformation",
+      "projectStrategy": "Business strategy",
+      "projectConsulting": "Consulting & advisory",
+      "projectDevelopment": "Custom development",
+      "projectOther": "Other",
+      "message": "Describe your vision... *",
+      "submit": "Start the conversation",
+      "submitting": "Sending...",
+      "success": "Message sent! We'll get back to you within 24h."
+    },
+    "info": {
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "location": "Casablanca, Morocco"
+    }
+  },
+  "home": {
+    "heroHeading": "We support the bold who transform the world",
+    "heroSubheading": "Digital Transformation & Strategic Consulting",
+    "ctaHeading": "Great transformations start with a conversation.",
+    "ctaButton": "Let's talk about your project"
+  },
+  "common": {
+    "readMore": "Read more",
+    "backToList": "Back",
+    "loading": "Loading..."
+  }
+}

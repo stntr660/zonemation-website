@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
 import { ArrowRight } from 'lucide-react'
 import { useScrollAnimation } from '@/hooks/use-scroll-animation'
 

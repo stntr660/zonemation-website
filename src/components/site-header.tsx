@@ -1,6 +1,8 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from '@/i18n/routing'
+import { useTranslations } from 'next-intl'
+import { LanguageSwitcher } from '@/components/language-switcher'
 
 function MiniLogo() {
   return (
@@ -46,6 +48,8 @@ function MiniLogo() {
 }
 
 export function SiteHeader() {
+  const t = useTranslations('header')
+
   return (
     <header className="relative z-20 border-b border-white/10">
       <div className="max-w-5xl mx-auto px-6 py-5 flex items-center justify-between">
@@ -57,12 +61,15 @@ export function SiteHeader() {
             Zonemation
           </span>
         </Link>
-        <Link
-          href="/contact"
-          className="text-[0.95rem] text-[#a7d26d] hover:text-white border border-[#a7d26d]/30 hover:border-white/30 px-5 py-2.5 rounded-lg transition-all duration-300"
-        >
-          Contact
-        </Link>
+        <div className="flex items-center gap-5">
+          <LanguageSwitcher />
+          <Link
+            href="/contact"
+            className="text-[0.95rem] text-[#a7d26d] hover:text-white border border-[#a7d26d]/30 hover:border-white/30 px-5 py-2.5 rounded-lg transition-all duration-300"
+          >
+            {t('contact')}
+          </Link>
+        </div>
       </div>
     </header>
   )

@@ -1,0 +1,68 @@
+{
+  "header": {
+    "contact": "Contact"
+  },
+  "footer": {
+    "copyright": "Zonemation Consulting Group",
+    "privacy": "Confidentialite",
+    "terms": "Conditions",
+    "cookies": "Cookies",
+    "legal": "Mentions legales"
+  },
+  "caseStudy": {
+    "impactTitle": "IMPACT MESURABLE",
+    "pageTitle": "Case Studies",
+    "pageDescription": "Comment nous aidons nos clients a depasser leurs objectifs de transformation.",
+    "readTime": "min de lecture",
+    "detailedMetrics": "Indicateurs detailles",
+    "beforeAfter": "Avant / Apres",
+    "before": "Avant",
+    "after": "Apres",
+    "documentation": "Documentation",
+    "downloadPdf": "Telecharger en PDF",
+    "relatedStudies": "Etudes de cas associees",
+    "similarChallenge": "Vous faites face a un defi similaire ?",
+    "talkProject": "Parlons de votre projet",
+    "gatedMessage": "Pour lire l'etude de cas complete, contactez-nous.",
+    "continueReading": "Continuer la lecture",
+    "fig": "Fig."
+  },
+  "contact": {
+    "title": "Connectons",
+    "titleAccent": " nos visions",
+    "subtitle": "Partagez votre vision",
+    "form": {
+      "name": "Votre nom *",
+      "company": "Societe",
+      "email": "Email *",
+      "phone": "Telephone",
+      "projectType": "Type de projet",
+      "projectTransformation": "Transformation digitale",
+      "projectStrategy": "Strategie business",
+      "projectConsulting": "Conseil & accompagnement",
+      "projectDevelopment": "Developpement sur mesure",
+      "projectOther": "Autre",
+      "message": "Decrivez votre vision... *",
+      "submit": "Commencer la conversation",
+      "submitting": "Envoi en cours...",
+      "success": "Message envoye! Nous reviendrons vers vous dans les 24h."
+    },
+    "info": {
+      "phone": "Telephone",
+      "email": "Email",
+      "address": "Adresse",
+      "location": "Casablanca, Maroc"
+    }
+  },
+  "home": {
+    "heroHeading": "Nous accompagnons les audacieux qui transforment le monde",
+    "heroSubheading": "Transformation Digitale & Conseil Strategique",
+    "ctaHeading": "Les grandes transformations commencent par une conversation.",
+    "ctaButton": "Parlons de votre projet"
+  },
+  "common": {
+    "readMore": "Lire la suite",
+    "backToList": "Retour",
+    "loading": "Chargement..."
+  }
+}

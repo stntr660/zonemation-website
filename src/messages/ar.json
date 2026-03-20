@@ -1,0 +1,68 @@
+{
+  "header": {
+    "contact": "اتصل بنا"
+  },
+  "footer": {
+    "copyright": "زونميشن للاستشارات",
+    "privacy": "الخصوصية",
+    "terms": "الشروط",
+    "cookies": "ملفات تعريف الارتباط",
+    "legal": "الشؤون القانونية"
+  },
+  "caseStudy": {
+    "impactTitle": "تأثير قابل للقياس",
+    "pageTitle": "دراسات الحالة",
+    "pageDescription": "كيف نساعد عملاءنا على تجاوز أهداف التحول الرقمي.",
+    "readTime": "دقيقة للقراءة",
+    "detailedMetrics": "المؤشرات التفصيلية",
+    "beforeAfter": "قبل / بعد",
+    "before": "قبل",
+    "after": "بعد",
+    "documentation": "التوثيق",
+    "downloadPdf": "تحميل بصيغة PDF",
+    "relatedStudies": "دراسات حالة ذات صلة",
+    "similarChallenge": "هل تواجه تحديًا مشابهًا؟",
+    "talkProject": "لنتحدث عن مشروعك",
+    "gatedMessage": "للاطلاع على دراسة الحالة كاملة، تواصل معنا.",
+    "continueReading": "متابعة القراءة",
+    "fig": "شكل"
+  },
+  "contact": {
+    "title": "لنوصل",
+    "titleAccent": " رؤانا",
+    "subtitle": "شارك رؤيتك",
+    "form": {
+      "name": "اسمك *",
+      "company": "الشركة",
+      "email": "البريد الإلكتروني *",
+      "phone": "الهاتف",
+      "projectType": "نوع المشروع",
+      "projectTransformation": "التحول الرقمي",
+      "projectStrategy": "استراتيجية الأعمال",
+      "projectConsulting": "الاستشارات والمرافقة",
+      "projectDevelopment": "تطوير مخصص",
+      "projectOther": "أخرى",
+      "message": "صف رؤيتك... *",
+      "submit": "ابدأ المحادثة",
+      "submitting": "جاري الإرسال...",
+      "success": "تم إرسال الرسالة! سنعود إليك خلال 24 ساعة."
+    },
+    "info": {
+      "phone": "الهاتف",
+      "email": "البريد الإلكتروني",
+      "address": "العنوان",
+      "location": "الدار البيضاء، المغرب"
+    }
+  },
+  "home": {
+    "heroHeading": "نرافق الجريئين الذين يغيرون العالم",
+    "heroSubheading": "التحول الرقمي والاستشارات الاستراتيجية",
+    "ctaHeading": "التحولات الكبرى تبدأ بمحادثة.",
+    "ctaButton": "لنتحدث عن مشروعك"
+  },
+  "common": {
+    "readMore": "اقرأ المزيد",
+    "backToList": "رجوع",
+    "loading": "جاري التحميل..."
+  }
+}
