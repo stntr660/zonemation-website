@@ -70,18 +70,17 @@ module.exports = {
         'black': 900,
       },
       fontSize: {
-        // Reduced Typography Scale (30% smaller)
-        'xs': ['0.525rem', { lineHeight: '0.7rem' }],      // ~8.4px - metadata
-        'sm': ['0.6125rem', { lineHeight: '0.875rem' }],   // ~9.8px - small text
-        'base': ['0.7rem', { lineHeight: '1.05rem' }],     // ~11.2px - body text (min)
-        'lg': ['0.7875rem', { lineHeight: '1.225rem' }],   // ~12.6px - body text (max)
-        'xl': ['1.05rem', { lineHeight: '1.4rem' }],       // ~16.8px - H3 (min)
-        '2xl': ['1.225rem', { lineHeight: '1.575rem' }],   // ~19.6px - H3 (max)
-        '3xl': ['1.4rem', { lineHeight: '1.75rem' }],      // ~22.4px - H2 (min)
-        '4xl': ['1.575rem', { lineHeight: '1.925rem' }],   // ~25.2px - H2 (max)
-        '5xl': ['1.75rem', { lineHeight: '2.1rem' }],      // ~28px - H1 (min)
-        '6xl': ['2.1rem', { lineHeight: '2.45rem' }],      // ~33.6px - H1 (max)/Display (min)
-        '7xl': ['2.8rem', { lineHeight: '2.8rem' }],       // ~44.8px - Display (max)
+        'xs': ['0.625rem', { lineHeight: '0.875rem' }],    // 10px - metadata, fine print
+        'sm': ['0.75rem', { lineHeight: '1.125rem' }],     // 12px - captions, labels
+        'base': ['0.875rem', { lineHeight: '1.375rem' }],  // 14px - body text
+        'lg': ['1rem', { lineHeight: '1.5rem' }],          // 16px - body large
+        'xl': ['1.125rem', { lineHeight: '1.625rem' }],    // 18px - subheadings
+        '2xl': ['1.375rem', { lineHeight: '1.75rem' }],    // 22px - H3
+        '3xl': ['1.625rem', { lineHeight: '2rem' }],       // 26px - H2
+        '4xl': ['2rem', { lineHeight: '2.375rem' }],       // 32px - H1
+        '5xl': ['2.5rem', { lineHeight: '2.75rem' }],      // 40px - Display small
+        '6xl': ['3rem', { lineHeight: '3.25rem' }],        // 48px - Display
+        '7xl': ['3.75rem', { lineHeight: '3.75rem' }],     // 60px - Display large
       },
       letterSpacing: {
         'tighter': '-0.1em',

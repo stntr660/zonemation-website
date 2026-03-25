@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mb-10">
-      <h2 className="text-[1.4rem] font-light text-white mb-4">{title}</h2>
-      <div className="text-white/60 text-[1.05rem] leading-[1.8] space-y-4">{children}</div>
+      <h2 className="text-3xl font-light text-white mb-4">{title}</h2>
+      <div className="text-white/60 text-xl leading-[1.8] space-y-4">{children}</div>
     </section>
   )
 }
@@ -43,20 +43,20 @@ export default function PrivacyPolicyPage() {
           <p>The data controller responsible for your personal data is:</p>
           <InfoBox>
             <p className="text-white font-medium">Zonemation Consulting Group</p>
-            <p className="text-white/50 text-[0.95rem] mt-1">Casablanca, Morocco</p>
-            <p className="text-white/50 text-[0.95rem]">Email: hello@zonemation.com</p>
-            <p className="text-white/50 text-[0.95rem]">Phone: +212 6 61 90 30 77</p>
+            <p className="text-white/50 text-lg mt-1">Casablanca, Morocco</p>
+            <p className="text-white/50 text-lg">Email: hello@zonemation.com</p>
+            <p className="text-white/50 text-lg">Phone: +212 6 61 90 30 77</p>
           </InfoBox>
         </Section>
 
         <Section title="3. Information We Collect">
-          <p className="text-[#a7d26d]/80 text-[0.95rem] font-medium uppercase tracking-wider mb-2">Information You Provide</p>
+          <p className="text-[#a7d26d]/80 text-lg font-medium uppercase tracking-wider mb-2">Information You Provide</p>
           <ul className="list-disc pl-5 space-y-2">
             <li><span className="text-white/80">Contact information:</span> name, email, phone, company name when you submit our contact form.</li>
             <li><span className="text-white/80">Professional information:</span> job title, company, industry, and project details.</li>
             <li><span className="text-white/80">Communication records:</span> correspondence and interactions with us.</li>
           </ul>
-          <p className="text-[#a7d26d]/80 text-[0.95rem] font-medium uppercase tracking-wider mb-2 mt-6">Collected Automatically</p>
+          <p className="text-[#a7d26d]/80 text-lg font-medium uppercase tracking-wider mb-2 mt-6">Collected Automatically</p>
           <ul className="list-disc pl-5 space-y-2">
             <li><span className="text-white/80">Device data:</span> browser type, operating system, device type.</li>
             <li><span className="text-white/80">Usage data:</span> pages visited, time spent, referring URLs.</li>
@@ -138,8 +138,8 @@ export default function PrivacyPolicyPage() {
         <Section title="12. Contact & Complaints">
           <InfoBox>
             <p className="text-white font-medium">Zonemation Consulting Group</p>
-            <p className="text-white/50 text-[0.95rem] mt-1">Email: hello@zonemation.com</p>
-            <p className="text-white/50 text-[0.95rem]">Phone: +212 6 61 90 30 77</p>
+            <p className="text-white/50 text-lg mt-1">Email: hello@zonemation.com</p>
+            <p className="text-white/50 text-lg">Phone: +212 6 61 90 30 77</p>
           </InfoBox>
           <p className="mt-4">
             You may also lodge a complaint with the CNDP at{' '}

@@ -35,7 +35,7 @@ export function IndustryRadar() {
   return (
     <section ref={ref} className="py-20 md:py-28 px-6 md:px-12">
       <div className="max-w-5xl mx-auto">
-        <motion.p className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-[#a7d26d] mb-4"
+        <motion.p className="font-mono text-xs tracking-[0.15em] uppercase text-[#a7d26d] mb-4"
           initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} >
           Expertise Sectorielle
         </motion.p>
@@ -43,7 +43,7 @@ export function IndustryRadar() {
           initial={{ opacity: 0, y: 12 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.1 }} >
           Expertise approfondie, secteur par secteur
         </motion.h2>
-        <motion.p className="text-[1rem] text-white/35 max-w-xl mb-14 md:mb-20 leading-relaxed font-light"
+        <motion.p className="text-lg text-white/35 max-w-xl mb-14 md:mb-20 leading-relaxed font-light"
           initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ delay: 0.2 }} >
           Nous accompagnons les leaders de chaque industrie avec une connaissance intime de leurs enjeux.
         </motion.p>
@@ -124,8 +124,8 @@ export function IndustryRadar() {
               transition={{ delay: 0.3 + i * 0.08 }}
             >
               <div className="flex justify-between mb-2">
-                <span className="text-white/60 text-[0.9rem]">{ind.name}</span>
-                <span className="text-[#a7d26d] text-[0.8rem] font-mono">{ind.value}%</span>
+                <span className="text-white/60 text-lg">{ind.name}</span>
+                <span className="text-[#a7d26d] text-base font-mono">{ind.value}%</span>
               </div>
               <div className="h-1.5 bg-white/[0.04] rounded-full overflow-hidden">
                 <motion.div className="h-full bg-[#a7d26d]/35 rounded-full"
@@ -133,7 +133,7 @@ export function IndustryRadar() {
                   transition={{ duration: 0.8, delay: 0.5 + i * 0.08, ease: 'easeOut' }}
                 />
               </div>
-              <p className="text-white/15 text-[0.75rem] mt-1.5">{ind.desc}</p>
+              <p className="text-white/15 text-sm mt-1.5">{ind.desc}</p>
             </motion.div>
           ))}
         </div>

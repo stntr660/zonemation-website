@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mb-10">
-      <h2 className="text-[1.4rem] font-light text-white mb-4">{title}</h2>
-      <div className="text-white/60 text-[1.05rem] leading-[1.8] space-y-4">{children}</div>
+      <h2 className="text-3xl font-light text-white mb-4">{title}</h2>
+      <div className="text-white/60 text-xl leading-[1.8] space-y-4">{children}</div>
     </section>
   )
 }
@@ -19,8 +19,8 @@ function CookieCard({ title, label, children }: { title: string; label: string; 
   return (
     <div className="bg-white/5 border border-white/10 rounded-lg p-5">
       <h3 className="text-white font-medium mb-1">{title}</h3>
-      <p className="text-[#a7d26d]/60 text-[0.85rem] uppercase tracking-wider mb-2">{label}</p>
-      <p className="text-white/60 text-[0.95rem]">{children}</p>
+      <p className="text-[#a7d26d]/60 text-base uppercase tracking-wider mb-2">{label}</p>
+      <p className="text-white/60 text-lg">{children}</p>
     </div>
   )
 }
@@ -57,7 +57,7 @@ export default function CookiePolicyPage() {
 
         <Section title="3. Specific Cookies Used">
           <div className="overflow-x-auto">
-            <table className="w-full text-[0.95rem]">
+            <table className="w-full text-lg">
               <thead>
                 <tr className="border-b border-white/10">
                   <th className="text-left py-3 pr-4 text-white/80 font-medium">Cookie</th>
@@ -68,19 +68,19 @@ export default function CookiePolicyPage() {
               </thead>
               <tbody>
                 <tr className="border-b border-white/5">
-                  <td className="py-3 pr-4 font-mono text-[0.85rem] text-[#a7d26d]">theme</td>
+                  <td className="py-3 pr-4 font-mono text-base text-[#a7d26d]">theme</td>
                   <td className="py-3 pr-4">Preference</td>
                   <td className="py-3 pr-4">1 year</td>
                   <td className="py-3">Dark/light mode preference</td>
                 </tr>
                 <tr className="border-b border-white/5">
-                  <td className="py-3 pr-4 font-mono text-[0.85rem] text-[#a7d26d]">payload-token</td>
+                  <td className="py-3 pr-4 font-mono text-base text-[#a7d26d]">payload-token</td>
                   <td className="py-3 pr-4">Essential</td>
                   <td className="py-3 pr-4">Session</td>
                   <td className="py-3">Admin authentication</td>
                 </tr>
                 <tr className="border-b border-white/5">
-                  <td className="py-3 pr-4 font-mono text-[0.85rem] text-[#a7d26d]">cookie-consent</td>
+                  <td className="py-3 pr-4 font-mono text-base text-[#a7d26d]">cookie-consent</td>
                   <td className="py-3 pr-4">Essential</td>
                   <td className="py-3 pr-4">1 year</td>
                   <td className="py-3">Cookie consent choice</td>

@@ -15,6 +15,7 @@ import { CaseStudies } from './collections/CaseStudies'
 import { Team } from './collections/Team'
 import { Clients } from './collections/Clients'
 import { ContactSubmissions } from './collections/ContactSubmissions'
+import { Invoices } from './collections/Invoices'
 
 import { SiteSettings } from './globals/SiteSettings'
 import { Navigation } from './globals/Navigation'
@@ -26,22 +27,39 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     user: Users.slug,
+    theme: 'dark',
+    meta: {
+      titleSuffix: ' - Zonemation',
+    },
     importMap: {
       baseDir: path.resolve(dirname),
+    },
+    components: {
+      graphics: {
+        Logo: '/components/admin/Logo',
+        Icon: '/components/admin/Icon',
+      },
+      afterNavLinks: ['/components/admin/NavIcons'],
     },
   },
 
   collections: [
-    Users,
-    Media,
+    // Content
     Pages,
-    Insights,
-    Industries,
-    Capabilities,
     CaseStudies,
+    Insights,
+    // People
     Team,
     Clients,
+    // Taxonomy
+    Industries,
+    Capabilities,
+    // Operations
+    Invoices,
     ContactSubmissions,
+    // System
+    Users,
+    Media,
   ],
 
   globals: [

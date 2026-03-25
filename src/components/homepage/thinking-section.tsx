@@ -33,7 +33,7 @@ export function ThinkingSection({ insights }: ThinkingSectionProps) {
   return (
     <section ref={ref} className="py-20 md:py-28 px-6 md:px-12">
       <div className="max-w-5xl mx-auto">
-        <motion.p className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-[#a7d26d] mb-4"
+        <motion.p className="font-mono text-xs tracking-[0.15em] uppercase text-[#a7d26d] mb-4"
           initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} />
         <motion.h2 className="font-light text-3xl lg:text-5xl tracking-wider text-slate-300/80 mb-4"
           initial={{ opacity: 0, y: 12 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -41,7 +41,7 @@ export function ThinkingSection({ insights }: ThinkingSectionProps) {
         >
           Insights pour decideurs
         </motion.h2>
-        <motion.p className="text-[1rem] text-white/35 max-w-xl mb-14 md:mb-20 leading-relaxed font-light"
+        <motion.p className="text-lg text-white/35 max-w-xl mb-14 md:mb-20 leading-relaxed font-light"
           initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ delay: 0.2 }}
         >
           Analyses et points de vue pour anticiper les mutations de votre secteur.
@@ -62,16 +62,16 @@ export function ThinkingSection({ insights }: ThinkingSectionProps) {
                     fill className="object-cover group-hover:brightness-110 transition-all duration-300" />
                 </div>
                 <div className="p-8">
-                  <span className="inline-block font-mono text-[0.65rem] tracking-[0.15em] uppercase text-[#a7d26d] mb-3">
+                  <span className="inline-block font-mono text-xs tracking-[0.15em] uppercase text-[#a7d26d] mb-3">
                     {insight.type}
                   </span>
-                  <h3 className="text-white/70 text-[1.1rem] font-light mb-2 line-clamp-2 leading-snug group-hover:text-[#a7d26d] transition-colors duration-300">
+                  <h3 className="text-white/70 text-xl font-light mb-2 line-clamp-2 leading-snug group-hover:text-[#a7d26d] transition-colors duration-300">
                     {insight.title}
                   </h3>
-                  <p className="text-white/25 text-[0.85rem] leading-relaxed line-clamp-2 mb-4">
+                  <p className="text-white/25 text-base leading-relaxed line-clamp-2 mb-4">
                     {insight.excerpt}
                   </p>
-                  <div className="flex items-center gap-3 text-white/15 text-[0.75rem] font-mono">
+                  <div className="flex items-center gap-3 text-white/15 text-sm font-mono">
                     <span>{formatDate(insight.publishedDate)}</span>
                     {insight.readTime && (
                       <><span>|</span><span>{insight.readTime} min</span></>

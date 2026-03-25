@@ -61,10 +61,10 @@ export function ImpactStats({ stats }: ImpactStatsProps) {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
             >
-              <div className="font-thin text-[3rem] md:text-[4rem] text-[#a7d26d] tracking-tight">
+              <div className="font-thin text-6xl md:text-7xl text-[#a7d26d] tracking-tight">
                 <Counter value={stat.value} isInView={isInView} />
               </div>
-              <div className="font-mono text-[0.65rem] tracking-[0.12em] uppercase text-white/25 mt-4">
+              <div className="font-mono text-xs tracking-[0.12em] uppercase text-white/25 mt-4">
                 {stat.label}
               </div>
             </motion.div>

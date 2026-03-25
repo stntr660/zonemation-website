@@ -186,60 +186,60 @@ a {
 .spacing-xlarge { @apply mb-xlarge; }    /* 48px */
 .spacing-xxlarge { @apply mb-xxlarge; }  /* 64px */
 
-/* BCG-Exact Typography Hierarchy */
+/* Typography Hierarchy */
 .heading-display {
   @apply text-6xl lg:text-7xl font-light leading-display tracking-display;
-  /* 48px-64px, 300 weight, tight line height, tight letter spacing */
+  /* 48px-60px */
 }
 
 .heading-h1 {
   @apply text-5xl lg:text-6xl font-light leading-heading tracking-heading;
-  /* 40px-48px, 300 weight */
+  /* 40px-48px */
 }
 
 .heading-h2 {
   @apply text-3xl lg:text-4xl font-light leading-heading tracking-heading;
-  /* 32px-36px, 300 weight */
+  /* 26px-32px */
 }
 
 .heading-h3 {
   @apply text-xl lg:text-2xl font-light leading-heading tracking-heading;
-  /* 24px-28px, 300 weight */
+  /* 18px-22px */
 }
 
 .heading-h4 {
   @apply text-lg lg:text-xl font-regular leading-heading tracking-heading;
-  /* 18px-24px, 400 weight */
+  /* 16px-18px */
 }
 
 .heading-h5 {
   @apply text-base lg:text-lg font-regular leading-heading tracking-heading;
-  /* 16px-18px, 400 weight */
+  /* 14px-16px */
 }
 
 .heading-h6 {
   @apply text-base lg:text-lg font-medium leading-heading tracking-heading;
-  /* 16px-18px, 500 weight */
+  /* 14px-16px */
 }
 
 .body-large {
   @apply text-lg font-regular leading-body tracking-body;
-  /* 18px, 400 weight, relaxed line height */
+  /* 16px */
 }
 
 .body-base {
   @apply text-base font-regular leading-body tracking-body;
-  /* 16px, 400 weight, standard body */
+  /* 14px */
 }
 
 .body-small {
   @apply text-sm font-regular leading-body tracking-body;
-  /* 14px, 400 weight */
+  /* 12px */
 }
 
 .caption {
   @apply text-xs font-medium leading-normal uppercase tracking-caption;
-  /* 12px, 500 weight, uppercase, tight tracking */
+  /* 10px */
 }
 
 /* Button base styles */

@@ -28,7 +28,7 @@ export function CaseStudies({ projects }: CaseStudiesProps) {
   return (
     <section ref={ref} className="py-20 md:py-28 px-6 md:px-12">
       <div className="max-w-5xl mx-auto">
-        <motion.p className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-[#a7d26d] mb-4"
+        <motion.p className="font-mono text-xs tracking-[0.15em] uppercase text-[#a7d26d] mb-4"
           initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} />
         <motion.h2 className="font-light text-3xl lg:text-5xl tracking-wider text-slate-300/80 mb-4"
           initial={{ opacity: 0, y: 12 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -36,7 +36,7 @@ export function CaseStudies({ projects }: CaseStudiesProps) {
         >
           Impact mesurable, projet apres projet
         </motion.h2>
-        <motion.p className="text-[1rem] text-white/35 max-w-xl mb-14 md:mb-20 leading-relaxed font-light"
+        <motion.p className="text-lg text-white/35 max-w-xl mb-14 md:mb-20 leading-relaxed font-light"
           initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ delay: 0.2 }}
         >
           Comment nous aidons nos clients a depasser leurs objectifs de transformation.
@@ -76,17 +76,17 @@ function Card({ project, large }: { project: Project; large?: boolean }) {
       </div>
       <div className="relative z-10 h-full flex flex-col justify-end p-8">
         {project.client && (
-          <span className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-[#a7d26d] mb-3">{project.client}</span>
+          <span className="font-mono text-xs tracking-[0.15em] uppercase text-[#a7d26d] mb-3">{project.client}</span>
         )}
-        <h3 className={`font-light text-white/70 tracking-wider leading-snug mb-3 group-hover:text-[#a7d26d] transition-colors duration-300 ${large ? 'text-[1.4rem] md:text-[1.6rem]' : 'text-[1.1rem]'}`}>
+        <h3 className={`font-light text-white/70 tracking-wider leading-snug mb-3 group-hover:text-[#a7d26d] transition-colors duration-300 ${large ? 'text-2xl md:text-3xl' : 'text-xl'}`}>
           {project.title}
         </h3>
         {project.stats && project.stats.length > 0 && (
           <div className="flex gap-8 mt-2">
             {project.stats.slice(0, 3).map((s, i) => (
               <div key={i}>
-                <span className="text-[#a7d26d] text-[1.4rem] font-light">{s.value}</span>
-                <span className="text-white/25 text-[0.75rem] font-mono ml-2">{s.label}</span>
+                <span className="text-[#a7d26d] text-2xl font-light">{s.value}</span>
+                <span className="text-white/25 text-sm font-mono ml-2">{s.label}</span>
               </div>
             ))}
           </div>

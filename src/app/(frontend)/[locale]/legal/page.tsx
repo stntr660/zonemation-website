@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mb-10">
-      <h2 className="text-[1.4rem] font-light text-white mb-4">{title}</h2>
-      <div className="text-white/60 text-[1.05rem] leading-[1.8] space-y-4">{children}</div>
+      <h2 className="text-3xl font-light text-white mb-4">{title}</h2>
+      <div className="text-white/60 text-xl leading-[1.8] space-y-4">{children}</div>
     </section>
   )
 }
@@ -30,7 +30,7 @@ export default function LegalPage() {
         <Section title="1. Editeur du Site">
           <InfoBox>
             <p className="text-white font-medium mb-2">Zonemation Consulting Group</p>
-            <div className="space-y-1 text-[0.95rem]">
+            <div className="space-y-1 text-lg">
               <p><span className="text-white/80">Forme juridique :</span> SARL</p>
               <p><span className="text-white/80">Siege social :</span> Casablanca, Maroc</p>
               <p><span className="text-white/80">Telephone :</span> +212 6 61 90 30 77</p>

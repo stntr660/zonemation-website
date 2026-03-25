@@ -4,7 +4,7 @@ export const Team: CollectionConfig = {
   slug: 'team',
   admin: {
     useAsTitle: 'name',
-    group: 'Content',
+    group: 'People',
   },
   fields: [
     {

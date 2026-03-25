@@ -25,7 +25,7 @@ export function ClientTrust({ clients }: ClientTrustProps) {
   return (
     <section ref={ref} className="py-20 px-6 md:px-12 border-y border-white/[0.06]">
       <div className="max-w-5xl mx-auto">
-        <motion.p className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-white/15 text-center mb-12"
+        <motion.p className="font-mono text-xs tracking-[0.15em] uppercase text-white/15 text-center mb-12"
           initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}}
         >
           Ils nous font confiance

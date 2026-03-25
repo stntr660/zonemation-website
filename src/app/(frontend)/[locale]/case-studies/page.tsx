@@ -32,13 +32,13 @@ export default async function CaseStudiesPage() {
     <main className="pt-24 pb-20">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
         <div className="mb-16">
-          <p className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-[#a7d26d] mb-4">
+          <p className="font-mono text-xs tracking-[0.15em] uppercase text-[#a7d26d] mb-4">
             IMPACT MESURABLE
           </p>
           <h1 className="font-light text-4xl lg:text-6xl tracking-wider text-slate-300/80 mb-4">
             Case Studies
           </h1>
-          <p className="text-[1rem] text-white/35 max-w-xl leading-relaxed font-light">
+          <p className="text-lg text-white/35 max-w-xl leading-relaxed font-light">
             Comment nous aidons nos clients a depasser leurs objectifs de transformation.
           </p>
         </div>
@@ -87,14 +87,14 @@ function CaseStudyCard({ cs, large }: { cs: any; large?: boolean }) {
 
       <div className="p-8">
         {clientLabel && (
-          <p className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-[#a7d26d] mb-3">
+          <p className="font-mono text-xs tracking-[0.15em] uppercase text-[#a7d26d] mb-3">
             {clientLabel}
           </p>
         )}
-        <h2 className={`font-light text-white/70 tracking-wider leading-snug mb-3 group-hover:text-[#a7d26d] transition-colors duration-300 ${large ? 'text-[1.4rem]' : 'text-[1.1rem]'}`}>
+        <h2 className={`font-light text-white/70 tracking-wider leading-snug mb-3 group-hover:text-[#a7d26d] transition-colors duration-300 ${large ? 'text-3xl' : 'text-xl'}`}>
           {cs.title}
         </h2>
-        <p className="text-white/25 text-[0.85rem] leading-relaxed line-clamp-2 mb-5">
+        <p className="text-white/25 text-base leading-relaxed line-clamp-2 mb-5">
           {cs.excerpt}
         </p>
 
@@ -103,8 +103,8 @@ function CaseStudyCard({ cs, large }: { cs: any; large?: boolean }) {
           <div className="flex gap-6 pt-4 border-t border-white/[0.06]">
             {cs.headlineMetrics.slice(0, 3).map((m: any, i: number) => (
               <div key={i}>
-                <span className="text-[#a7d26d] text-[1.2rem] font-light">{m.value}</span>
-                <span className="text-white/25 text-[0.7rem] font-mono ml-1.5">{m.label}</span>
+                <span className="text-[#a7d26d] text-xl font-light">{m.value}</span>
+                <span className="text-white/25 text-sm font-mono ml-1.5">{m.label}</span>
               </div>
             ))}
           </div>

@@ -37,6 +37,19 @@ export const SiteSettings: GlobalConfig = {
       ],
     },
     {
+      name: 'billing',
+      type: 'group',
+      label: 'Billing / Invoice Defaults',
+      fields: [
+        { name: 'companyName', type: 'text', label: 'Company Name', defaultValue: 'Zonemation' },
+        { name: 'address', type: 'text', label: 'Address' },
+        { name: 'city', type: 'text', label: 'City' },
+        { name: 'email', type: 'email', label: 'Billing Email' },
+        { name: 'phone', type: 'text', label: 'Phone' },
+        { name: 'ice', type: 'text', label: 'ICE (Tax ID)' },
+      ],
+    },
+    {
       name: 'social',
       type: 'group',
       fields: [

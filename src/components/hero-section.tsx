@@ -151,7 +151,7 @@ export function HeroSection() {
             WELCOME TO ZONEMATION
           </motion.p>
           <motion.h1 
-            className="text-[2.45rem] lg:text-[3.15rem] xl:text-[3.85rem] font-light leading-[1.1] text-gray-900 dark:text-white tracking-tight"
+            className="text-5xl lg:text-6xl xl:text-7xl font-light leading-[1.1] text-gray-900 dark:text-white tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
             transition={{ duration: 0.8, delay: 0.4 }}

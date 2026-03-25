@@ -46,7 +46,7 @@ export function StrategicQuadrant() {
   return (
     <section ref={ref} className="py-20 md:py-28 px-6 md:px-12">
       <div className="max-w-5xl mx-auto">
-        <motion.p className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-[#a7d26d] mb-4"
+        <motion.p className="font-mono text-xs tracking-[0.15em] uppercase text-[#a7d26d] mb-4"
           initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}}
         >
           Cadre Strategique
@@ -57,7 +57,7 @@ export function StrategicQuadrant() {
         >
           Ou se situe votre organisation ?
         </motion.h2>
-        <motion.p className="text-[1rem] text-white/35 max-w-xl mb-14 md:mb-20 leading-relaxed font-light"
+        <motion.p className="text-lg text-white/35 max-w-xl mb-14 md:mb-20 leading-relaxed font-light"
           initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.2 }}
         >
@@ -183,8 +183,8 @@ export function StrategicQuadrant() {
                 transition={{ delay: 0.3 + i * 0.05 }}
               >
                 <div className="flex justify-between items-center">
-                  <span className="text-white/60 text-[0.85rem]">{dot.name}</span>
-                  <span className="text-[#a7d26d]/35 text-[0.7rem] font-mono">{q}</span>
+                  <span className="text-white/60 text-base">{dot.name}</span>
+                  <span className="text-[#a7d26d]/35 text-sm font-mono">{q}</span>
                 </div>
                 <div className="h-[3px] bg-white/[0.04] rounded-full overflow-hidden">
                   <motion.div className="h-full rounded-full"

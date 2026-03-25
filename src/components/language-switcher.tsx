@@ -43,7 +43,7 @@ export function LanguageSwitcher() {
         aria-label="Change language"
       >
         <GlobeIcon className="w-5 h-5" />
-        <span className="text-[0.8rem] uppercase font-mono tracking-wide">{locale}</span>
+        <span className="text-base uppercase font-mono tracking-wide">{locale}</span>
       </button>
       {open && (
         <div className="absolute top-full mt-2 end-0 bg-[#252819] border border-white/10 py-1 min-w-[150px] z-50 shadow-xl">
@@ -51,7 +51,7 @@ export function LanguageSwitcher() {
             <button
               key={l}
               onClick={() => switchLocale(l)}
-              className={`w-full text-start px-4 py-2.5 text-[0.85rem] hover:bg-white/5 transition-colors duration-150 ${
+              className={`w-full text-start px-4 py-2.5 text-base hover:bg-white/5 transition-colors duration-150 ${
                 l === locale ? 'text-[#a7d26d]' : 'text-white/60'
               }`}
             >

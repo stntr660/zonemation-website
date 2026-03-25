@@ -17,13 +17,13 @@ export function ProcessArchitecture() {
   return (
     <section ref={ref} className="py-20 md:py-28 px-6 md:px-12">
       <div className="max-w-5xl mx-auto">
-        <motion.p className="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-[#a7d26d] mb-4"
+        <motion.p className="font-mono text-xs tracking-[0.15em] uppercase text-[#a7d26d] mb-4"
           initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} />
         <motion.h2 className="font-light text-3xl lg:text-5xl tracking-wider text-slate-300/80 mb-4"
           initial={{ opacity: 0, y: 12 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.1 }} >
           De la vision a l'impact
         </motion.h2>
-        <motion.p className="text-[1rem] text-white/35 max-w-xl mb-14 md:mb-20 leading-relaxed font-light"
+        <motion.p className="text-lg text-white/35 max-w-xl mb-14 md:mb-20 leading-relaxed font-light"
           initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ delay: 0.2 }} >
           Une methodologie eprouvee qui transforme la complexite en resultats tangibles.
         </motion.p>
@@ -92,13 +92,13 @@ export function ProcessArchitecture() {
             >
               <div className="flex flex-col items-center">
                 <div className="w-12 h-12 rounded-full border border-[#a7d26d]/20 bg-[#a7d26d]/5 flex items-center justify-center shrink-0">
-                  <span className="text-[#a7d26d] text-[0.85rem] font-mono">{step.number}</span>
+                  <span className="text-[#a7d26d] text-base font-mono">{step.number}</span>
                 </div>
                 {i < STEPS.length - 1 && <div className="w-px h-10 bg-[#a7d26d]/10" />}
               </div>
               <div className="pb-10 pt-2">
-                <h4 className="text-white/70 text-[1.1rem] font-light mb-1">{step.label}</h4>
-                <p className="text-white/25 text-[0.85rem] leading-relaxed">{step.desc}</p>
+                <h4 className="text-white/70 text-xl font-light mb-1">{step.label}</h4>
+                <p className="text-white/25 text-base leading-relaxed">{step.desc}</p>
               </div>
             </motion.div>
           ))}

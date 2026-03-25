@@ -66,7 +66,7 @@ export function HeroStatement({ heading, subheading }: HeroStatementProps) {
           />
 
           <motion.p
-            className="font-mono text-[0.8rem] tracking-[0.15em] uppercase text-white/40"
+            className="font-mono text-base tracking-[0.15em] uppercase text-white/40"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 + words.length * 0.1 }}
           >

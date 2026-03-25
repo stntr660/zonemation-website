@@ -1,0 +1,560 @@
+/* Zonemation Admin Theme
+   Overrides Payload CMS default dark theme with our design system */
+
+/* ─── CSS Variable Overrides ─── */
+[data-theme="dark"],
+[data-theme="light"],
+:root {
+  /* Surface colors - dark green tones */
+  --theme-elevation-0: #181a0e !important;
+  --theme-elevation-50: #1c1f11 !important;
+  --theme-elevation-100: #1e2112 !important;
+  --theme-elevation-150: #222514 !important;
+  --theme-elevation-200: #272a17 !important;
+  --theme-elevation-250: #2c2f1a !important;
+  --theme-elevation-300: #31351d !important;
+  --theme-elevation-350: #383c21 !important;
+  --theme-elevation-400: #414526 !important;
+  --theme-elevation-450: #4a4e2c !important;
+  --theme-elevation-500: #555934 !important;
+  --theme-elevation-550: #61663c !important;
+  --theme-elevation-600: #6e7446 !important;
+  --theme-elevation-650: #7c8250 !important;
+  --theme-elevation-700: #8b915c !important;
+  --theme-elevation-750: #9aa069 !important;
+  --theme-elevation-800: #a7b077 !important;
+  --theme-elevation-850: #b6c088 !important;
+  --theme-elevation-900: #c5d09a !important;
+  --theme-elevation-950: #d5e0ad !important;
+  --theme-elevation-1000: #e5f0c0 !important;
+
+  /* Borders */
+  --theme-border-color: rgba(167, 210, 109, 0.1) !important;
+
+  /* Success = brand green throughout */
+  --theme-success-500: #a7d26d !important;
+  --theme-success-600: #97c066 !important;
+  --theme-success-650: #a7d26d !important;
+
+  /* Font */
+  --font-body: 'Poppins', 'Henderson Sans', system-ui, sans-serif !important;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace !important;
+}
+
+/* ─── Login Page ─── */
+
+.login {
+  background: #181a0e !important;
+}
+
+.login__brand {
+  margin-bottom: 2.5rem !important;
+}
+
+.login__brand svg.graphic-logo {
+  max-width: 200px !important;
+}
+
+.login__brand svg.graphic-logo path {
+  fill: #a7d26d !important;
+}
+
+.login__form {
+  max-width: 420px !important;
+}
+
+.login__form__inputWrap {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+  margin-bottom: 16px !important;
+}
+
+.login__form .field-type {
+  margin-bottom: 0 !important;
+}
+
+/* ─── Input Fields (global) ─── */
+
+.field-type input,
+.field-type select,
+.field-type textarea,
+.field-type__wrap input,
+.field-type__wrap select,
+.field-type__wrap textarea {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  border-radius: 6px !important;
+  padding: 10px 14px !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  transition: border-color 0.2s ease !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.field-type input:focus,
+.field-type select:focus,
+.field-type textarea:focus,
+.field-type__wrap input:focus,
+.field-type__wrap select:focus,
+.field-type__wrap textarea:focus {
+  border-color: rgba(167, 210, 109, 0.4) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(167, 210, 109, 0.08) !important;
+}
+
+.field-type input::placeholder,
+.field-type textarea::placeholder {
+  color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Field labels */
+.field-label {
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 6px !important;
+  display: block !important;
+}
+
+.field-label .required {
+  color: #a7d26d !important;
+  margin-left: 2px !important;
+}
+
+/* ─── Buttons ─── */
+
+.btn {
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.btn.btn--style-primary {
+  background: #a7d26d !important;
+  color: #0C130B !important;
+  border: none !important;
+  padding: 10px 24px !important;
+  font-size: 14px !important;
+}
+
+.btn.btn--style-primary:hover {
+  background: #95c255 !important;
+  box-shadow: 0 0 30px rgba(167, 210, 109, 0.15) !important;
+}
+
+.btn.btn--size-large {
+  padding: 12px 32px !important;
+  font-size: 14px !important;
+}
+
+.btn.btn--style-secondary {
+  background: transparent !important;
+  color: #a7d26d !important;
+  border: 1px solid rgba(167, 210, 109, 0.3) !important;
+  padding: 10px 24px !important;
+  font-size: 14px !important;
+}
+
+.btn.btn--style-secondary:hover {
+  color: white !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.btn__content {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.btn__label {
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* ─── Nav Sidebar ─── */
+
+.nav {
+  background: #131510 !important;
+  border-right: 1px solid rgba(167, 210, 109, 0.06) !important;
+  padding-top: 12px !important;
+}
+
+/* ── Group containers ── */
+.nav-group {
+  margin-bottom: 2px !important;
+}
+
+/* ── CATEGORY (group toggle) ──
+   Visually distinct: uppercase, small, monospace, green tinted.
+   Acts as a section header, NOT a clickable link. */
+.nav-group__toggle {
+  display: flex !important;
+  align-items: center !important;
+  color: rgba(167, 210, 109, 0.7) !important;
+  padding: 14px 16px 6px !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  transition: all 0.2s ease !important;
+  gap: 0 !important;
+  width: 100% !important;
+}
+
+.nav-group__toggle:hover {
+  color: rgba(167, 210, 109, 0.85) !important;
+  background: none !important;
+}
+
+/* Chevron -- always visible */
+.nav-group__indicator {
+  margin-left: auto !important;
+  opacity: 0.35 !important;
+  transition: opacity 0.2s ease, transform 0.2s ease !important;
+}
+
+.nav-group__toggle:hover .nav-group__indicator {
+  opacity: 0.6 !important;
+}
+
+.nav-group--collapsed .nav-group__indicator {
+  transform: rotate(-90deg) !important;
+}
+
+/* ── SUB-ITEMS (collection/global links) ──
+   Normal weight, full size, indented under the category header. */
+.nav a[href*="/admin/collections/"],
+.nav a[href*="/admin/globals/"] {
+  display: flex !important;
+  align-items: center !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  padding: 9px 16px 9px 16px !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  font-family: 'Poppins', sans-serif !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  transition: all 0.15s ease !important;
+  text-decoration: none !important;
+  gap: 0 !important;
+  border-left: 2px solid transparent !important;
+}
+
+.nav a[href*="/admin/collections/"]:hover,
+.nav a[href*="/admin/globals/"]:hover {
+  color: rgba(255, 255, 255, 0.9) !important;
+  background: rgba(167, 210, 109, 0.04) !important;
+  border-left-color: rgba(167, 210, 109, 0.15) !important;
+}
+
+.nav a[href*="/admin/collections/"].active,
+.nav a[href*="/admin/collections/"][aria-current],
+.nav a[href*="/admin/globals/"].active,
+.nav a[href*="/admin/globals/"][aria-current],
+.nav a[href*="/admin/collections/"].active:hover,
+.nav a[href*="/admin/collections/"][aria-current]:hover,
+.nav a[href*="/admin/globals/"].active:hover,
+.nav a[href*="/admin/globals/"][aria-current]:hover {
+  color: #a7d26d !important;
+  background: rgba(167, 210, 109, 0.08) !important;
+  border-left-color: #a7d26d !important;
+  font-weight: 600 !important;
+  position: relative !important;
+}
+
+/* Persistent glow on active link */
+.nav a[href*="/admin/collections/"].active::before,
+.nav a[href*="/admin/collections/"][aria-current]::before,
+.nav a[href*="/admin/globals/"].active::before,
+.nav a[href*="/admin/globals/"][aria-current]::before {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 3px !important;
+  background: #a7d26d !important;
+  border-radius: 0 2px 2px 0 !important;
+  box-shadow: 0 0 8px rgba(167, 210, 109, 0.3) !important;
+}
+
+/* ─── Group Icons (category headers) ─── */
+
+.zm-nav-group-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 18px !important;
+  height: 18px !important;
+  margin-right: 8px !important;
+  flex-shrink: 0 !important;
+  color: rgba(167, 210, 109, 0.65) !important;
+}
+
+.zm-nav-group-icon svg {
+  width: 15px !important;
+  height: 15px !important;
+  stroke: currentColor !important;
+  stroke-width: 3 !important;
+}
+
+.nav-group__toggle:hover .zm-nav-group-icon {
+  color: rgba(167, 210, 109, 0.8) !important;
+}
+
+/* ─── Sub-item Icons (collection links) ─── */
+
+.zm-nav-link-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 22px !important;
+  height: 22px !important;
+  margin-right: 10px !important;
+  flex-shrink: 0 !important;
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.zm-nav-link-icon svg {
+  width: 18px !important;
+  height: 18px !important;
+  stroke: currentColor !important;
+  stroke-width: 1.8 !important;
+}
+
+.nav a:hover .zm-nav-link-icon {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.nav a.active .zm-nav-link-icon,
+.nav a[aria-current] .zm-nav-link-icon {
+  color: #a7d26d !important;
+}
+
+/* ─── Globals Section Label ─── */
+
+.nav__label {
+  color: rgba(167, 210, 109, 0.35) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 9px !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  padding: 20px 16px 6px !important;
+  margin-top: 8px !important;
+  border-top: 1px solid rgba(167, 210, 109, 0.04) !important;
+}
+
+/* ─── Header ─── */
+
+.app-header {
+  background: #181a0e !important;
+  border-bottom: 1px solid rgba(167, 210, 109, 0.06) !important;
+  padding: 0 20px !important;
+}
+
+.step-nav a {
+  color: rgba(255, 255, 255, 0.35) !important;
+  font-size: 12px !important;
+}
+
+.step-nav a:hover {
+  color: #a7d26d !important;
+}
+
+/* ─── Cards ─── */
+
+.card {
+  background: rgba(255, 255, 255, 0.01) !important;
+  border: 1px solid rgba(167, 210, 109, 0.06) !important;
+  border-radius: 8px !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.card:hover {
+  border-color: rgba(167, 210, 109, 0.15) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+.card__title {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-weight: 300 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* ─── Table ─── */
+
+.table th {
+  color: rgba(255, 255, 255, 0.3) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 10px !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  border-bottom: 1px solid rgba(167, 210, 109, 0.08) !important;
+  padding: 12px 16px !important;
+}
+
+.table td {
+  border-bottom: 1px solid rgba(167, 210, 109, 0.04) !important;
+  color: rgba(255, 255, 255, 0.55) !important;
+  padding: 12px 16px !important;
+  font-size: 13px !important;
+}
+
+.table tr:hover td {
+  background: rgba(167, 210, 109, 0.03) !important;
+}
+
+/* ─── Document Editor ─── */
+
+.doc-header__title h1 {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 300 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Sidebar */
+.doc-controls__sidebar {
+  border-left: 1px solid rgba(167, 210, 109, 0.06) !important;
+  background: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ─── Tabs ─── */
+
+.tabs-field__tab-button {
+  color: rgba(255, 255, 255, 0.35) !important;
+  font-size: 13px !important;
+  padding: 10px 16px !important;
+  transition: color 0.2s ease !important;
+  border-bottom: 2px solid transparent !important;
+}
+
+.tabs-field__tab-button:hover {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.tabs-field__tab-button--active {
+  color: #a7d26d !important;
+  border-bottom-color: #a7d26d !important;
+}
+
+/* ─── Pills / Status ─── */
+
+.pill {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 10px !important;
+  letter-spacing: 0.05em !important;
+  border-radius: 4px !important;
+  padding: 3px 8px !important;
+}
+
+/* ─── Forgot Password Link ─── */
+
+.login__form a {
+  color: rgba(167, 210, 109, 0.5) !important;
+  font-size: 12px !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+
+.login__form a:hover {
+  color: #a7d26d !important;
+}
+
+/* ─── Form Submit Area ─── */
+
+.form-submit {
+  margin-top: 20px !important;
+}
+
+.form-submit .btn {
+  width: 100% !important;
+}
+
+/* ─── Gutter spacing ─── */
+
+.template-default__main {
+  padding: 24px 32px !important;
+}
+
+/* ─── Popups & Modals ─── */
+
+.popup-content,
+.drawer__content {
+  background: #1e2112 !important;
+  border: 1px solid rgba(167, 210, 109, 0.08) !important;
+  border-radius: 8px !important;
+}
+
+/* ─── Search ─── */
+
+.search-filter input {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  border-radius: 6px !important;
+  padding: 8px 14px !important;
+}
+
+/* ─── Scrollbar ─── */
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(167, 210, 109, 0.12); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(167, 210, 109, 0.22); }
+
+/* ─── Checkbox ─── */
+
+input[type="checkbox"]:checked {
+  accent-color: #a7d26d !important;
+}
+
+/* ─── Links ─── */
+
+a:not(.btn):not(.nav__link):not(.step-nav a) {
+  color: #a7d26d;
+}
+
+a:not(.btn):not(.nav__link):not(.step-nav a):hover {
+  color: #b8dc84;
+}
+
+/* ─── Dashboard ─── */
+
+.dashboard h2,
+.dashboard h3 {
+  font-weight: 300 !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* ─── Collection List Header ─── */
+
+.collection-list__header,
+.list-header {
+  border-bottom: 1px solid rgba(167, 210, 109, 0.06) !important;
+}
+
+/* ─── Select / Dropdown ─── */
+
+.field-type select {
+  appearance: none !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='rgba(167,210,109,0.5)' d='M6 8L1 3h10z'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  padding-right: 32px !important;
+}
+
+/* ─── Toast ─── */
+
+.Toastify__toast {
+  border-radius: 6px !important;
+  background: #1e2112 !important;
+  border: 1px solid rgba(167, 210, 109, 0.1) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+}

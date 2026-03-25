@@ -57,7 +57,7 @@ export function SiteHeader() {
           <div className="w-12 h-12">
             <MiniLogo />
           </div>
-          <span className="text-white/80 group-hover:text-[#a7d26d] transition-colors font-light text-[1.35rem] tracking-wider">
+          <span className="text-white/80 group-hover:text-[#a7d26d] transition-colors font-light text-2xl tracking-wider">
             Zonemation
           </span>
         </Link>
@@ -65,7 +65,7 @@ export function SiteHeader() {
           <LanguageSwitcher />
           <Link
             href="/contact"
-            className="text-[0.95rem] text-[#a7d26d] hover:text-white border border-[#a7d26d]/30 hover:border-white/30 px-5 py-2.5 rounded-lg transition-all duration-300"
+            className="text-lg text-[#a7d26d] hover:text-white border border-[#a7d26d]/30 hover:border-white/30 px-5 py-2.5 rounded-lg transition-all duration-300"
           >
             {t('contact')}
           </Link>

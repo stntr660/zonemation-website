@@ -99,14 +99,14 @@ export function Footer() {
 
         {/* Equal Opportunity Statement */}
         <div className="mb-3">
-          <p className="text-[10px] text-gray-600 dark:text-gray-400 leading-relaxed">
+          <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
             Zonemation is an Equal Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, age, religion, sex, sexual orientation, gender identity / expression, national origin, or any other characteristic protected under applicable law.
           </p>
         </div>
 
         {/* Copyright */}
         <div className="pt-2 border-t border-gray-200 dark:border-gray-700">
-          <p className="text-[10px] text-gray-600 dark:text-gray-400">
+          <p className="text-xs text-gray-600 dark:text-gray-400">
             &copy; {new Date().getFullYear()} Zonemation Consulting Group. All rights reserved.
           </p>
         </div>

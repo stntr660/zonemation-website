@@ -4,7 +4,7 @@ export const ContactSubmissions: CollectionConfig = {
   slug: 'contact-submissions',
   admin: {
     useAsTitle: 'name',
-    group: 'Admin',
+    group: 'Operations',
     defaultColumns: ['name', 'email', 'project', 'createdAt'],
   },
   access: {

@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mb-10">
-      <h2 className="text-[1.4rem] font-light text-white mb-4">{title}</h2>
-      <div className="text-white/60 text-[1.05rem] leading-[1.8] space-y-4">{children}</div>
+      <h2 className="text-3xl font-light text-white mb-4">{title}</h2>
+      <div className="text-white/60 text-xl leading-[1.8] space-y-4">{children}</div>
     </section>
   )
 }

@@ -5,7 +5,6 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -24,4 +23,4 @@ const nextConfig = {
   },
 }
 
-export default withPayload(withNextIntl(nextConfig))
+export default withNextIntl(withPayload(nextConfig))

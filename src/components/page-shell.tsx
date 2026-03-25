@@ -54,11 +54,11 @@ export function PageShell({
           className="mb-12"
         >
           {subtitle && (
-            <p className="text-[#a7d26d]/70 text-[0.85rem] font-medium uppercase tracking-widest mb-4">
+            <p className="text-[#a7d26d]/70 text-base font-medium uppercase tracking-widest mb-4">
               {subtitle}
             </p>
           )}
-          <h1 className="text-[2.25rem] lg:text-[3rem] font-thin text-white tracking-wider leading-tight">
+          <h1 className="text-5xl lg:text-6xl font-thin text-white tracking-wider leading-tight">
             {title}
           </h1>
         </motion.div>

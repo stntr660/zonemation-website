@@ -1,7 +1,4 @@
 import type { Metadata } from 'next'
-import './globals.css'
-import { ThemeProvider } from '@/lib/theme-provider'
-import { AnimatedFavicon } from '@/components/animated-favicon'
 
 export const metadata: Metadata = {
   title: 'Zonemation - Unlocking the Potential of Those Who Advance the World',
@@ -26,19 +23,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="font-sans bg-[#181a0e] text-white" suppressHydrationWarning>
-        <AnimatedFavicon />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
-  )
+  return children
 }
