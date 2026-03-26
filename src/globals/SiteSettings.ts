@@ -47,6 +47,13 @@ export const SiteSettings: GlobalConfig = {
         { name: 'email', type: 'email', label: 'Billing Email' },
         { name: 'phone', type: 'text', label: 'Phone' },
         { name: 'ice', type: 'text', label: 'ICE (Tax ID)' },
+        {
+          name: 'stamp',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Company Stamp',
+          admin: { description: 'Upload your company stamp image (PNG with transparent background). Appears on invoices.' },
+        },
       ],
     },
     {

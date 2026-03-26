@@ -42,6 +42,31 @@ export async function GET(
     logoBase64 = `data:image/png;base64,${logoBuffer.toString('base64')}`
   } catch { /* skip */ }
 
+  // Load stamp from Site Settings
+  let stampBase64 = ''
+  try {
+    const settings = await payload.findGlobal({ slug: 'site-settings', depth: 3 })
+    const billing = (settings as any)?.billing
+    let stamp = billing?.stamp
+
+    // If stamp is an ID, fetch the media doc
+    if (stamp && typeof stamp === 'number') {
+      stamp = await payload.findByID({ collection: 'media', id: stamp })
+    }
+
+    if (stamp && typeof stamp === 'object' && stamp.filename) {
+      // Try local file first
+      const stampPath = path.resolve(process.cwd(), `media/${stamp.filename}`)
+      if (fs.existsSync(stampPath)) {
+        const stampBuffer = fs.readFileSync(stampPath)
+        const ext = stamp.mimeType?.includes('png') ? 'png' : 'jpeg'
+        stampBase64 = `data:image/${ext};base64,${stampBuffer.toString('base64')}`
+      }
+    }
+  } catch (err) {
+    console.error('Stamp load error:', err)
+  }
+
   const items = (invoice.items || []) as Array<{
     description?: string
     quantity?: number
@@ -291,8 +316,8 @@ export async function GET(
     border-bottom: 1px solid rgba(24,26,14,0.12);
   }
   .footer-address {
-    font-size: 11px;
-    color: rgba(24,26,14,0.7);
+    font-size: 13px;
+    color: rgba(24,26,14,0.8);
     font-weight: 500;
   }
   .footer-line2 {
@@ -308,12 +333,12 @@ export async function GET(
     gap: 6px;
   }
   .footer-item-label {
-    font-size: 11px;
+    font-size: 12px;
     color: rgba(24,26,14,0.45);
     font-weight: 600;
   }
   .footer-item-value {
-    font-size: 11px;
+    font-size: 12px;
     color: #181a0e;
     font-weight: 500;
   }
@@ -431,7 +456,7 @@ export async function GET(
       </div>
       <div class="signature-section">
         ${signatureHtml}
-        <div class="signature-label">Signature autorisee</div>
+        ${stampBase64 ? `<img src="${stampBase64}" style="max-height:150px;max-width:200px;margin-top:8px;" />` : ''}
       </div>
     </div>
   </div>
