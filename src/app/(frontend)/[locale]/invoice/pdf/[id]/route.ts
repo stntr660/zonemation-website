@@ -283,28 +283,44 @@ export async function GET(
   .party { page-break-inside: avoid; }
   .totals-wrapper { page-break-inside: avoid; }
   .verification { page-break-inside: avoid; }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 20px;
-    align-items: start;
+
+  .footer-line1 {
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(24,26,14,0.12);
   }
-  .footer-grid > div {
-    overflow: hidden;
+  .footer-address {
+    font-size: 11px;
+    color: rgba(24,26,14,0.7);
+    font-weight: 500;
+  }
+  .footer-line2 {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    align-items: center;
+    font-size: 11px;
+  }
+  .footer-line2 > div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
   .footer-item-label {
-    font-size: 10px;
-    color: rgba(24,26,14,0.5);
+    font-size: 11px;
+    color: rgba(24,26,14,0.45);
     font-weight: 600;
-    margin-bottom: 4px;
-    letter-spacing: 0.5px;
   }
   .footer-item-value {
     font-size: 11px;
     color: #181a0e;
     font-weight: 500;
-    line-height: 1.5;
-    word-break: break-word;
+  }
+  .footer-sep {
+    width: 1px;
+    height: 12px;
+    background: rgba(24,26,14,0.15);
   }
 
   @media print {
@@ -422,22 +438,23 @@ export async function GET(
 
   <!-- FOOTER (dark) -->
   <div class="footer">
-    <div class="footer-grid">
+    <div class="footer-line1">
+      <div class="footer-address">${[invoice.senderAddress, invoice.senderCity].filter(Boolean).join(', ').toLowerCase()}</div>
+    </div>
+    <div class="footer-line2">
       <div>
-        <div class="footer-item-label">ADRESSE</div>
-        <div class="footer-item-value">${[invoice.senderAddress, invoice.senderCity].filter(Boolean).join(', ').toLowerCase()}</div>
+        <span class="footer-item-label">ICE</span>
+        <span class="footer-item-value">${invoice.senderIce || '—'}</span>
       </div>
+      <div class="footer-sep"></div>
       <div>
-        <div class="footer-item-label">ICE</div>
-        <div class="footer-item-value">${invoice.senderIce || '—'}</div>
+        <span class="footer-item-label">TEL</span>
+        <span class="footer-item-value">${invoice.senderPhone || '—'}</span>
       </div>
+      <div class="footer-sep"></div>
       <div>
-        <div class="footer-item-label">TEL</div>
-        <div class="footer-item-value">${invoice.senderPhone || '—'}</div>
-      </div>
-      <div>
-        <div class="footer-item-label">EMAIL</div>
-        <div class="footer-item-value">${(invoice.senderEmail || '—').toLowerCase()}</div>
+        <span class="footer-item-label">EMAIL</span>
+        <span class="footer-item-value">${(invoice.senderEmail || '—').toLowerCase()}</span>
       </div>
     </div>
   </div>
