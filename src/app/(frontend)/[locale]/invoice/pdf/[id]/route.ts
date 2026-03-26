@@ -456,7 +456,8 @@ export async function GET(
       </div>
       <div class="signature-section">
         ${signatureHtml}
-        ${stampBase64 ? `<img src="${stampBase64}" style="max-height:150px;max-width:200px;margin-top:8px;" />` : ''}
+        <div style="font-size:11px;color:#666;margin-top:12px;">Fait a ${invoice.senderCity || 'Casablanca'} le ${invoice.issueDate ? new Date(invoice.issueDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }) : '—'}</div>
+        ${invoice.status === 'paid' && stampBase64 ? `<img src="${stampBase64}" style="max-height:150px;max-width:200px;margin-top:10px;" />` : ''}
       </div>
     </div>
   </div>
