@@ -42,7 +42,7 @@ export default function Logo() {
       <span
         style={{
           color: 'rgba(255,255,255,0.8)',
-          fontWeight: 300,
+          fontWeight: 400,
           fontSize: '1.375rem',
           letterSpacing: '0.05em',
           fontFamily: 'Poppins, sans-serif',

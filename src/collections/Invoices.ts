@@ -94,6 +94,17 @@ export const Invoices: CollectionConfig = {
     ],
   },
   fields: [
+    // ── PDF Download Button ──
+    {
+      name: 'pdfDownload',
+      type: 'ui',
+      admin: {
+        position: 'sidebar',
+        components: {
+          Field: '/components/admin/InvoicePdfButton',
+        },
+      },
+    },
     // ── Meta ──
     {
       name: 'invoiceNumber',

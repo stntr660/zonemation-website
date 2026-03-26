@@ -39,6 +39,9 @@
   /* Font */
   --font-body: 'Poppins', 'Henderson Sans', system-ui, sans-serif !important;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace !important;
+
+  /* Base font weight -- Poppins 400 is too thin on dark backgrounds */
+  --font-weight-normal: 450 !important;
 }
 
 /* ─── Login Page ─── */
@@ -86,12 +89,9 @@
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   color: rgba(255, 255, 255, 0.8) !important;
   border-radius: 6px !important;
-  padding: 10px 14px !important;
   font-size: 14px !important;
   line-height: 1.5 !important;
   transition: border-color 0.2s ease !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
 }
 
 .field-type input:focus,
@@ -383,9 +383,10 @@
 }
 
 .card__title {
-  color: rgba(255, 255, 255, 0.8) !important;
-  font-weight: 300 !important;
-  letter-spacing: 0.02em !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 500 !important;
+  font-size: 15px !important;
+  letter-spacing: 0.01em !important;
 }
 
 /* ─── Table ─── */
@@ -415,8 +416,8 @@
 
 .doc-header__title h1 {
   color: rgba(255, 255, 255, 0.9) !important;
-  font-weight: 300 !important;
-  letter-spacing: 0.02em !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em !important;
 }
 
 /* Sidebar */
@@ -529,8 +530,9 @@ a:not(.btn):not(.nav__link):not(.step-nav a):hover {
 
 .dashboard h2,
 .dashboard h3 {
-  font-weight: 300 !important;
-  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 500 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 16px !important;
 }
 
 /* ─── Collection List Header ─── */
@@ -542,12 +544,70 @@ a:not(.btn):not(.nav__link):not(.step-nav a):hover {
 
 /* ─── Select / Dropdown ─── */
 
-.field-type select {
+/* Only style native selects, not Payload's React Select */
+select.field-type__select,
+.field-type select:not([class*="rs__"]) {
   appearance: none !important;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='rgba(167,210,109,0.5)' d='M6 8L1 3h10z'/%3E%3C/svg%3E") !important;
   background-repeat: no-repeat !important;
   background-position: right 12px center !important;
   padding-right: 32px !important;
+}
+
+/* React Select (relationship fields) - fix dropdown appearance */
+.rs__control {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 6px !important;
+  min-height: 40px !important;
+}
+
+.rs__control:hover {
+  border-color: rgba(167, 210, 109, 0.3) !important;
+}
+
+.rs__control--is-focused {
+  border-color: rgba(167, 210, 109, 0.4) !important;
+  box-shadow: 0 0 0 2px rgba(167, 210, 109, 0.08) !important;
+}
+
+.rs__menu {
+  background: #1e2112 !important;
+  border: 1px solid rgba(167, 210, 109, 0.1) !important;
+  border-radius: 6px !important;
+  z-index: 200 !important;
+}
+
+.rs__option {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.rs__option--is-focused {
+  background: rgba(167, 210, 109, 0.08) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.rs__option--is-selected {
+  background: rgba(167, 210, 109, 0.15) !important;
+  color: #a7d26d !important;
+}
+
+.rs__single-value,
+.rs__input-container,
+.rs__placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.rs__single-value {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.rs__indicator {
+  color: rgba(167, 210, 109, 0.4) !important;
+}
+
+.rs__indicator:hover {
+  color: rgba(167, 210, 109, 0.7) !important;
 }
 
 /* ─── Toast ─── */
@@ -557,4 +617,219 @@ a:not(.btn):not(.nav__link):not(.step-nav a):hover {
   background: #1e2112 !important;
   border: 1px solid rgba(167, 210, 109, 0.1) !important;
   color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* ─── Overlap & Z-Index Fixes ───
+   Payload's dropdowns, popups, and relationship fields need
+   proper stacking so they don't get clipped by adjacent fields. */
+
+/* Relationship field dropdowns */
+.relationship--single-value__menu,
+.rs__menu,
+[class*="react-select"]__menu,
+.popup,
+.popup-content {
+  z-index: 100 !important;
+  position: relative !important;
+}
+
+/* Popup overlay */
+.popup-button-wrap .popup {
+  z-index: 200 !important;
+}
+
+/* Array field rows - prevent clipping */
+.array-field__row {
+  overflow: visible !important;
+}
+
+.array-field__draggable-rows {
+  overflow: visible !important;
+}
+
+/* Row fields - ensure children don't overlap */
+.row-field {
+  overflow: visible !important;
+}
+
+/* Collapsible content - prevent dropdown clipping */
+.collapsible__content {
+  overflow: visible !important;
+}
+
+/* Drawer z-index */
+.drawer {
+  z-index: 300 !important;
+}
+
+/* Relationship dropdown list */
+.relationship-add-new,
+.value-container,
+.rs__control {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Fix for metrics array items overlapping */
+.array-field__row + .array-field__row {
+  margin-top: 2px !important;
+}
+
+/* Sidebar fields - prevent sidebar items from overlapping main content */
+.doc-controls__sidebar .field-type {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* ─── Font Weight Strategy ───
+   Targeted weight bumps instead of global max() which breaks inheritance. */
+
+/* Explicitly bump thin text in key areas */
+.collection-list__count,
+.view-description,
+.card__description,
+.dashboard__label,
+.field-description,
+.list-controls__label,
+.cell-link {
+  font-weight: 400 !important;
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+/* Table cell text -- ensure readable */
+.table td,
+.table td a,
+.cell-link {
+  font-weight: 400 !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 13px !important;
+}
+
+/* Breadcrumb / step nav */
+.step-nav a,
+.step-nav span {
+  font-weight: 450 !important;
+}
+
+/* Field values */
+.field-type input,
+.field-type select,
+.field-type textarea {
+  font-weight: 400 !important;
+}
+
+/* Document title in list view */
+.cell-link--title,
+.table td a {
+  font-weight: 500 !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Collapsible headers */
+.collapsible__toggle {
+  font-weight: 500 !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Section labels in forms */
+.group-field__wrap > .field-label,
+.blocks-field__header {
+  font-weight: 500 !important;
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+/* ─── Collapsible / Array Row Headers ───
+   Fix "Toggle" text overlapping with row labels across all collapsibles */
+
+/* The header wrap is a flex container -- ensure proper layout */
+.collapsible__header-wrap {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-height: 44px !important;
+  padding: 8px 16px !important;
+  position: relative !important;
+}
+
+/* The toggle wrap contains the chevron and screen-reader "Toggle" text */
+.collapsible__toggle-wrap {
+  display: flex !important;
+  align-items: center !important;
+  flex-shrink: 0 !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Hide the visible "Toggle" text -- it overlaps with the row label.
+   The chevron indicator already communicates expand/collapse. */
+.collapsible__toggle {
+  font-size: 0 !important;
+  width: auto !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+}
+
+/* Keep the chevron indicator visible */
+.collapsible__indicator {
+  font-size: 13px !important;
+}
+
+/* Row label (e.g. "Item 01", "Headline Metric 02") */
+.row-label,
+.collapsible-field__row-label-wrap {
+  font-weight: 500 !important;
+  font-size: 13px !important;
+  color: rgba(255, 255, 255, 0.65) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+/* Actions (drag handle, three-dot menu) */
+.collapsible__actions-wrap,
+.collapsible__actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  flex-shrink: 0 !important;
+  margin-left: auto !important;
+}
+
+/* Drag handle */
+.collapsible__drag {
+  flex-shrink: 0 !important;
+  cursor: grab !important;
+}
+
+/* ── Array field specific ── */
+
+.array-field__draggable-rows {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+
+/* Array row card styling */
+.collapsible--style-default {
+  border: 1px solid rgba(167, 210, 109, 0.06) !important;
+  border-radius: 6px !important;
+  background: rgba(255, 255, 255, 0.01) !important;
+  overflow: visible !important;
+}
+
+.collapsible--style-default:hover {
+  border-color: rgba(167, 210, 109, 0.12) !important;
+}
+
+/* Collapsed state -- tighter */
+.collapsible--collapsed .collapsible__header-wrap {
+  min-height: 40px !important;
+}
+
+/* Collapsible content padding */
+.collapsible__content {
+  padding: 16px !important;
+  overflow: visible !important;
 }

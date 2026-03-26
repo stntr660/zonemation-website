@@ -62,12 +62,15 @@ export async function GET(
 <head>
 <meta charset="UTF-8">
 <title>Facture ${invoice.invoiceNumber}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   @page { size: A4; margin: 0; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: #2a2a2a;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
     font-size: 12px;
     line-height: 1.5;
     background: #fff;
@@ -76,114 +79,110 @@ export async function GET(
   }
   .page {
     width: 210mm;
-    min-height: 297mm;
+    height: 297mm;
     margin: 0 auto;
     background: #fff;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .content {
+    flex: 1;
   }
 
-  /* ── HEADER (dark) ── */
+  /* ── Header ── */
   .header {
     background: #181a0e;
-    padding: 26px 40px;
+    padding: 24px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  .header-logo img { height: 44px; }
+  .header-logo img { height: 40px; }
   .header-right { text-align: right; }
   .header-title {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 300;
-    letter-spacing: 6px;
+    letter-spacing: 5px;
     color: #a7d26d;
   }
   .header-number {
     font-size: 12px;
-    color: #a7d26d;
-    font-family: 'Courier New', monospace;
+    color: rgba(167,210,109,0.7);
+    font-family: 'JetBrains Mono', monospace;
     margin-top: 4px;
-    letter-spacing: 1.5px;
-    font-weight: 600;
+    letter-spacing: 1px;
+    font-weight: 500;
   }
 
-  /* ── META BAR (light green tint) ── */
+  /* ── Meta bar ── */
   .meta-bar {
     background: #f5f7f0;
-    padding: 11px 40px;
+    padding: 9px 40px;
     display: flex;
-    gap: 36px;
-    border-bottom: 1px solid #e6e9df;
+    gap: 32px;
+    border-bottom: 1px solid #e8ebdf;
   }
   .meta-item {
     font-size: 10px;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    color: #999;
+    letter-spacing: 0.3px;
   }
   .meta-item strong {
-    color: #222;
-    font-weight: 700;
-    margin-left: 4px;
+    color: #333;
+    font-weight: 600;
+    margin-left: 6px;
   }
 
-  /* ── CONTENT (white) ── */
-  .content { padding: 28px 40px; }
+  /* ── Content ── */
+  .content { padding: 24px 40px; flex: 1; }
 
-  /* ── PARTIES ── */
-  .parties { display: flex; gap: 24px; margin-bottom: 28px; }
+  /* ── Parties ── */
+  .parties { display: flex; gap: 20px; margin-bottom: 24px; }
   .party {
     flex: 1;
-    padding: 18px 20px;
+    padding: 16px 18px;
     border: 1px solid #eee;
     border-radius: 6px;
     background: #fafafa;
   }
   .party-label {
     font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 2.5px;
+    letter-spacing: 1.5px;
     color: #6a8f2f;
-    font-weight: 700;
-    margin-bottom: 10px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
   }
   .party-name {
-    font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
     color: #1a1a1a;
   }
   .party-detail {
     font-size: 11px;
     color: #555;
-    line-height: 1.8;
+    line-height: 1.7;
   }
-  .party-detail .label {
-    color: #888;
-    font-size: 9px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    display: inline-block;
-    width: 55px;
+  .party-detail div {
+    margin-bottom: 2px;
   }
 
-  /* ── TABLE ── */
-  table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
-  thead { background: transparent; }
+  /* ── Table ── */
+  table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
   th {
     text-align: left;
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
+    font-size: 10px;
+    letter-spacing: 0.3px;
     color: #999;
-    padding: 10px 14px;
-    font-weight: 600;
+    padding: 8px 14px;
+    font-weight: 500;
     border-bottom: 2px solid #eee;
   }
   th.right { text-align: right; }
   td {
-    padding: 11px 14px;
+    padding: 9px 14px;
     border-bottom: 1px solid #f0f0f0;
     font-size: 12px;
     color: #333;
@@ -191,117 +190,126 @@ export async function GET(
   }
   td.right {
     text-align: right;
-    font-family: 'Courier New', monospace;
+    font-family: 'JetBrains Mono', monospace;
     color: #444;
     font-weight: 500;
+    font-size: 11px;
   }
   tr:nth-child(even) { background: #fafbf8; }
 
-  /* ── TOTALS ── */
-  .totals-wrapper { display: flex; justify-content: flex-end; margin-bottom: 28px; }
-  .totals { width: 250px; }
+  /* ── Totals ── */
+  .totals-wrapper { display: flex; justify-content: flex-end; margin-bottom: 24px; }
+  .totals { width: 260px; }
   .totals-row {
     display: flex;
     justify-content: space-between;
-    padding: 6px 0;
+    padding: 5px 0;
     font-size: 12px;
     color: #666;
-    font-weight: 500;
+    font-weight: 400;
   }
-  .totals-row .amount { font-family: 'Courier New', monospace; color: #444; font-weight: 600; }
+  .totals-row .amount {
+    font-family: 'JetBrains Mono', monospace;
+    color: #333;
+    font-weight: 500;
+    font-size: 11px;
+  }
   .totals-row.grand {
     border-top: 2px solid #181a0e;
     padding-top: 10px;
     margin-top: 6px;
-    font-size: 17px;
-    font-weight: 800;
+    font-size: 16px;
+    font-weight: 600;
     color: #181a0e;
   }
-  .totals-row.grand .amount { color: #3d6b0e; font-weight: 800; }
+  .totals-row.grand .amount {
+    color: #3d6b0e;
+    font-weight: 700;
+    font-size: 15px;
+  }
 
-  /* ── NOTES ── */
+  /* ── Notes ── */
   .notes {
     background: #f5f7f0;
-    padding: 14px 18px;
+    padding: 12px 16px;
     border-radius: 4px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     border-left: 3px solid #a7d26d;
   }
   .notes-label {
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
+    font-size: 10px;
+    letter-spacing: 0.3px;
     color: #999;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
+    font-weight: 500;
   }
-  .notes-text { font-size: 11px; color: #666; }
+  .notes-text { font-size: 11px; color: #555; line-height: 1.6; }
 
-  /* ── VERIFICATION ── */
+  /* ── Verification ── */
   .verification {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding: 20px 0;
+    padding: 16px 0;
     border-top: 1px solid #eee;
-    margin-top: 16px;
+    margin-top: 12px;
   }
   .qr-section { text-align: center; }
   .qr-label {
-    font-size: 8px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #aaa;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    color: #bbb;
     margin-bottom: 8px;
+    font-weight: 500;
   }
   .signature-section { text-align: center; }
   .signature-label {
-    font-size: 9px;
-    color: #aaa;
+    font-size: 11px;
+    color: #bbb;
     margin-top: 8px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 0.3px;
+    font-weight: 400;
   }
 
-  /* ── FOOTER (green) ── */
+  /* ── Footer ── */
   .footer {
     background: #a7d26d;
     padding: 16px 40px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    flex-shrink: 0;
   }
+
+  /* Multi-page: keep table rows together */
+  tr { page-break-inside: avoid; }
+  .party { page-break-inside: avoid; }
+  .totals-wrapper { page-break-inside: avoid; }
+  .verification { page-break-inside: avoid; }
   .footer-grid {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
+    align-items: start;
   }
-  .footer-label {
-    font-size: 8px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: rgba(24,26,14,0.45);
-    font-weight: 700;
-    margin-bottom: 3px;
+  .footer-grid > div {
+    overflow: hidden;
   }
-  .footer-value {
+  .footer-item-label {
     font-size: 10px;
-    color: #181a0e;
+    color: rgba(24,26,14,0.5);
     font-weight: 600;
-    line-height: 1.5;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
   }
-  .footer-brand {
-    font-size: 12px;
+  .footer-item-value {
+    font-size: 11px;
     color: #181a0e;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 2px;
+    font-weight: 500;
+    line-height: 1.5;
+    word-break: break-word;
   }
 
   @media print {
     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .page { width: 100%; min-height: auto; }
-    .footer { position: fixed; bottom: 0; }
   }
 </style>
 </head>
@@ -320,8 +328,6 @@ export async function GET(
   <div class="meta-bar">
     <div class="meta-item">Date d'emission<strong>${invoice.issueDate ? new Date(invoice.issueDate).toLocaleDateString('fr-FR') : '—'}</strong></div>
     <div class="meta-item">Echeance<strong>${invoice.dueDate ? new Date(invoice.dueDate).toLocaleDateString('fr-FR') : '—'}</strong></div>
-    <div class="meta-item">Devise<strong>${currency}</strong></div>
-    <div class="meta-item">Statut<strong>${(invoice.status || 'draft').toUpperCase()}</strong></div>
   </div>
 
   <!-- CONTENT (white) -->
@@ -331,32 +337,36 @@ export async function GET(
         <div class="party-label">Emetteur</div>
         <div class="party-name">${invoice.senderName || '—'}</div>
         <div class="party-detail">
-          ${invoice.senderAddress ? `<div><span class="label">Adresse</span> ${invoice.senderAddress}</div>` : ''}
-          ${invoice.senderCity ? `<div><span class="label">Ville</span> ${invoice.senderCity}</div>` : ''}
-          ${invoice.senderEmail ? `<div><span class="label">Email</span> ${invoice.senderEmail}</div>` : ''}
-          ${invoice.senderPhone ? `<div><span class="label">Tel.</span> ${invoice.senderPhone}</div>` : ''}
-          ${invoice.senderIce ? `<div><span class="label">ICE</span> ${invoice.senderIce}</div>` : ''}
+          ${invoice.senderAddress || invoice.senderCity ? `<div>${[invoice.senderAddress, invoice.senderCity].filter(Boolean).join(', ').toLowerCase()}</div>` : ''}
+          ${invoice.senderEmail ? `<div>${invoice.senderEmail.toLowerCase()}</div>` : ''}
+          ${invoice.senderPhone ? `<div>${invoice.senderPhone}</div>` : ''}
+          ${invoice.senderIce ? `<div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#888;margin-top:4px;">ice ${invoice.senderIce}</div>` : ''}
         </div>
       </div>
       <div class="party">
         <div class="party-label">Facturer a</div>
         <div class="party-name">${invoice.clientName || '—'}</div>
         <div class="party-detail">
-          ${invoice.clientAddress ? `<div><span class="label">Adresse</span> ${invoice.clientAddress}</div>` : ''}
-          ${invoice.clientCity ? `<div><span class="label">Ville</span> ${invoice.clientCity}</div>` : ''}
-          ${invoice.clientEmail ? `<div><span class="label">Email</span> ${invoice.clientEmail}</div>` : ''}
-          ${invoice.clientIce ? `<div><span class="label">ICE</span> ${invoice.clientIce}</div>` : ''}
+          ${invoice.clientAddress || invoice.clientCity ? `<div>${[invoice.clientAddress, invoice.clientCity].filter(Boolean).join(', ').toLowerCase()}</div>` : ''}
+          ${invoice.clientEmail ? `<div>${invoice.clientEmail.toLowerCase()}</div>` : ''}
+          ${invoice.clientIce ? `<div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#888;margin-top:4px;">ice ${invoice.clientIce}</div>` : ''}
         </div>
       </div>
     </div>
 
     <table>
+      <colgroup>
+        <col style="width: 50%">
+        <col style="width: 12%">
+        <col style="width: 19%">
+        <col style="width: 19%">
+      </colgroup>
       <thead>
         <tr>
           <th>Description</th>
           <th class="right">Quantite</th>
-          <th class="right">Prix unitaire</th>
-          <th class="right">Total</th>
+          <th class="right">Prix unit.</th>
+          <th class="right">Montant</th>
         </tr>
       </thead>
       <tbody>
@@ -414,30 +424,54 @@ export async function GET(
   <div class="footer">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand">${invoice.senderName || 'Zonemation Consulting Group'}</div>
-        <div class="footer-value">${invoice.senderAddress || ''}${invoice.senderCity ? ', ' + invoice.senderCity : ''}</div>
+        <div class="footer-item-label">ADRESSE</div>
+        <div class="footer-item-value">${[invoice.senderAddress, invoice.senderCity].filter(Boolean).join(', ').toLowerCase()}</div>
       </div>
       <div>
-        <div class="footer-label">ICE</div>
-        <div class="footer-value">${invoice.senderIce || '—'}</div>
+        <div class="footer-item-label">ICE</div>
+        <div class="footer-item-value">${invoice.senderIce || '—'}</div>
       </div>
       <div>
-        <div class="footer-label">Telephone</div>
-        <div class="footer-value">${invoice.senderPhone || '—'}</div>
+        <div class="footer-item-label">TEL</div>
+        <div class="footer-item-value">${invoice.senderPhone || '—'}</div>
       </div>
       <div>
-        <div class="footer-label">Email</div>
-        <div class="footer-value">${invoice.senderEmail || '—'}</div>
+        <div class="footer-item-label">EMAIL</div>
+        <div class="footer-item-value">${(invoice.senderEmail || '—').toLowerCase()}</div>
       </div>
     </div>
   </div>
 </div>
 
-<script>window.onload = function() { window.focus(); window.print(); }</script>
 </body>
 </html>`
 
-  return new NextResponse(html, {
-    headers: { 'Content-Type': 'text/html; charset=utf-8' },
-  })
+  // Render to PDF using Playwright
+  try {
+    const { chromium } = await import('playwright')
+    const browser = await chromium.launch({ headless: true })
+    const page = await browser.newPage()
+    await page.setContent(html, { waitUntil: 'networkidle' })
+    // Wait for Google Fonts to load
+    await page.waitForTimeout(1500)
+    const pdfBuffer = await page.pdf({
+      format: 'A4',
+      printBackground: true,
+      margin: { top: '0', right: '0', bottom: '0', left: '0' },
+    })
+    await browser.close()
+
+    return new NextResponse(pdfBuffer, {
+      headers: {
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': `inline; filename="facture-${invoice.invoiceNumber}.pdf"`,
+      },
+    })
+  } catch (err) {
+    // Fallback to HTML if Playwright fails
+    console.error('PDF generation failed, falling back to HTML:', err)
+    return new NextResponse(html, {
+      headers: { 'Content-Type': 'text/html; charset=utf-8' },
+    })
+  }
 }

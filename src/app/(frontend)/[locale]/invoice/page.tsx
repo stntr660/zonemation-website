@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useCallback, useEffect } from 'react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 
 interface LineItem {
   id: string
@@ -224,6 +224,7 @@ interface SavedInvoice {
 
 export default function InvoicePage() {
   const t = useTranslations('invoice')
+  const locale = useLocale()
   const [data, setData] = useState<InvoiceData>(defaultData)
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
@@ -382,7 +383,7 @@ export default function InvoicePage() {
 
   const handleDownloadPdf = () => {
     if (!data.dbId) return
-    window.open(`/fr/invoice/pdf/${data.dbId}`, '_blank')
+    window.open(`/${locale}/invoice/pdf/${data.dbId}`, '_blank')
   }
 
   const handleNewInvoice = () => {
@@ -688,14 +689,18 @@ export default function InvoicePage() {
                 >
                   {saving ? '...' : saved ? t('saved') : t('save')}
                 </button>
-                {data.dbId && (
-                  <button
-                    onClick={handleDownloadPdf}
-                    className="text-base text-[#a7d26d] hover:text-white border border-[#a7d26d]/30 hover:border-white/30 px-4 py-1.5 rounded transition-all duration-300 font-mono tracking-wide"
-                  >
-                    {t('downloadPdf')}
-                  </button>
-                )}
+                <button
+                  onClick={handleDownloadPdf}
+                  disabled={!data.dbId}
+                  className={`text-base px-4 py-1.5 rounded transition-all duration-300 font-mono tracking-wide border ${
+                    data.dbId
+                      ? 'border-[#a7d26d]/30 text-[#a7d26d] hover:text-white hover:border-white/30'
+                      : 'border-white/10 text-white/20 cursor-not-allowed'
+                  }`}
+                  title={!data.dbId ? 'Save first to download PDF' : ''}
+                >
+                  {t('downloadPdf')}
+                </button>
               </div>
             </div>
 
