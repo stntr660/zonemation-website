@@ -37,7 +37,6 @@ export const CaseStudies: CollectionConfig = {
       name: 'coverImage',
       type: 'upload',
       relationTo: 'media',
-      required: true,
     },
 
     // ─── CLIENT INFO ───

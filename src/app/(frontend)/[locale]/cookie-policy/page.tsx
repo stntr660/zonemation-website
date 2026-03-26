@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 import { PageShell } from '@/components/page-shell'
 
 export const metadata: Metadata = {
@@ -25,93 +26,86 @@ function CookieCard({ title, label, children }: { title: string; label: string; 
   )
 }
 
-export default function CookiePolicyPage() {
+export default async function CookiePolicyPage() {
+  const t = await getTranslations('cookies')
+
   return (
-    <PageShell title="Cookie Policy" subtitle="Last updated: March 9, 2026">
+    <PageShell title={t('title')} subtitle={t('lastUpdated')}>
       <div className="space-y-0">
-        <Section title="1. What Are Cookies">
-          <p>
-            Cookies are small text files placed on your device when you visit a website. They are widely used to
-            make websites work efficiently, provide analytics, and enhance user experience.
-          </p>
+        <Section title={t('s1Title')}>
+          <p>{t('s1p1')}</p>
         </Section>
 
-        <Section title="2. Types of Cookies We Use">
+        <Section title={t('s2Title')}>
           <div className="space-y-4">
-            <CookieCard title="Essential Cookies" label="Required for the site to function">
-              These cookies are necessary for core functionality such as security, session management,
-              and accessibility preferences. You cannot opt out of these cookies.
+            <CookieCard title={t('s2essentialTitle')} label={t('s2essentialLabel')}>
+              {t('s2essentialDesc')}
             </CookieCard>
 
-            <CookieCard title="Preference Cookies" label="Remember your settings">
-              These cookies remember your preferences such as language and theme (dark/light mode),
-              providing a more personalized experience.
+            <CookieCard title={t('s2preferenceTitle')} label={t('s2preferenceLabel')}>
+              {t('s2preferenceDesc')}
             </CookieCard>
 
-            <CookieCard title="Analytics Cookies" label="Help us understand usage">
-              These cookies help us understand how visitors interact with our website by collecting
-              and reporting information anonymously.
+            <CookieCard title={t('s2analyticsTitle')} label={t('s2analyticsLabel')}>
+              {t('s2analyticsDesc')}
             </CookieCard>
           </div>
         </Section>
 
-        <Section title="3. Specific Cookies Used">
+        <Section title={t('s3Title')}>
           <div className="overflow-x-auto">
             <table className="w-full text-lg">
               <thead>
                 <tr className="border-b border-white/10">
-                  <th className="text-left py-3 pr-4 text-white/80 font-medium">Cookie</th>
-                  <th className="text-left py-3 pr-4 text-white/80 font-medium">Type</th>
-                  <th className="text-left py-3 pr-4 text-white/80 font-medium">Duration</th>
-                  <th className="text-left py-3 text-white/80 font-medium">Purpose</th>
+                  <th className="text-left py-3 pr-4 text-white/80 font-medium">{t('s3colCookie')}</th>
+                  <th className="text-left py-3 pr-4 text-white/80 font-medium">{t('s3colType')}</th>
+                  <th className="text-left py-3 pr-4 text-white/80 font-medium">{t('s3colDuration')}</th>
+                  <th className="text-left py-3 text-white/80 font-medium">{t('s3colPurpose')}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr className="border-b border-white/5">
                   <td className="py-3 pr-4 font-mono text-base text-[#a7d26d]">theme</td>
-                  <td className="py-3 pr-4">Preference</td>
-                  <td className="py-3 pr-4">1 year</td>
-                  <td className="py-3">Dark/light mode preference</td>
+                  <td className="py-3 pr-4">{t('s3typePreference')}</td>
+                  <td className="py-3 pr-4">{t('s3duration1year')}</td>
+                  <td className="py-3">{t('s3purposeTheme')}</td>
                 </tr>
                 <tr className="border-b border-white/5">
                   <td className="py-3 pr-4 font-mono text-base text-[#a7d26d]">payload-token</td>
-                  <td className="py-3 pr-4">Essential</td>
-                  <td className="py-3 pr-4">Session</td>
-                  <td className="py-3">Admin authentication</td>
+                  <td className="py-3 pr-4">{t('s3typeEssential')}</td>
+                  <td className="py-3 pr-4">{t('s3durationSession')}</td>
+                  <td className="py-3">{t('s3purposeAuth')}</td>
                 </tr>
                 <tr className="border-b border-white/5">
                   <td className="py-3 pr-4 font-mono text-base text-[#a7d26d]">cookie-consent</td>
-                  <td className="py-3 pr-4">Essential</td>
-                  <td className="py-3 pr-4">1 year</td>
-                  <td className="py-3">Cookie consent choice</td>
+                  <td className="py-3 pr-4">{t('s3typeEssential')}</td>
+                  <td className="py-3 pr-4">{t('s3duration1year')}</td>
+                  <td className="py-3">{t('s3purposeConsent')}</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </Section>
 
-        <Section title="4. Managing Cookies">
-          <p>You can control cookies through your browser settings:</p>
+        <Section title={t('s4Title')}>
+          <p>{t('s4p1')}</p>
           <ul className="list-disc pl-5 space-y-2 mt-3">
-            <li>View and delete cookies stored on your device.</li>
-            <li>Block third-party cookies.</li>
-            <li>Block cookies from specific sites.</li>
-            <li>Block all cookies.</li>
-            <li>Delete all cookies when you close your browser.</li>
+            <li>{t('s4item1')}</li>
+            <li>{t('s4item2')}</li>
+            <li>{t('s4item3')}</li>
+            <li>{t('s4item4')}</li>
+            <li>{t('s4item5')}</li>
           </ul>
-          <p>Blocking essential cookies may affect website functionality.</p>
+          <p>{t('s4warning')}</p>
         </Section>
 
-        <Section title="5. Legal Framework">
-          <p>
-            Our use of cookies complies with Moroccan Law No. 09-08 on the Protection of Individuals with
-            Regard to the Processing of Personal Data.
-          </p>
+        <Section title={t('s5Title')}>
+          <p>{t('s5p1')}</p>
         </Section>
 
-        <Section title="6. Contact">
+        <Section title={t('s6Title')}>
           <p>
-            For questions about our use of cookies, contact us at{' '}
+            {t('s6p1')}{' '}
             <a href="mailto:hello@zonemation.com" className="text-[#a7d26d] hover:text-white transition-colors">
               hello@zonemation.com
             </a>.

@@ -2,12 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useState, useRef } from 'react'
-
-const quotes = [
-  "Le cabinet qui digitalise tout le monde n'a pas encore son propre site",
-  "C'est à peine paradoxal quand on est trop occupés à livrer pour nos clients.",
-  "Votre avantage concurrentiel n'attend pas. Notre vitrine, si."
-]
+import { useTranslations } from 'next-intl'
 
 function AnimatedDots() {
   const [dots, setDots] = useState('')
@@ -71,6 +66,8 @@ function AnimatedLogo() {
 }
 
 export function UnderConstruction() {
+  const t = useTranslations('underConstruction')
+  const quotes = [t('quote1'), t('quote2'), t('quote3')]
   const [quoteIndex, setQuoteIndex] = useState(0)
 
   useEffect(() => {
@@ -78,7 +75,7 @@ export function UnderConstruction() {
       setQuoteIndex((prev) => (prev + 1) % quotes.length)
     }, 4000)
     return () => clearInterval(interval)
-  }, [])
+  }, [quotes.length])
 
   return (
     <div className="min-h-[calc(100vh-160px)] flex items-center justify-center px-6 py-12 relative overflow-hidden">
@@ -95,7 +92,7 @@ export function UnderConstruction() {
         <div className="space-y-8">
           <div className="space-y-6">
             <h1 className="text-6xl lg:text-8xl font-thin text-slate-300/80 tracking-wider">
-              Coming Soon<AnimatedDots />
+              {t('comingSoon')}<AnimatedDots />
             </h1>
             <div className="h-20 flex items-center justify-center">
               <AnimatePresence mode="wait">
@@ -114,7 +111,7 @@ export function UnderConstruction() {
 
             {process.env.NEXT_PUBLIC_SHOW_BRANDS === 'true' && (
               <>
-                <p className="text-slate-500/70 text-xl mt-10 mb-6">Parmi tant d'autres, quelques grands noms qui nous ont confie leur vision.</p>
+                <p className="text-slate-500/70 text-xl mt-10 mb-6">{t('brands')}</p>
                 <div className="flex justify-center items-center gap-10 mb-4 flex-wrap w-full max-w-2xl mx-auto">
                   <svg viewBox="0 0 140 38" className="h-12 w-auto opacity-60">
                     <g fill="#94a3b8">
@@ -174,7 +171,7 @@ export function UnderConstruction() {
             )}
 
             <div className="flex flex-col items-center gap-3">
-              <p className="text-[#a7d26d] text-2xl lg:text-3xl font-light">Les grandes transformations commencent par une conversation.</p>
+              <p className="text-[#a7d26d] text-2xl lg:text-3xl font-light">{t('cta')}</p>
               <a
                 href="tel:+212661903077"
                 className="inline-flex items-center gap-3 text-[#a7d26d] hover:text-white transition-colors duration-300"
@@ -184,7 +181,7 @@ export function UnderConstruction() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </span>
-                <span className="text-2xl lg:text-3xl font-light">06 61 90 30 77</span>
+                <span className="text-2xl lg:text-3xl font-light">{t('phone')}</span>
               </a>
             </div>
           </div>
