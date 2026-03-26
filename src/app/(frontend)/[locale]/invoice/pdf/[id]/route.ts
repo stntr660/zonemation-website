@@ -360,7 +360,7 @@ export async function GET(
   <div class="header">
     ${logoBase64 ? `<div class="header-logo"><img src="${logoBase64}" /></div>` : ''}
     <div class="header-right">
-      <div class="header-title">FACTURE</div>
+      <div class="header-title">${(invoice as any).stage?.startsWith('devis') ? 'DEVIS' : 'FACTURE'}</div>
       <div class="header-number">${invoice.invoiceNumber}</div>
     </div>
   </div>
@@ -368,7 +368,7 @@ export async function GET(
   <!-- META BAR -->
   <div class="meta-bar">
     <div class="meta-item">Date d'emission<strong>${invoice.issueDate ? new Date(invoice.issueDate).toLocaleDateString('fr-FR') : '—'}</strong></div>
-    <div class="meta-item">Echeance<strong>${invoice.dueDate ? new Date(invoice.dueDate).toLocaleDateString('fr-FR') : '—'}</strong></div>
+    <div class="meta-item">${(invoice as any).stage?.startsWith('devis') ? 'Valable' : 'Echeance'}<strong>${(invoice as any).stage?.startsWith('devis') ? `${(invoice as any).validityDays || 30} jours` : (invoice.dueDate ? new Date(invoice.dueDate).toLocaleDateString('fr-FR') : '—')}</strong></div>
   </div>
 
   <!-- CONTENT (white) -->
@@ -457,7 +457,7 @@ export async function GET(
       <div class="signature-section">
         ${signatureHtml}
         <div style="font-size:11px;color:#666;margin-top:12px;">Fait a ${invoice.senderCity || 'Casablanca'} le ${invoice.issueDate ? new Date(invoice.issueDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }) : '—'}</div>
-        ${invoice.status === 'paid' && stampBase64 ? `<img src="${stampBase64}" style="max-height:150px;max-width:200px;margin-top:10px;" />` : ''}
+        ${(invoice as any).stage === 'paid' && stampBase64 ? `<img src="${stampBase64}" style="max-height:150px;max-width:200px;margin-top:10px;" />` : ''}
       </div>
     </div>
   </div>
@@ -507,7 +507,7 @@ export async function GET(
     return new NextResponse(pdfBuffer, {
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': `inline; filename="facture-${invoice.invoiceNumber}.pdf"`,
+        'Content-Disposition': `inline; filename="${(invoice as any).stage?.startsWith('devis') ? 'devis' : 'facture'}-${invoice.invoiceNumber}.pdf"`,
       },
     })
   } catch (err) {

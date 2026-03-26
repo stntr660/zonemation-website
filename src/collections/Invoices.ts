@@ -3,11 +3,15 @@ import crypto from 'crypto'
 
 export const Invoices: CollectionConfig = {
   slug: 'invoices',
+  labels: {
+    singular: 'Document',
+    plural: 'Facturation',
+  },
   admin: {
     useAsTitle: 'invoiceNumber',
     group: 'Operations',
-    description: 'Manage client invoices, track payments, and generate PDFs.',
-    defaultColumns: ['invoiceNumber', 'clientName', 'total', 'status', 'issueDate'],
+    description: 'Devis et factures.',
+    defaultColumns: ['invoiceNumber', 'stage', 'clientName', 'total', 'issueDate'],
   },
   access: {
     create: ({ req: { user } }) => Boolean(user),
@@ -20,7 +24,10 @@ export const Invoices: CollectionConfig = {
       async ({ data, operation, req }) => {
         if (operation === 'create') {
           const year = new Date().getFullYear()
-          const prefix = `INV-${year}-`
+          const stage = data.stage || 'draft'
+          const isDevis = stage.startsWith('devis')
+          const prefix = isDevis ? `DEV-${year}-` : `INV-${year}-`
+          const offset = isDevis ? 892 : 1437
 
           const { docs } = await req.payload.find({
             collection: 'invoices',
@@ -29,8 +36,7 @@ export const Invoices: CollectionConfig = {
             limit: 1,
           })
 
-          const STARTING_OFFSET = 1437
-          let seq = STARTING_OFFSET
+          let seq = offset
           if (docs.length > 0 && docs[0].invoiceNumber) {
             const lastNum = docs[0].invoiceNumber.split('-').pop()
             seq = (parseInt(lastNum || '0', 10) || 0) + 1
@@ -109,21 +115,47 @@ export const Invoices: CollectionConfig = {
     {
       name: 'invoiceNumber',
       type: 'text',
+      label: 'Reference',
       unique: true,
       admin: { readOnly: true },
     },
     {
-      name: 'status',
+      name: 'stage',
       type: 'select',
+      label: 'Etape',
       options: [
         { label: 'Brouillon', value: 'draft' },
-        { label: 'Envoyee', value: 'sent' },
+        { label: 'Devis envoye', value: 'devis_sent' },
+        { label: 'Devis accepte', value: 'devis_accepted' },
+        { label: 'Devis refuse', value: 'devis_rejected' },
+        { label: 'Facture en attente', value: 'invoice_pending' },
+        { label: 'Partiellement payee', value: 'partially_paid' },
         { label: 'Payee', value: 'paid' },
         { label: 'En retard', value: 'overdue' },
         { label: 'Annulee', value: 'cancelled' },
       ],
       defaultValue: 'draft',
+      required: true,
       admin: { position: 'sidebar' },
+    },
+    {
+      name: 'validityDays',
+      type: 'number',
+      defaultValue: 30,
+      label: 'Validite devis (jours)',
+      admin: {
+        position: 'sidebar',
+        condition: (data) => data?.stage?.startsWith('devis'),
+      },
+    },
+    {
+      name: 'paidAmount',
+      type: 'number',
+      label: 'Montant paye',
+      admin: {
+        position: 'sidebar',
+        condition: (data) => data?.stage === 'partially_paid',
+      },
     },
     {
       type: 'row',

@@ -39,6 +39,7 @@ const COLLECTION_ICONS: Record<string, React.ComponentType<any>> = {
   'Industries': Building2,
   'Capabilities': Layers,
   'Invoices': Receipt,
+  'Facturation': Receipt,
   'Contact Submissions': MessageSquare,
   'Users': Users,
   'Media': ImageIcon,
