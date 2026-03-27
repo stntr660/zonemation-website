@@ -105,7 +105,7 @@ export default async function CaseStudyPage({ params }: Args) {
                 <Image src={author.photo.url || ''} alt={author.name} width={36} height={36} className="rounded-full" />
               )}
               <div>
-                <span className="text-white/80 font-medium">{author.name}</span>
+                <span className="text-white/80 font-medium">Led by {author.name}</span>
                 {author.role && <span className="text-white/45 ml-2">{author.role}</span>}
               </div>
             </div>

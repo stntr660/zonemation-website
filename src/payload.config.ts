@@ -16,6 +16,9 @@ import { Team } from './collections/Team'
 import { Clients } from './collections/Clients'
 import { ContactSubmissions } from './collections/ContactSubmissions'
 import { Invoices } from './collections/Invoices'
+import { Accounts } from './collections/Accounts'
+import { TransactionCategories } from './collections/TransactionCategories'
+import { Transactions } from './collections/Transactions'
 
 import { SiteSettings } from './globals/SiteSettings'
 import { Navigation } from './globals/Navigation'
@@ -57,6 +60,10 @@ export default buildConfig({
     // Operations
     Invoices,
     ContactSubmissions,
+    // Finance
+    Accounts,
+    TransactionCategories,
+    Transactions,
     // System
     Users,
     Media,
