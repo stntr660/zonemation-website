@@ -46,6 +46,10 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# Polyfill browser globals (File) that Payload references at runtime
+RUN echo "if (typeof globalThis.File === 'undefined') { globalThis.File = class File { constructor(bits, name, opts) { this.name = name; this.size = 0; this.type = opts?.type || ''; } }; }" > /app/polyfill.js
+ENV NODE_OPTIONS="--require /app/polyfill.js"
+
 USER nextjs
 
 EXPOSE 3000
