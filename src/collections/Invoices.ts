@@ -57,6 +57,12 @@ export const Invoices: CollectionConfig = {
             data.senderEmail = billing.email || ''
             data.senderPhone = billing.phone || ''
             data.senderIce = billing.ice || ''
+            data.bankDetails = [
+              billing.bankName ? `Banque: ${billing.bankName}` : '',
+              billing.rib ? `RIB: ${billing.rib}` : '',
+              billing.iban ? `IBAN: ${billing.iban}` : '',
+              billing.swift ? `SWIFT: ${billing.swift}` : '',
+            ].filter(Boolean).join('\n')
           }
         } catch {
           // Settings not configured yet
@@ -241,6 +247,14 @@ export const Invoices: CollectionConfig = {
       name: 'total',
       type: 'number',
       admin: { readOnly: true, position: 'sidebar' },
+    },
+
+    // ── Bank Details ──
+    {
+      name: 'bankDetails',
+      type: 'textarea',
+      label: 'Coordonnees bancaires',
+      admin: { readOnly: true, description: 'Auto-rempli depuis Site Settings > Billing' },
     },
 
     // ── Notes & Signature ──

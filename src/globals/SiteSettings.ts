@@ -48,6 +48,26 @@ export const SiteSettings: GlobalConfig = {
         { name: 'phone', type: 'text', label: 'Phone' },
         { name: 'ice', type: 'text', label: 'ICE (Tax ID)' },
         {
+          name: 'rib',
+          type: 'text',
+          label: 'RIB',
+        },
+        {
+          name: 'iban',
+          type: 'text',
+          label: 'IBAN',
+        },
+        {
+          name: 'swift',
+          type: 'text',
+          label: 'BIC / SWIFT',
+        },
+        {
+          name: 'bankName',
+          type: 'text',
+          label: 'Banque',
+        },
+        {
           name: 'stamp',
           type: 'upload',
           relationTo: 'media',
