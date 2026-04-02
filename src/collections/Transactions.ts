@@ -21,20 +21,11 @@ export const Transactions: CollectionConfig = {
   hooks: {
     beforeChange: [
       async ({ data }) => {
-        // Auto-calculate effective exchange rate for transfers
         if (data.type === 'transfer' && data.fromAmount && data.toAmount && data.toAmount > 0) {
           data.effectiveRate = Math.round((data.fromAmount / data.toAmount) * 10000) / 10000
         } else {
           data.effectiveRate = null
         }
-
-        // Auto-calculate TVA amount
-        if (data.tvaRate && data.amount) {
-          data.tvaAmount = Math.round(data.amount * (data.tvaRate / 100) * 100) / 100
-        } else {
-          data.tvaAmount = null
-        }
-
         return data
       },
     ],
@@ -142,30 +133,6 @@ export const Transactions: CollectionConfig = {
         readOnly: true,
         description: 'Auto-calculated exchange rate (fromAmount / toAmount)',
         condition: (data) => data?.type === 'transfer',
-      },
-    },
-
-    // ── TVA (only for accounts that track it) ──
-    {
-      name: 'tvaRate',
-      type: 'select',
-      options: [
-        { label: '0%', value: '0' },
-        { label: '10%', value: '10' },
-        { label: '20%', value: '20' },
-      ],
-      admin: {
-        position: 'sidebar',
-        description: 'TVA rate (only for TVA-tracked accounts like Attijari)',
-      },
-    },
-    {
-      name: 'tvaAmount',
-      type: 'number',
-      admin: {
-        readOnly: true,
-        position: 'sidebar',
-        description: 'Auto-calculated TVA amount',
       },
     },
 
