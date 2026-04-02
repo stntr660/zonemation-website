@@ -84,7 +84,7 @@ export default buildConfig({
   },
 
   db: postgresAdapter({
-    push: true,
+    push: process.env.NODE_ENV !== 'production',
     pool: {
       connectionString: process.env.DATABASE_URL,
     },
