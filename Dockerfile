@@ -24,6 +24,12 @@ ENV NEXT_PUBLIC_SHOW_BRANDS=$NEXT_PUBLIC_SHOW_BRANDS
 ENV DATABASE_URL=$DATABASE_URL
 ENV PAYLOAD_SECRET=$PAYLOAD_SECRET
 
+# Patch Payload to allow schema push in production.
+# Payload blocks push:true when NODE_ENV=production, but during Docker
+# builds the database is unreachable. By removing the guard, push runs
+# at runtime on first Payload initialization when the DB is reachable.
+RUN sed -i "s/process.env.NODE_ENV !== 'production' && process.env.PAYLOAD_MIGRATING !== 'true' && this.push !== false/process.env.PAYLOAD_MIGRATING !== 'true' \&\& this.push !== false/" node_modules/@payloadcms/db-postgres/dist/connect.js
+
 RUN npm run build
 
 # --- Runner ---
