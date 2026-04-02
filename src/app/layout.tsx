@@ -10,6 +10,13 @@ export const metadata: Metadata = {
       { url: '/favicon.svg', type: 'image/svg+xml' },
       { url: '/favicon-dark.svg', type: 'image/svg+xml', media: '(prefers-color-scheme: dark)' },
     ],
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Zonemation',
   },
 }
 
