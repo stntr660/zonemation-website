@@ -43,6 +43,7 @@ export default buildConfig({
         Icon: '/components/admin/Icon',
       },
       afterNavLinks: ['/components/admin/NavIcons'],
+      beforeDashboard: ['/components/admin/FinanceDashboard'],
     },
   },
 
