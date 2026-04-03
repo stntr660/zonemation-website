@@ -497,19 +497,40 @@ export async function GET(
 </body>
 </html>`
 
-  // Return HTML with auto-print -- browser's "Save as PDF" produces perfect results
-  const printHtml = html.replace('</body>', `
-    <script>
-      window.onload = function() {
-        // Wait for fonts to load
-        document.fonts.ready.then(function() {
-          window.print();
-        });
-      };
-    </script>
-    </body>`)
+  // Generate PDF using puppeteer-core + system Chromium
+  try {
+    const puppeteer = (await import('puppeteer-core')).default
 
-  return new NextResponse(printHtml, {
-    headers: { 'Content-Type': 'text/html; charset=utf-8' },
-  })
+    const browser = await puppeteer.launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu'],
+      executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium-browser',
+      headless: true,
+    })
+
+    const page = await browser.newPage()
+    await page.setContent(html, { waitUntil: 'networkidle0', timeout: 15000 })
+    await page.evaluateHandle('document.fonts.ready')
+
+    const pdfBuffer = await page.pdf({
+      format: 'A4',
+      printBackground: true,
+      margin: { top: '0', right: '0', bottom: '0', left: '0' },
+    })
+    await browser.close()
+
+    const filename = `${(invoice as any).stage?.startsWith('devis') ? 'devis' : 'facture'}-${invoice.invoiceNumber}.pdf`
+
+    return new NextResponse(pdfBuffer, {
+      headers: {
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': `inline; filename="${filename}"`,
+      },
+    })
+  } catch (err) {
+    console.error('PDF generation failed:', err)
+    // Fallback: return HTML
+    return new NextResponse(html, {
+      headers: { 'Content-Type': 'text/html; charset=utf-8' },
+    })
+  }
 }
