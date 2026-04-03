@@ -106,6 +106,16 @@ export const Invoices: CollectionConfig = {
     ],
   },
   fields: [
+    // ── AI Assistant ──
+    {
+      name: 'aiAssistant',
+      type: 'ui',
+      admin: {
+        components: {
+          Field: '/components/admin/InvoiceAIAssistant',
+        },
+      },
+    },
     // ── PDF Download Button ──
     {
       name: 'pdfDownload',
