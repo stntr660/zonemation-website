@@ -298,8 +298,9 @@ export async function GET(
   /* ── Footer ── */
   .footer {
     background: #a7d26d;
-    padding: 16px 40px;
+    padding: 16px 40px 20px;
     flex-shrink: 0;
+    page-break-inside: avoid;
   }
 
   /* Multi-page: keep table rows together */
@@ -348,8 +349,10 @@ export async function GET(
   }
 
   @media print {
+    @page { margin: 0; }
     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .page { width: 100%; min-height: auto; }
+    .footer { padding-bottom: 24px; }
   }
 </style>
 </head>
