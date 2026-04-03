@@ -104,12 +104,11 @@ export async function GET(
   }
   .page {
     width: 210mm;
-    height: 297mm;
+    min-height: 297mm;
     margin: 0 auto;
     background: #fff;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
   }
   .content {
     flex: 1;
@@ -449,6 +448,12 @@ export async function GET(
       <div class="notes-text">${invoice.notes}</div>
     </div>` : ''}
 
+    ${(invoice as any).bankDetails ? `
+    <div class="notes" style="border-left-color: #181a0e;">
+      <div class="notes-label">Coordonnees bancaires</div>
+      <div class="notes-text" style="font-family:'JetBrains Mono',monospace;font-size:10px;white-space:pre-line;">${(invoice as any).bankDetails}</div>
+    </div>` : ''}
+
     <div class="verification">
       <div class="qr-section">
         <div class="qr-label">Verification</div>
@@ -489,32 +494,19 @@ export async function GET(
 </body>
 </html>`
 
-  // Render to PDF using Playwright
-  try {
-    const { chromium } = await import('playwright')
-    const browser = await chromium.launch({ headless: true })
-    const page = await browser.newPage()
-    await page.setContent(html, { waitUntil: 'networkidle' })
-    // Wait for Google Fonts to load
-    await page.waitForTimeout(1500)
-    const pdfBuffer = await page.pdf({
-      format: 'A4',
-      printBackground: true,
-      margin: { top: '0', right: '0', bottom: '0', left: '0' },
-    })
-    await browser.close()
+  // Return HTML with auto-print -- browser's "Save as PDF" produces perfect results
+  const printHtml = html.replace('</body>', `
+    <script>
+      window.onload = function() {
+        // Wait for fonts to load
+        document.fonts.ready.then(function() {
+          window.print();
+        });
+      };
+    </script>
+    </body>`)
 
-    return new NextResponse(pdfBuffer, {
-      headers: {
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': `inline; filename="${(invoice as any).stage?.startsWith('devis') ? 'devis' : 'facture'}-${invoice.invoiceNumber}.pdf"`,
-      },
-    })
-  } catch (err) {
-    // Fallback to HTML if Playwright fails
-    console.error('PDF generation failed, falling back to HTML:', err)
-    return new NextResponse(html, {
-      headers: { 'Content-Type': 'text/html; charset=utf-8' },
-    })
-  }
+  return new NextResponse(printHtml, {
+    headers: { 'Content-Type': 'text/html; charset=utf-8' },
+  })
 }

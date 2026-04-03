@@ -41,7 +41,7 @@ export default function InvoicePdfButton() {
         }}
       >
         <FileDown size={16} strokeWidth={2} />
-        Download PDF
+        Telecharger PDF
       </a>
     </div>
   )
