@@ -1,17 +1,25 @@
 import type { AdminViewServerProps } from 'payload'
+import { sql } from 'drizzle-orm'
 
 const FALLBACK_RATE = 10
 
+let cachedRate: { value: number; timestamp: number } | null = null
+
 async function getExchangeRate(): Promise<number> {
+  if (cachedRate && Date.now() - cachedRate.timestamp < 6 * 3600 * 1000) {
+    return cachedRate.value
+  }
   try {
     const res = await fetch('https://open.er-api.com/v6/latest/USD', {
-      next: { revalidate: 3600 },
+      next: { revalidate: 21600 },
     })
-    if (!res.ok) return FALLBACK_RATE
+    if (!res.ok) return cachedRate?.value ?? FALLBACK_RATE
     const data = await res.json()
-    return data?.rates?.MAD ?? FALLBACK_RATE
+    const rate = data?.rates?.MAD ?? FALLBACK_RATE
+    cachedRate = { value: rate, timestamp: Date.now() }
+    return rate
   } catch {
-    return FALLBACK_RATE
+    return cachedRate?.value ?? FALLBACK_RATE
   }
 }
 
@@ -25,38 +33,49 @@ interface AccountBalance {
 
 export default async function FinanceDashboard({ req }: AdminViewServerProps) {
   const { payload } = req
+  const db = (payload.db as any).drizzle
 
-  const [accountsResult, transactionsResult, usdToMad] = await Promise.all([
-    payload.find({ collection: 'accounts', limit: 100, sort: 'name' }),
-    payload.find({ collection: 'transactions', limit: 10000 }),
+  // Run all queries in parallel using raw SQL for speed
+  const [accountsResult, balancesResult, recentResult, usdToMad] = await Promise.all([
+    payload.find({ collection: 'accounts', limit: 100, sort: 'name', depth: 0 }),
+    db.execute(sql`
+      SELECT
+        COALESCE(account_id, from_account_id, to_account_id) as acc_id,
+        SUM(CASE
+          WHEN type = 'income' THEN amount
+          WHEN type = 'expense' THEN -amount
+          WHEN type = 'transfer' AND account_id IS NULL AND from_account_id IS NOT NULL THEN -from_amount
+          ELSE 0
+        END) as balance
+      FROM transactions
+      WHERE account_id IS NOT NULL OR from_account_id IS NOT NULL
+      GROUP BY acc_id
+      UNION ALL
+      SELECT to_account_id as acc_id, SUM(to_amount) as balance
+      FROM transactions
+      WHERE type = 'transfer' AND to_account_id IS NOT NULL
+      GROUP BY to_account_id
+    `),
+    payload.find({
+      collection: 'transactions',
+      limit: 8,
+      sort: '-date',
+      depth: 1,
+    }),
     getExchangeRate(),
   ])
 
   const accounts = accountsResult.docs
-  const transactions = transactionsResult.docs
 
-  // Calculate balance per account
+  // Aggregate balances per account
   const balanceMap = new Map<number, number>()
   accounts.forEach((a: any) => balanceMap.set(a.id, 0))
-
-  transactions.forEach((t: any) => {
-    if (t.type === 'transfer') {
-      if (t.fromAccount?.id || t.fromAccount) {
-        const fromId = typeof t.fromAccount === 'object' ? t.fromAccount.id : t.fromAccount
-        balanceMap.set(fromId, (balanceMap.get(fromId) ?? 0) - (t.fromAmount ?? 0))
-      }
-      if (t.toAccount?.id || t.toAccount) {
-        const toId = typeof t.toAccount === 'object' ? t.toAccount.id : t.toAccount
-        balanceMap.set(toId, (balanceMap.get(toId) ?? 0) + (t.toAmount ?? 0))
-      }
-    } else if (t.type === 'income') {
-      const accId = typeof t.account === 'object' ? t.account?.id : t.account
-      if (accId) balanceMap.set(accId, (balanceMap.get(accId) ?? 0) + (t.amount ?? 0))
-    } else if (t.type === 'expense') {
-      const accId = typeof t.account === 'object' ? t.account?.id : t.account
-      if (accId) balanceMap.set(accId, (balanceMap.get(accId) ?? 0) - (t.amount ?? 0))
+  for (const row of balancesResult.rows ?? balancesResult) {
+    const accId = row.acc_id
+    if (accId != null) {
+      balanceMap.set(accId, (balanceMap.get(accId) ?? 0) + parseFloat(row.balance ?? 0))
     }
-  })
+  }
 
   const accountBalances: AccountBalance[] = accounts.map((a: any) => ({
     id: a.id,
@@ -66,7 +85,6 @@ export default async function FinanceDashboard({ req }: AdminViewServerProps) {
     balance: balanceMap.get(a.id) ?? 0,
   }))
 
-  // Calculate total in MAD
   let totalMAD = 0
   accountBalances.forEach((a) => {
     if (a.currency === 'MAD') {
@@ -76,10 +94,7 @@ export default async function FinanceDashboard({ req }: AdminViewServerProps) {
     }
   })
 
-  // Recent transactions
-  const recent = [...transactionsResult.docs]
-    .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 8)
+  const recent = recentResult.docs
 
   const formatAmount = (amount: number, currency: string) => {
     const formatted = Math.abs(amount).toLocaleString('fr-FR', {
@@ -99,7 +114,6 @@ export default async function FinanceDashboard({ req }: AdminViewServerProps) {
 
   return (
     <div style={{ marginBottom: '2rem' }}>
-      {/* Total Estimate */}
       <div
         style={{
           background: 'var(--theme-elevation-100)',
@@ -120,7 +134,6 @@ export default async function FinanceDashboard({ req }: AdminViewServerProps) {
         </div>
       </div>
 
-      {/* Account Cards */}
       <div
         style={{
           display: 'grid',
@@ -154,7 +167,6 @@ export default async function FinanceDashboard({ req }: AdminViewServerProps) {
         ))}
       </div>
 
-      {/* Recent Transactions */}
       <div
         style={{
           background: 'var(--theme-elevation-100)',
