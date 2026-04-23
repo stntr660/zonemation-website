@@ -48,6 +48,13 @@ export const SiteSettings: GlobalConfig = {
         { name: 'phone', type: 'text', label: 'Phone' },
         { name: 'ice', type: 'text', label: 'ICE (Tax ID)' },
         {
+          name: 'fiscalId',
+          type: 'text',
+          label: 'IF (Identifiant Fiscal)',
+          defaultValue: '71837803',
+          admin: { description: 'Appears in invoice/devis footer next to ICE.' },
+        },
+        {
           name: 'rib',
           type: 'text',
           label: 'RIB',

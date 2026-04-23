@@ -104,14 +104,8 @@ export async function GET(
   }
   .page {
     width: 210mm;
-    min-height: 297mm;
     margin: 0 auto;
     background: #fff;
-    display: flex;
-    flex-direction: column;
-  }
-  .content {
-    flex: 1;
   }
 
   /* ── Header ── */
@@ -159,7 +153,7 @@ export async function GET(
   }
 
   /* ── Content ── */
-  .content { padding: 24px 40px; flex: 1; }
+  .content { padding: 24px 40px; }
 
   /* ── Parties ── */
   .parties { display: flex; gap: 20px; margin-bottom: 24px; }
@@ -295,64 +289,15 @@ export async function GET(
     font-weight: 400;
   }
 
-  /* ── Footer ── */
-  .footer {
-    background: #a7d26d;
-    padding: 16px 40px 20px;
-    flex-shrink: 0;
-    page-break-inside: avoid;
-  }
-
   /* Multi-page: keep table rows together */
   tr { page-break-inside: avoid; }
   .party { page-break-inside: avoid; }
   .totals-wrapper { page-break-inside: avoid; }
   .verification { page-break-inside: avoid; }
 
-  .footer-line1 {
-    text-align: center;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid rgba(24,26,14,0.12);
-  }
-  .footer-address {
-    font-size: 13px;
-    color: rgba(24,26,14,0.8);
-    font-weight: 500;
-  }
-  .footer-line2 {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    align-items: center;
-    font-size: 11px;
-  }
-  .footer-line2 > div {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .footer-item-label {
-    font-size: 12px;
-    color: rgba(24,26,14,0.45);
-    font-weight: 600;
-  }
-  .footer-item-value {
-    font-size: 12px;
-    color: #181a0e;
-    font-weight: 500;
-  }
-  .footer-sep {
-    width: 1px;
-    height: 12px;
-    background: rgba(24,26,14,0.15);
-  }
-
   @media print {
-    @page { margin: 0; }
     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .page { width: 100%; min-height: auto; }
-    .footer { padding-bottom: 24px; }
+    .page { width: 100%; }
   }
 </style>
 </head>
@@ -469,33 +414,77 @@ export async function GET(
       </div>
     </div>
   </div>
-
-  <!-- FOOTER (dark) -->
-  <div class="footer">
-    <div class="footer-line1">
-      <div class="footer-address">${[invoice.senderAddress, invoice.senderCity].filter(Boolean).join(', ').toLowerCase()}</div>
-    </div>
-    <div class="footer-line2">
-      <div>
-        <span class="footer-item-label">ICE</span>
-        <span class="footer-item-value">${invoice.senderIce || '—'}</span>
-      </div>
-      <div class="footer-sep"></div>
-      <div>
-        <span class="footer-item-label">TEL</span>
-        <span class="footer-item-value">${invoice.senderPhone || '—'}</span>
-      </div>
-      <div class="footer-sep"></div>
-      <div>
-        <span class="footer-item-label">EMAIL</span>
-        <span class="footer-item-value">${(invoice.senderEmail || '—').toLowerCase()}</span>
-      </div>
-    </div>
-  </div>
 </div>
 
 </body>
 </html>`
+
+  // Build footer template rendered by Puppeteer on every page.
+  // Classes pageNumber/totalPages are auto-replaced. Styles must be inline
+  // (footer template is a fully isolated scope — no external CSS, no Google Fonts).
+  // -webkit-print-color-adjust is required for the green background to render.
+  const footerAddress = [invoice.senderAddress, invoice.senderCity]
+    .filter(Boolean)
+    .join(', ')
+    .toLowerCase()
+  const footerIce = invoice.senderIce || '—'
+  const footerFiscalId = (invoice as any).senderFiscalId || '—'
+  const footerTel = invoice.senderPhone || '—'
+  const footerEmail = (invoice.senderEmail || '—').toLowerCase()
+
+  const escapeHtml = (s: string) =>
+    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+
+  const footerTemplate = `
+    <div style="
+      width:100%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size:10px;
+      color:#181a0e;
+      background:#a7d26d;
+      padding:10px 40px 8px;
+      -webkit-print-color-adjust:exact;
+      print-color-adjust:exact;
+      box-sizing:border-box;
+    ">
+      <div style="
+        text-align:center;
+        padding-bottom:6px;
+        margin-bottom:6px;
+        border-bottom:1px solid rgba(24,26,14,0.12);
+        font-size:10px;
+        color:rgba(24,26,14,0.8);
+        font-weight:500;
+      ">${escapeHtml(footerAddress)}</div>
+      <div style="
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        gap:18px;
+        font-size:9px;
+      ">
+        <div><span style="color:rgba(24,26,14,0.45);font-weight:600;">ICE</span>&nbsp;<span style="color:#181a0e;font-weight:500;">${escapeHtml(footerIce)}</span></div>
+        <div style="width:1px;height:10px;background:rgba(24,26,14,0.15);"></div>
+        <div><span style="color:rgba(24,26,14,0.45);font-weight:600;">IF</span>&nbsp;<span style="color:#181a0e;font-weight:500;">${escapeHtml(footerFiscalId)}</span></div>
+        <div style="width:1px;height:10px;background:rgba(24,26,14,0.15);"></div>
+        <div><span style="color:rgba(24,26,14,0.45);font-weight:600;">TEL</span>&nbsp;<span style="color:#181a0e;font-weight:500;">${escapeHtml(footerTel)}</span></div>
+        <div style="width:1px;height:10px;background:rgba(24,26,14,0.15);"></div>
+        <div><span style="color:rgba(24,26,14,0.45);font-weight:600;">EMAIL</span>&nbsp;<span style="color:#181a0e;font-weight:500;">${escapeHtml(footerEmail)}</span></div>
+      </div>
+      <div style="
+        text-align:center;
+        margin-top:5px;
+        font-size:8px;
+        color:rgba(24,26,14,0.55);
+        letter-spacing:0.3px;
+      ">
+        Page <span class="pageNumber"></span> / <span class="totalPages"></span>
+      </div>
+    </div>
+  `
+
+  // Empty header (displayHeaderFooter requires both). Keep top margin at 0.
+  const headerTemplate = `<div style="display:none;"></div>`
 
   // Generate PDF using puppeteer-core + system Chromium
   try {
@@ -514,7 +503,10 @@ export async function GET(
     const pdfBuffer = await page.pdf({
       format: 'A4',
       printBackground: true,
-      margin: { top: '0', right: '0', bottom: '0', left: '0' },
+      displayHeaderFooter: true,
+      headerTemplate,
+      footerTemplate,
+      margin: { top: '0', right: '0', bottom: '28mm', left: '0' },
     })
     await browser.close()
 

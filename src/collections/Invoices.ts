@@ -57,6 +57,7 @@ export const Invoices: CollectionConfig = {
             data.senderEmail = billing.email || ''
             data.senderPhone = billing.phone || ''
             data.senderIce = billing.ice || ''
+            data.senderFiscalId = billing.fiscalId || ''
             data.bankDetails = [
               billing.bankName ? `Banque: ${billing.bankName}` : '',
               billing.rib ? `RIB: ${billing.rib}` : '',
@@ -217,6 +218,7 @@ export const Invoices: CollectionConfig = {
     { name: 'senderEmail', type: 'email', admin: { hidden: true } },
     { name: 'senderPhone', type: 'text', admin: { hidden: true } },
     { name: 'senderIce', type: 'text', admin: { hidden: true } },
+    { name: 'senderFiscalId', type: 'text', admin: { hidden: true } },
 
     // ── Line Items ──
     {
