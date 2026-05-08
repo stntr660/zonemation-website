@@ -302,8 +302,11 @@ export async function GET(
   .party { page-break-inside: avoid; break-inside: avoid; }
   .totals-wrapper { page-break-inside: avoid; break-inside: avoid; }
   .notes { page-break-inside: avoid; break-inside: avoid; }
-  /* Verification + signature block must never split or push into footer. */
-  .verification { page-break-inside: avoid; break-inside: avoid; }
+  /* Verification block is small (~30mm). We deliberately do NOT set
+     page-break-inside: avoid here — that rule was making Chrome push the
+     whole block to a new page when it could fit, leaving a half-page
+     gap above the footer. Allowing natural flow keeps it next to the
+     bank details and only splits in pathological edge cases. */
 
   @media print {
     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
