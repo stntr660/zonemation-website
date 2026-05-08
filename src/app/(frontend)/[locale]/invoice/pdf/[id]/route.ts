@@ -91,7 +91,11 @@ export async function GET(
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  @page { size: A4; margin: 0; }
+  /* Reserve 36mm at the bottom for the Puppeteer footer template.
+     This MUST match margin.bottom in puppeteer.pdf() below — it tells
+     Chrome's print engine to keep content out of the footer band so
+     verification, totals and notes can never overlap the footer. */
+  @page { size: A4; margin: 0 0 36mm 0; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Poppins', sans-serif;
@@ -189,6 +193,9 @@ export async function GET(
 
   /* ── Table ── */
   table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+  /* Repeat thead on every page when the table breaks across pages. */
+  thead { display: table-header-group; }
+  tfoot { display: table-row-group; }
   th {
     text-align: left;
     font-size: 10px;
@@ -289,11 +296,14 @@ export async function GET(
     font-weight: 400;
   }
 
-  /* Multi-page: keep table rows together */
-  tr { page-break-inside: avoid; }
-  .party { page-break-inside: avoid; }
-  .totals-wrapper { page-break-inside: avoid; }
-  .verification { page-break-inside: avoid; }
+  /* Multi-page: keep visual blocks together */
+  tr { page-break-inside: avoid; break-inside: avoid; }
+  .parties { page-break-inside: avoid; break-inside: avoid; }
+  .party { page-break-inside: avoid; break-inside: avoid; }
+  .totals-wrapper { page-break-inside: avoid; break-inside: avoid; }
+  .notes { page-break-inside: avoid; break-inside: avoid; }
+  /* Verification + signature block must never split or push into footer. */
+  .verification { page-break-inside: avoid; break-inside: avoid; }
 
   @media print {
     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -405,7 +415,7 @@ export async function GET(
     <div class="verification">
       <div class="qr-section">
         <div class="qr-label">Verification</div>
-        <img src="${qrDataUrl}" width="100" height="100" />
+        <img src="${qrDataUrl}" width="90" height="90" />
       </div>
       <div class="signature-section">
         ${signatureHtml}
