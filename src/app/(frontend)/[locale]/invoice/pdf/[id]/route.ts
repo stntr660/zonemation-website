@@ -506,7 +506,7 @@ export async function GET(
       displayHeaderFooter: true,
       headerTemplate,
       footerTemplate,
-      margin: { top: '0', right: '0', bottom: '28mm', left: '0' },
+      margin: { top: '0', right: '0', bottom: '36mm', left: '0' },
     })
     await browser.close()
 
