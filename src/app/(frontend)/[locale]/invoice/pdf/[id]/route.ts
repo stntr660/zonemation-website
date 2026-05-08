@@ -115,7 +115,7 @@ export async function GET(
   /* ── Header ── */
   .header {
     background: #181a0e;
-    padding: 24px 40px;
+    padding: 22px 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -140,7 +140,7 @@ export async function GET(
   /* ── Meta bar ── */
   .meta-bar {
     background: #f5f7f0;
-    padding: 9px 40px;
+    padding: 8px 60px;
     display: flex;
     gap: 32px;
     border-bottom: 1px solid #e8ebdf;
@@ -157,13 +157,13 @@ export async function GET(
   }
 
   /* ── Content ── */
-  .content { padding: 24px 40px; }
+  .content { padding: 18px 60px; }
 
   /* ── Parties ── */
-  .parties { display: flex; gap: 20px; margin-bottom: 24px; }
+  .parties { display: flex; gap: 16px; margin-bottom: 16px; }
   .party {
     flex: 1;
-    padding: 16px 18px;
+    padding: 12px 16px;
     border: 1px solid #eee;
     border-radius: 6px;
     background: #fafafa;
@@ -185,14 +185,14 @@ export async function GET(
   .party-detail {
     font-size: 11px;
     color: #555;
-    line-height: 1.7;
+    line-height: 1.55;
   }
   .party-detail div {
     margin-bottom: 2px;
   }
 
   /* ── Table ── */
-  table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
   /* Repeat thead on every page when the table breaks across pages. */
   thead { display: table-header-group; }
   tfoot { display: table-row-group; }
@@ -201,13 +201,13 @@ export async function GET(
     font-size: 10px;
     letter-spacing: 0.3px;
     color: #999;
-    padding: 8px 14px;
+    padding: 6px 12px;
     font-weight: 500;
     border-bottom: 2px solid #eee;
   }
   th.right { text-align: right; }
   td {
-    padding: 9px 14px;
+    padding: 7px 12px;
     border-bottom: 1px solid #f0f0f0;
     font-size: 12px;
     color: #333;
@@ -223,12 +223,12 @@ export async function GET(
   tr:nth-child(even) { background: #fafbf8; }
 
   /* ── Totals ── */
-  .totals-wrapper { display: flex; justify-content: flex-end; margin-bottom: 24px; }
-  .totals { width: 260px; }
+  .totals-wrapper { display: flex; justify-content: flex-end; margin-bottom: 14px; }
+  .totals { width: 240px; }
   .totals-row {
     display: flex;
     justify-content: space-between;
-    padding: 5px 0;
+    padding: 3px 0;
     font-size: 12px;
     color: #666;
     font-weight: 400;
@@ -241,8 +241,8 @@ export async function GET(
   }
   .totals-row.grand {
     border-top: 2px solid #181a0e;
-    padding-top: 10px;
-    margin-top: 6px;
+    padding-top: 8px;
+    margin-top: 4px;
     font-size: 16px;
     font-weight: 600;
     color: #181a0e;
@@ -256,9 +256,9 @@ export async function GET(
   /* ── Notes ── */
   .notes {
     background: #f5f7f0;
-    padding: 12px 16px;
+    padding: 10px 14px;
     border-radius: 4px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-left: 3px solid #a7d26d;
   }
   .notes-label {
@@ -275,9 +275,9 @@ export async function GET(
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding: 16px 0;
+    padding: 10px 0 4px;
     border-top: 1px solid #eee;
-    margin-top: 12px;
+    margin-top: 6px;
   }
   .qr-section { text-align: center; }
   .qr-label {
@@ -455,7 +455,7 @@ export async function GET(
       font-size:10px;
       color:#181a0e;
       background:#a7d26d;
-      padding:10px 40px 8px;
+      padding:10px 60px 8px;
       -webkit-print-color-adjust:exact;
       print-color-adjust:exact;
       box-sizing:border-box;
