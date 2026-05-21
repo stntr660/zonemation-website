@@ -350,7 +350,7 @@ export async function GET(
         <div class="party-detail">
           ${invoice.clientAddress || invoice.clientCity ? `<div>${[invoice.clientAddress, invoice.clientCity].filter(Boolean).join(', ').toLowerCase()}</div>` : ''}
           ${invoice.clientEmail ? `<div>${invoice.clientEmail.toLowerCase()}</div>` : ''}
-          ${invoice.clientIce ? `<div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#888;margin-top:4px;">ice ${invoice.clientIce}</div>` : ''}
+          ${invoice.clientIce ? `<div>I.C.E.: ${invoice.clientIce}</div>` : ''}
         </div>
       </div>
     </div>
