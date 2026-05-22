@@ -69,8 +69,13 @@ export const Invoices: CollectionConfig = {
           // Settings not configured yet
         }
 
-        // Always sync client fields from relationship
-        const clientId = typeof data.client === 'string' ? data.client : data.client?.id
+        // Always sync client fields from relationship.
+        // Postgres relationship IDs come in as numbers; the admin update path can also
+        // pass a populated object. Handle string IDs, numeric IDs, and object form.
+        const clientId =
+          data.client && typeof data.client === 'object'
+            ? (data.client as any).id
+            : data.client
         if (clientId) {
           try {
             const clientDoc = await req.payload.findByID({
