@@ -23,11 +23,14 @@ async function getExchangeRate(): Promise<number> {
   }
 }
 
-interface AccountBalance {
+interface AccountSummary {
   id: number
   name: string
   currency: string
   tracksTVA: boolean
+  income: number
+  expense: number
+  transferNet: number
   balance: number
 }
 
@@ -40,21 +43,25 @@ export default async function FinanceDashboard({ req }: AdminViewServerProps) {
     payload.find({ collection: 'accounts', limit: 100, sort: 'name', depth: 0 }),
     db.execute(sql`
       SELECT
-        COALESCE(account_id, from_account_id, to_account_id) as acc_id,
-        SUM(CASE
-          WHEN type = 'income' THEN amount
-          WHEN type = 'expense' THEN -amount
-          WHEN type = 'transfer' AND account_id IS NULL AND from_account_id IS NOT NULL THEN -from_amount
-          ELSE 0
-        END) as balance
-      FROM transactions
-      WHERE account_id IS NOT NULL OR from_account_id IS NOT NULL
+        acc_id,
+        SUM(income) AS income,
+        SUM(expense) AS expense,
+        SUM(transfer_in) AS transfer_in,
+        SUM(transfer_out) AS transfer_out
+      FROM (
+        SELECT account_id AS acc_id, COALESCE(amount, 0) AS income, 0 AS expense, 0 AS transfer_in, 0 AS transfer_out
+        FROM transactions WHERE type = 'income' AND account_id IS NOT NULL
+        UNION ALL
+        SELECT account_id, 0, COALESCE(amount, 0), 0, 0
+        FROM transactions WHERE type = 'expense' AND account_id IS NOT NULL
+        UNION ALL
+        SELECT from_account_id, 0, 0, 0, COALESCE(from_amount, 0)
+        FROM transactions WHERE type = 'transfer' AND from_account_id IS NOT NULL
+        UNION ALL
+        SELECT to_account_id, 0, 0, COALESCE(to_amount, 0), 0
+        FROM transactions WHERE type = 'transfer' AND to_account_id IS NOT NULL
+      ) parts
       GROUP BY acc_id
-      UNION ALL
-      SELECT to_account_id as acc_id, SUM(to_amount) as balance
-      FROM transactions
-      WHERE type = 'transfer' AND to_account_id IS NOT NULL
-      GROUP BY to_account_id
     `),
     payload.find({
       collection: 'transactions',
@@ -67,23 +74,34 @@ export default async function FinanceDashboard({ req }: AdminViewServerProps) {
 
   const accounts = accountsResult.docs
 
-  // Aggregate balances per account
-  const balanceMap = new Map<number, number>()
-  accounts.forEach((a: any) => balanceMap.set(a.id, 0))
+  // Aggregate income, expense, and transfers per account (one row per account)
+  const summaryMap = new Map<number, { income: number; expense: number; transferIn: number; transferOut: number }>()
   for (const row of balancesResult.rows ?? balancesResult) {
     const accId = row.acc_id
     if (accId != null) {
-      balanceMap.set(accId, (balanceMap.get(accId) ?? 0) + parseFloat(row.balance ?? 0))
+      summaryMap.set(accId, {
+        income: parseFloat(row.income ?? 0),
+        expense: parseFloat(row.expense ?? 0),
+        transferIn: parseFloat(row.transfer_in ?? 0),
+        transferOut: parseFloat(row.transfer_out ?? 0),
+      })
     }
   }
 
-  const accountBalances: AccountBalance[] = accounts.map((a: any) => ({
-    id: a.id,
-    name: a.name,
-    currency: a.currency,
-    tracksTVA: a.tracksTVA ?? false,
-    balance: balanceMap.get(a.id) ?? 0,
-  }))
+  const accountBalances: AccountSummary[] = accounts.map((a: any) => {
+    const s = summaryMap.get(a.id) ?? { income: 0, expense: 0, transferIn: 0, transferOut: 0 }
+    const transferNet = s.transferIn - s.transferOut
+    return {
+      id: a.id,
+      name: a.name,
+      currency: a.currency,
+      tracksTVA: a.tracksTVA ?? false,
+      income: s.income,
+      expense: s.expense,
+      transferNet,
+      balance: s.income - s.expense + transferNet,
+    }
+  })
 
   let totalMAD = 0
   accountBalances.forEach((a) => {
@@ -101,7 +119,7 @@ export default async function FinanceDashboard({ req }: AdminViewServerProps) {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     })
-    const symbol = currency === 'MAD' ? 'DH' : currency === 'USDT' ? 'USDT' : '$'
+    const symbol = currency === 'MAD' ? 'DH' : currency === 'USDT' ? 'USDT' : currency === 'EUR' ? '€' : '$'
     return currency === 'MAD' ? `${formatted} ${symbol}` : `${symbol}${formatted}`
   }
 
@@ -152,7 +170,7 @@ export default async function FinanceDashboard({ req }: AdminViewServerProps) {
               border: '1px solid var(--theme-elevation-200)',
             }}
           >
-            <div style={{ fontSize: '13px', color: 'var(--theme-elevation-500)', marginBottom: '4px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ fontSize: '13px', color: 'var(--theme-elevation-500)', marginBottom: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span>{a.name}</span>
               {a.tracksTVA && (
                 <span style={{ fontSize: '10px', background: 'var(--theme-elevation-200)', padding: '2px 6px', borderRadius: '4px' }}>
@@ -160,8 +178,33 @@ export default async function FinanceDashboard({ req }: AdminViewServerProps) {
                 </span>
               )}
             </div>
-            <div style={{ fontSize: '22px', fontWeight: 600 }}>
-              {formatAmount(a.balance, a.currency)}
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', marginBottom: '6px' }}>
+              <span style={{ color: 'var(--theme-elevation-500)' }}>Incomes</span>
+              <span style={{ color: '#22c55e', fontWeight: 500 }}>+{formatAmount(a.income, a.currency)}</span>
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px' }}>
+              <span style={{ color: 'var(--theme-elevation-500)' }}>Expenses</span>
+              <span style={{ color: '#ef4444', fontWeight: 500 }}>-{formatAmount(a.expense, a.currency)}</span>
+            </div>
+
+            {a.transferNet !== 0 && (
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', marginTop: '6px' }}>
+                <span style={{ color: 'var(--theme-elevation-500)' }}>Transfers</span>
+                <span style={{ fontWeight: 500 }}>
+                  {a.transferNet > 0 ? '+' : '-'}{formatAmount(a.transferNet, a.currency)}
+                </span>
+              </div>
+            )}
+
+            <div style={{ borderTop: '1px solid var(--theme-elevation-200)', margin: '12px 0 10px' }} />
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+              <span style={{ fontSize: '13px', color: 'var(--theme-elevation-500)' }}>Solde</span>
+              <span style={{ fontSize: '20px', fontWeight: 700, color: a.balance < 0 ? '#ef4444' : 'inherit' }}>
+                {a.balance < 0 ? '-' : ''}{formatAmount(a.balance, a.currency)}
+              </span>
             </div>
           </div>
         ))}
