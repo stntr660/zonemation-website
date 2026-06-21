@@ -4,7 +4,10 @@ export function formatMoney(amount: number, currency: string): string {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   })
-  const symbol =
-    currency === 'MAD' ? 'DH' : currency === 'USDT' ? 'USDT' : currency === 'EUR' ? '€' : '$'
-  return currency === 'MAD' ? `${formatted} ${symbol}` : `${symbol}${formatted}`
+  // Multi-letter codes (DH, USDT) read better after the amount, with a space.
+  // Single-char symbols ($, €) keep the conventional prefix.
+  if (currency === 'MAD') return `${formatted} DH`
+  if (currency === 'USDT') return `${formatted} USDT`
+  if (currency === 'EUR') return `€${formatted}`
+  return `$${formatted}`
 }
