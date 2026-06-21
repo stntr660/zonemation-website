@@ -25,6 +25,7 @@ import { default as default_a5d16ab5a5f68941ba4643020c7f18f4 } from '../../../co
 import { default as default_dfe4008080d895d460898c3a6155e9ba } from '../../../components/admin/Icon'
 import { default as default_91a09b539d3c86b0aebf520e7564ce08 } from '../../../components/admin/Logo'
 import { default as default_6305395dee2348b00d6e0f198125917b } from '../../../components/admin/NavIcons'
+import { default as default_financedashboard0000000000000000 } from '../../../components/admin/FinanceDashboard'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 
 export const importMap = {
@@ -55,5 +56,6 @@ export const importMap = {
   "/components/admin/Icon#default": default_dfe4008080d895d460898c3a6155e9ba,
   "/components/admin/Logo#default": default_91a09b539d3c86b0aebf520e7564ce08,
   "/components/admin/NavIcons#default": default_6305395dee2348b00d6e0f198125917b,
+  "/components/admin/FinanceDashboard#default": default_financedashboard0000000000000000,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1
 }
