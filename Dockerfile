@@ -62,6 +62,14 @@ COPY --from=builder --chown=nextjs:nodejs /app/entrypoint.sh ./entrypoint.sh
 COPY --from=builder --chown=nextjs:nodejs /app/scripts ./scripts
 COPY --from=builder --chown=nextjs:nodejs /app/migrations ./migrations
 
+# Payload media collection writes uploads to /app/media (staticDir: 'media').
+# The runner stage must ship this directory so (1) committed media is served
+# after a rebuild and (2) the dir exists and is owned by the runtime user, so
+# new admin uploads can be written. Without this, /api/media/file/* 500s and
+# uploads fail with EACCES. A named volume mounted here inherits this
+# ownership and is seeded from these files on first mount.
+COPY --from=builder --chown=nextjs:nodejs /app/media ./media
+
 USER nextjs
 
 EXPOSE 3000
