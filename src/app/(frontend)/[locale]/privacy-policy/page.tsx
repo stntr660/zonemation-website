@@ -38,7 +38,7 @@ export default async function PrivacyPolicyPage() {
         <Section title={t('s2Title')}>
           <p>{t('s2p1')}</p>
           <InfoBox>
-            <p className="text-white font-medium">Zonemation Consulting Group</p>
+            <p className="text-white font-medium">Zonemation Consulting</p>
             <p className="text-white/50 text-lg mt-1">Casablanca, Morocco</p>
             <p className="text-white/50 text-lg">Email: hello@zonemation.com</p>
             <p className="text-white/50 text-lg">{t('phone')}: +212 6 61 90 30 77</p>
@@ -122,7 +122,7 @@ export default async function PrivacyPolicyPage() {
 
         <Section title={t('s12Title')}>
           <InfoBox>
-            <p className="text-white font-medium">Zonemation Consulting Group</p>
+            <p className="text-white font-medium">Zonemation Consulting</p>
             <p className="text-white/50 text-lg mt-1">Email: hello@zonemation.com</p>
             <p className="text-white/50 text-lg">{t('phone')}: +212 6 61 90 30 77</p>
           </InfoBox>
