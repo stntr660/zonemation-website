@@ -107,7 +107,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="pt-2 border-t border-gray-200 dark:border-gray-700">
           <p className="text-xs text-gray-600 dark:text-gray-400">
-            &copy; {new Date().getFullYear()} Zonemation Consulting Group. All rights reserved.
+            &copy; {new Date().getFullYear()} Zonemation Consulting. All rights reserved.
           </p>
         </div>
       </div>

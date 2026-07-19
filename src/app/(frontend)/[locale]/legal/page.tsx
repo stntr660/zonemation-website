@@ -4,7 +4,7 @@ import { PageShell } from '@/components/page-shell'
 
 export const metadata: Metadata = {
   title: 'Legal Notice - Zonemation',
-  description: 'Legal notice and regulatory information for Zonemation Consulting Group.',
+  description: 'Legal notice and regulatory information for Zonemation Consulting.',
 }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -32,7 +32,7 @@ export default async function LegalPage() {
       <div className="space-y-0">
         <Section title={t('s1Title')}>
           <InfoBox>
-            <p className="text-white font-medium mb-2">Zonemation Consulting Group</p>
+            <p className="text-white font-medium mb-2">Zonemation Consulting</p>
             <div className="space-y-1 text-lg">
               <p><span className="text-white/80">{t('s1legalForm')}:</span> {t('s1legalFormValue')}</p>
               <p><span className="text-white/80">{t('s1headquarters')}:</span> {t('s1headquartersValue')}</p>
