@@ -42,7 +42,7 @@ export default async function VerifyInvoicePage({
         </div>
 
         <p className="text-white/40 text-base mb-8">
-          Ce document est une facture authentique emise par Zonemation Consulting Group.
+          Ce document est une facture authentique emise par Zonemation Consulting.
         </p>
 
         <div className="space-y-4 text-base">
