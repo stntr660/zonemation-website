@@ -55,10 +55,43 @@
     }
   },
   "home": {
-    "heroHeading": "Apoyamos a los audaces que transforman el mundo",
-    "heroSubheading": "Transformacion Digital y Consultoria Estrategica",
-    "ctaHeading": "Las grandes transformaciones comienzan con una conversacion.",
-    "ctaButton": "Hablemos de su proyecto"
+    "hero": {
+      "eyebrow": "IA, datos y Web3. Hecho en Casablanca.",
+      "titleLead": "Soluciones que trabajan",
+      "titleAccent": "mientras tú vendes.",
+      "subtitle": "Creamos productos para el comercio de la región MENA. Una IA que entiende el dariya, cifras que por fin dicen la verdad y un pie ya puesto en el Web3. Todo pensado para gente que nunca tuvo tiempo de leer un manual.",
+      "ctaProducts": "Mira lo que hemos construido",
+      "ctaCall": "¿Lo hablamos con un café?",
+      "fact1": "2 productos en línea",
+      "fact2": "En App Store y Google Play",
+      "fact3": "Una IA que habla dariya"
+    },
+    "stores": {
+      "appStoreLine": "Descárgalo en",
+      "googlePlayLine": "Disponible en"
+    },
+    "closing": {
+      "eyebrow": "Y esto es solo el principio"
+    },
+    "pillars": {
+      "eyebrow": "Nuestro oficio",
+      "title": "El futuro, ya en producción.",
+      "ai": {
+        "term": "IA",
+        "label": "Inteligencia artificial",
+        "text": "Una IA que entiende tu oficio. Y tu dariya."
+      },
+      "data": {
+        "term": "Data",
+        "label": "Data-driven",
+        "text": "Cada dírham cuenta una historia. La leemos por ti."
+      },
+      "web3": {
+        "term": "Web3",
+        "label": "Confianza descentralizada",
+        "text": "La confianza, grabada en el código."
+      }
+    }
   },
   "invoice": {
     "toolLabel": "Herramienta",
@@ -284,5 +317,93 @@
     "s8p1": "Estos avisos legales se rigen por la legislacion marroqui. Cualquier disputa estara sujeta a la jurisdiccion exclusiva de los tribunales de Casablanca, Marruecos.",
     "s9Title": "9. Contacto",
     "s9p1": "Para cualquier consulta:"
+  },
+  "products": {
+    "eyebrow": "Hecho en casa",
+    "title": "Nuestros productos",
+    "jmlapro": {
+      "name": "JMLA Pro",
+      "eyebrow": "JMLA Pro · Comercio mayorista",
+      "title": "Menos papeleo. Más ventas.",
+      "text": "Stock, crédito y facturas dirigidos por un agente de IA que habla dariya. Ganas horas y tus clientes pagan a tiempo.",
+      "feature1": "Un pedido creado en segundos",
+      "feature2": "Stock exacto, pieza a pieza",
+      "feature3": "Los retrasos de pago detectados solos",
+      "cta": "Descubre JMLA Pro",
+      "agent": {
+        "header": "Agente jmlapro",
+        "status": "En línea",
+        "inputPlaceholder": "Habla con tu negocio…",
+        "tools": {
+          "resolveClient": "Buscando al cliente",
+          "clientBalance": "Comprobando el saldo",
+          "checkStock": "Comprobando el stock",
+          "createOrder": "Creando el pedido"
+        },
+        "askBalance": "¿Cuánto me debe todavía Haj Mohammed?",
+        "answerBalance": "Haj Mohammed debe 3 200 MAD. Último pago el 4 de junio.",
+        "makeOrder": "Créale un pedido: 10 cajas de aceite",
+        "orderSummaryTitle": "Nuevo pedido — Haj Mohammed",
+        "orderLine": "10 × caja de aceite 5L",
+        "orderTotal": "Total: 1 750 MAD",
+        "confirmQuestion": "¿Confirmar este pedido?",
+        "confirmYes": "Confirmar",
+        "confirmNo": "Modificar",
+        "done": "Hecho. La factura n.º INV-2041 está lista para compartir."
+      }
+    },
+    "atrapa": {
+      "name": "Atrapa",
+      "eyebrow": "Atrapa · Mensajería y CRM",
+      "title": "Cero mensajes perdidos. Más ventas.",
+      "text": "WhatsApp, Instagram, Messenger y correo en una sola bandeja. La IA responde, las automatizaciones insisten y tú cobras.",
+      "feature1": "Códigos QR que dicen qué cartel vende",
+      "feature2": "Recordatorios que se envían solos",
+      "feature3": "Una IA que responde 24/7",
+      "cta": "Descubre Atrapa",
+      "qr": {
+        "title": "Cartel promo",
+        "caption": "Escaneado en tienda",
+        "ask": "¡Hola! Vengo del cartel, ¿sigue el -20 %?",
+        "aiLabel": "Agente IA de Atrapa",
+        "reply": "¡Sí, hasta el domingo! Aquí tienes los 3 modelos en oferta.",
+        "source": "Origen registrado: cartel Maârif"
+      },
+      "workflow": {
+        "name": "Del cartel a la venta",
+        "runs": "Nadie toca nada",
+        "published": "Publicado",
+        "yes": "Sí",
+        "no": "No",
+        "trigger": {
+          "kind": "Disparador",
+          "label": "Cartel escaneado"
+        },
+        "ai": {
+          "kind": "IA",
+          "label": "Envía la oferta"
+        },
+        "branch": {
+          "kind": "Si / Si no",
+          "label": "¿Ha pedido?"
+        },
+        "parcel": {
+          "kind": "Pedido",
+          "label": "Confirmado"
+        },
+        "tracking": {
+          "kind": "Entrega",
+          "label": "Envío y rastreo"
+        },
+        "wait": {
+          "kind": "Espera",
+          "label": "Esperar 24 h"
+        },
+        "nudge": {
+          "kind": "WhatsApp",
+          "label": "Aviso + oferta"
+        }
+      }
+    }
   }
 }

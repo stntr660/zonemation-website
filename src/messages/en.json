@@ -55,10 +55,43 @@
     }
   },
   "home": {
-    "heroHeading": "We support the bold who transform the world",
-    "heroSubheading": "Digital Transformation & Strategic Consulting",
-    "ctaHeading": "Great transformations start with a conversation.",
-    "ctaButton": "Let's talk about your project"
+    "hero": {
+      "eyebrow": "AI, data and Web3. Made in Casablanca.",
+      "titleLead": "Solutions that work",
+      "titleAccent": "while you sell.",
+      "subtitle": "We build products for commerce across MENA. AI that understands Darija, numbers that finally tell the truth, and one foot already in Web3. All designed for people who never had time to read a manual.",
+      "ctaProducts": "See what we've built",
+      "ctaCall": "Talk over a coffee?",
+      "fact1": "2 live products",
+      "fact2": "On the App Store and Google Play",
+      "fact3": "AI that speaks Darija"
+    },
+    "stores": {
+      "appStoreLine": "Download on the",
+      "googlePlayLine": "Get it on"
+    },
+    "closing": {
+      "eyebrow": "And this is just the beginning"
+    },
+    "pillars": {
+      "eyebrow": "Our craft",
+      "title": "The future, already in production.",
+      "ai": {
+        "term": "AI",
+        "label": "Artificial intelligence",
+        "text": "AI that understands your trade. And your Darija."
+      },
+      "data": {
+        "term": "Data",
+        "label": "Data-driven",
+        "text": "Every dirham tells a story. We read it for you."
+      },
+      "web3": {
+        "term": "Web3",
+        "label": "Decentralised trust",
+        "text": "Trust, written into the code."
+      }
+    }
   },
   "invoice": {
     "toolLabel": "Tool",
@@ -284,5 +317,93 @@
     "s8p1": "These legal notices are governed by Moroccan law. Any disputes shall be subject to the exclusive jurisdiction of the courts of Casablanca, Morocco.",
     "s9Title": "9. Contact",
     "s9p1": "For any questions:"
+  },
+  "products": {
+    "eyebrow": "Made in-house",
+    "title": "Our products",
+    "jmlapro": {
+      "name": "JMLA Pro",
+      "eyebrow": "JMLA Pro · Wholesale",
+      "title": "Less paperwork. More sales.",
+      "text": "Stock, credit and invoices run by an AI agent that speaks Darija. You win back hours, your clients pay on time.",
+      "feature1": "An order created in seconds",
+      "feature2": "Stock accurate to the piece",
+      "feature3": "Late payments flagged on their own",
+      "cta": "Discover JMLA Pro",
+      "agent": {
+        "header": "jmlapro Agent",
+        "status": "Online",
+        "inputPlaceholder": "Talk to your business…",
+        "tools": {
+          "resolveClient": "Finding customer",
+          "clientBalance": "Checking balance",
+          "checkStock": "Checking stock",
+          "createOrder": "Creating order"
+        },
+        "askBalance": "How much does Haj Mohammed still owe?",
+        "answerBalance": "Haj Mohammed owes 3,200 MAD. Last payment was June 4.",
+        "makeOrder": "Create an order for him: 10 cartons of oil",
+        "orderSummaryTitle": "New order — Haj Mohammed",
+        "orderLine": "10 × Oil 5L carton",
+        "orderTotal": "Total: 1,750 MAD",
+        "confirmQuestion": "Confirm this order?",
+        "confirmYes": "Confirm",
+        "confirmNo": "Edit",
+        "done": "Done. Invoice #INV-2041 is ready to share."
+      }
+    },
+    "atrapa": {
+      "name": "Atrapa",
+      "eyebrow": "Atrapa · Messaging & CRM",
+      "title": "Zero lost messages. More sales.",
+      "text": "WhatsApp, Instagram, Messenger and email in one inbox. AI replies, automations follow up, you get paid.",
+      "feature1": "QR codes that tell you which poster sells",
+      "feature2": "Follow-ups that send themselves",
+      "feature3": "AI that answers 24/7",
+      "cta": "Discover Atrapa",
+      "qr": {
+        "title": "Promo poster",
+        "caption": "Scanned in store",
+        "ask": "Hi! I saw the poster, is the 20% off still on?",
+        "aiLabel": "Atrapa AI agent",
+        "reply": "Yes, until Sunday! Here are the 3 models on offer.",
+        "source": "Source recorded: Maârif poster"
+      },
+      "workflow": {
+        "name": "From poster to sale",
+        "runs": "Nobody lifts a finger",
+        "published": "Published",
+        "yes": "Yes",
+        "no": "No",
+        "trigger": {
+          "kind": "Trigger",
+          "label": "Poster scanned"
+        },
+        "ai": {
+          "kind": "AI",
+          "label": "Sends the offer"
+        },
+        "branch": {
+          "kind": "If / Else",
+          "label": "Ordered?"
+        },
+        "parcel": {
+          "kind": "Order",
+          "label": "Confirmed"
+        },
+        "tracking": {
+          "kind": "Delivery",
+          "label": "Ship + tracking"
+        },
+        "wait": {
+          "kind": "Delay",
+          "label": "Wait 24 h"
+        },
+        "nudge": {
+          "kind": "WhatsApp",
+          "label": "Nudge + offer"
+        }
+      }
+    }
   }
 }
