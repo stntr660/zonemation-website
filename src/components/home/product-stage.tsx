@@ -199,12 +199,12 @@ export function ProductStage(props: ProductStageProps) {
   const { id, eyebrow, title, text, features, url, domain, image, imageAlt, cta, stores, story, storyTitle, overlay, overlayClass, reverse, orbit, after } = props
 
   return (
-    <section id={id} className="relative px-6 py-16 lg:py-20 scroll-mt-8">
+    <section id={id} className="relative px-6 pt-8 pb-16 lg:pt-12 lg:pb-20 scroll-mt-8">
       <div className={`max-w-5xl mx-auto grid gap-12 lg:gap-10 items-center ${reverse ? 'lg:grid-cols-[7fr_3fr]' : 'lg:grid-cols-[3fr_7fr]'}`}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.8, ease: EASE }}
           className={`space-y-5 ${reverse ? 'lg:order-2' : ''}`}
         >

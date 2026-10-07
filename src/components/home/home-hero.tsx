@@ -28,20 +28,21 @@ function Words({ text, delay, className }: { text: string; delay: number; classN
 
 export function HomeHero() {
   const t = useTranslations('home.hero')
+  const products = useTranslations('products')
   const lead = t('titleLead')
   const accent = t('titleAccent')
   const accentDelay = 0.2 + lead.split(' ').length * 0.08
   const facts = [t('fact1'), t('fact2'), t('fact3')]
 
   return (
-    <section className="relative overflow-hidden px-6 pt-12 pb-16 lg:pt-16 lg:pb-20">
+    <section className="relative overflow-hidden px-6 pt-6 pb-6 lg:pt-8 lg:pb-8">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-10 start-1/4 w-[32rem] h-[32rem] bg-[#a7d26d]/[0.06] rounded-full blur-3xl" />
         <div className="absolute bottom-0 end-10 w-96 h-96 bg-white/[0.03] rounded-full blur-3xl" />
       </div>
 
-      <div className="relative max-w-5xl mx-auto grid lg:grid-cols-[1.6fr_1fr] gap-10 items-center">
-        <div className="space-y-6">
+      <div className="relative max-w-5xl mx-auto grid lg:grid-cols-[3fr_1fr] gap-8 items-center">
+        <div className="space-y-3">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -52,7 +53,7 @@ export function HomeHero() {
             {t('eyebrow')}
           </motion.p>
 
-          <h1 className="text-4xl/[1.15] md:text-5xl/[1.15] lg:text-[3.4rem]/[1.15] font-light text-white">
+          <h1 className="text-[1.875rem]/[1.15] md:text-[2.25rem]/[1.15] lg:text-[2.75rem]/[1.15] font-light text-white">
             <Words text={lead} delay={0.2} />
             <Words text={accent} delay={accentDelay} className="text-[#a7d26d]" />
           </h1>
@@ -61,7 +62,7 @@ export function HomeHero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: accentDelay + 0.4, ease: EASE }}
-            className="text-lg text-white/55 font-light leading-relaxed max-w-2xl"
+            className="text-base text-white/55 font-light leading-relaxed max-w-3xl"
           >
             {t('subtitle')}
           </motion.p>
@@ -72,26 +73,28 @@ export function HomeHero() {
             transition={{ duration: 0.7, delay: accentDelay + 0.6, ease: EASE }}
             className="flex flex-wrap items-center gap-4"
           >
-            <a
-              href="#products"
-              className="group inline-flex items-center gap-3 rounded-full bg-[#a7d26d] px-7 py-3.5 text-[#181a0e] font-medium hover:bg-white transition-colors duration-300"
-            >
-              {t('ctaProducts')}
-              <span className="transition-transform duration-300 group-hover:translate-y-0.5">&darr;</span>
-            </a>
-            <a
-              href="tel:+212661903077"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-7 py-3.5 text-white/80 hover:border-[#a7d26d] hover:text-[#a7d26d] transition-colors duration-300"
-            >
-              {t('ctaCall')}
-            </a>
+            {(['jmlapro', 'atrapa'] as const).map((product, index) => (
+              <a
+                key={product}
+                href={`#${product}`}
+                aria-label={products(`${product}.cta`)}
+                className={`group inline-flex min-h-11 items-center gap-3 rounded-full border px-5 py-3 text-base font-medium transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-400 ${
+                  index === 0
+                    ? 'border-primary-400 bg-primary-400 text-surface hover:border-primary-300 hover:bg-primary-300'
+                    : 'border-primary-400/60 text-primary-400 hover:border-primary-400 hover:bg-primary-400/10'
+                }`}
+              >
+                {products(`${product}.name`)}
+                <span className="transition-transform duration-300 group-hover:translate-y-0.5" aria-hidden="true">&darr;</span>
+              </a>
+            ))}
           </motion.div>
 
           <motion.ul
             initial="hidden"
             animate="show"
             variants={{ show: { transition: { staggerChildren: 0.12, delayChildren: accentDelay + 0.9 } } }}
-            className="flex flex-wrap gap-x-8 gap-y-3 pt-4"
+            className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-1"
           >
             {facts.map((fact) => (
               <motion.li
@@ -113,7 +116,7 @@ export function HomeHero() {
           className="hidden lg:flex justify-center"
         >
           <motion.div animate={{ y: [0, -14, 0] }} transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}>
-            <AnimatedLogo className="w-60 h-60" />
+            <AnimatedLogo className="w-40 h-40 xl:w-44 xl:h-44" />
           </motion.div>
         </motion.div>
       </div>

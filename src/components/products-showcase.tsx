@@ -54,13 +54,14 @@ export function ProductsShowcase() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="text-center space-y-4 px-6 pt-8"
+        className="text-center space-y-2 px-6 pt-4"
       >
         <p className="text-[#a7d26d] text-sm tracking-[0.3em] uppercase">{t('eyebrow')}</p>
         <h2 className="text-4xl lg:text-6xl font-thin text-slate-300/80 tracking-wide">{t('title')}</h2>
       </motion.div>
 
       <ProductStage
+        id="jmlapro"
         eyebrow={t('jmlapro.eyebrow')}
         title={t('jmlapro.title')}
         text={t('jmlapro.text')}
@@ -83,6 +84,7 @@ export function ProductsShowcase() {
       />
 
       <ProductStage
+        id="atrapa"
         reverse
         eyebrow={t('atrapa.eyebrow')}
         title={t('atrapa.title')}

@@ -9,8 +9,8 @@ export default function Home() {
     <>
       <ScrollProgress />
       <HomeHero />
-      <Pillars />
       <ProductsShowcase />
+      <Pillars />
       <ClosingSection />
     </>
   )
