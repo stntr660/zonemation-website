@@ -38,8 +38,8 @@ export interface ProductStageProps {
   reverse?: boolean
   /** Decoration that animates in around the frame (e.g. channel icons). */
   orbit?: ReactNode
-  /** Full-width content under the section, e.g. a workflow. */
-  after?: ReactNode
+  /** Supporting demo kept with the product screenshot. */
+  visualFooter?: ReactNode
 }
 
 /** Plays the steps one by one while visible, then starts over. */
@@ -196,7 +196,7 @@ function BrowserFrame({ url, domain, image, imageAlt }: { url: string; domain: s
 }
 
 export function ProductStage(props: ProductStageProps) {
-  const { id, eyebrow, title, text, features, url, domain, image, imageAlt, cta, stores, story, storyTitle, overlay, overlayClass, reverse, orbit, after } = props
+  const { id, eyebrow, title, text, features, url, domain, image, imageAlt, cta, stores, story, storyTitle, overlay, overlayClass, reverse, orbit, visualFooter } = props
 
   return (
     <section id={id} className="relative px-6 pt-8 pb-16 lg:pt-12 lg:pb-20 scroll-mt-8">
@@ -245,21 +245,23 @@ export function ProductStage(props: ProductStageProps) {
           <StoreBadges stores={stores} />
         </motion.div>
 
-        <div className={`relative ${reverse ? 'lg:order-1' : ''}`}>
-          {orbit}
-          <BrowserFrame url={url} domain={domain} image={image} imageAlt={imageAlt} />
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.7, delay: 0.3, ease: EASE }}
-            className={`relative mt-6 lg:absolute lg:mt-0 z-10 ${overlayClass ?? `lg:-bottom-12 lg:w-80 ${reverse ? 'lg:-start-10' : 'lg:-end-10'}`}`}
-          >
-            {overlay ?? (story && <Story steps={story} title={storyTitle ?? ''} />)}
-          </motion.div>
+        <div className={`min-w-0 ${reverse ? 'lg:order-1' : ''}`}>
+          <div className="relative">
+            {orbit}
+            <BrowserFrame url={url} domain={domain} image={image} imageAlt={imageAlt} />
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.7, delay: 0.3, ease: EASE }}
+              className={`relative mt-6 lg:absolute lg:mt-0 z-10 ${overlayClass ?? `lg:-bottom-12 lg:w-80 ${reverse ? 'lg:-start-10' : 'lg:-end-10'}`}`}
+            >
+              {overlay ?? (story && <Story steps={story} title={storyTitle ?? ''} />)}
+            </motion.div>
+          </div>
+          {visualFooter && <div className="mt-6 lg:mt-20">{visualFooter}</div>}
         </div>
       </div>
-      {after && <div className="max-w-5xl mx-auto mt-24 lg:mt-32">{after}</div>}
     </section>
   )
 }

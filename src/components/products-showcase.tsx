@@ -103,7 +103,7 @@ export function ProductsShowcase() {
         overlay={<AtrapaFlow />}
         overlayClass="lg:w-[24rem] lg:-bottom-12 lg:-start-10"
         orbit={<ChannelOrbit />}
-        after={<AtrapaWorkflow />}
+        visualFooter={<AtrapaWorkflow />}
       />
     </div>
   )

@@ -20,7 +20,7 @@ const MUTED = 'text-[hsl(20_8%_45%)]'
 
 type NodeKey = 'trigger' | 'ai' | 'branch' | 'parcel' | 'tracking' | 'wait' | 'nudge'
 
-// Canvas is 1000 x 320; nodes are 168 x 64, positioned by centre.
+// Canvas is 1000 x 320; nodes are 168 x 80, positioned by centre.
 const NODES: Record<NodeKey, { x: number; y: number; icon: typeof Bot; tint: string }> = {
   trigger: { x: 95, y: 160, icon: QrCode, tint: '#f97316' },
   ai: { x: 300, y: 160, icon: Bot, tint: '#8b5cf6' },
@@ -32,6 +32,7 @@ const NODES: Record<NodeKey, { x: number; y: number; icon: typeof Bot; tint: str
 }
 
 const W = 168
+const H = 80
 const EDGES: { from: NodeKey; to: NodeKey; label?: 'yes' | 'no' }[] = [
   { from: 'trigger', to: 'ai' },
   { from: 'ai', to: 'branch' },
@@ -115,9 +116,14 @@ export function AtrapaWorkflow() {
       </div>
 
       {/* Canvas */}
-      <div className="overflow-x-auto">
+      <div
+        role="region"
+        aria-label={t('name')}
+        tabIndex={0}
+        className="overflow-x-auto overscroll-x-contain focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary-400"
+      >
         <div
-          className="relative aspect-[1000/320] min-w-[760px]"
+          className="relative aspect-[1000/320] min-w-[640px]"
           style={{ backgroundImage: 'radial-gradient(hsl(20 10% 82%) 1px, transparent 1px)', backgroundSize: '18px 18px', backgroundColor: 'hsl(30 20% 98.5%)' }}
           dir="ltr"
         >
@@ -163,23 +169,23 @@ export function AtrapaWorkflow() {
             return (
               <motion.div
                 key={key}
-                className="absolute flex items-center gap-2.5 rounded-lg border bg-white px-2.5 shadow-sm"
+                className="absolute flex items-center rounded-lg border bg-white px-2 shadow-sm"
                 style={{
                   left: `${((n.x - W / 2) / 1000) * 100}%`,
-                  top: `${((n.y - 32) / 320) * 100}%`,
+                  top: `${((n.y - H / 2) / 320) * 100}%`,
                   width: `${(W / 1000) * 100}%`,
-                  height: `${(64 / 320) * 100}%`,
+                  height: `${(H / 320) * 100}%`,
                   borderColor: on ? ORANGE : 'hsl(20 12% 88%)',
                 }}
                 animate={{ scale: isCurrent ? 1.06 : 1, boxShadow: isCurrent ? '0 10px 30px -10px hsl(20 90% 50% / 0.6)' : '0 1px 2px rgba(0,0,0,0.05)' }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md" style={{ backgroundColor: `${n.tint}1a`, color: n.tint }}>
-                  <Icon className="h-4 w-4" />
+                <span className="absolute -top-3 start-2 flex h-5 w-5 items-center justify-center rounded-md" style={{ backgroundColor: `${n.tint}1a`, color: n.tint }}>
+                  <Icon className="h-3 w-3" />
                 </span>
-                <span className="min-w-0">
-                  <span className={`block text-[9px] font-medium uppercase tracking-wider ${MUTED}`}>{t(`${key}.kind`)}</span>
-                  <span className={`block truncate text-[12px] font-semibold leading-tight ${INK}`}>{t(`${key}.label`)}</span>
+                <span className="min-w-0 pt-1">
+                  <span className={`block text-[8px] font-medium uppercase tracking-wide ${MUTED}`}>{t(`${key}.kind`)}</span>
+                  <span className={`block text-[11px] font-semibold leading-tight ${INK}`}>{t(`${key}.label`)}</span>
                 </span>
               </motion.div>
             )
