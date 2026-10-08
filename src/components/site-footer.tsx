@@ -12,7 +12,7 @@ export function SiteFooter() {
         <p className="text-white/30 text-lg">
           &copy; {new Date().getFullYear()} {t('copyright')}
         </p>
-        <div className="flex gap-8 text-lg">
+        <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-lg">
           <Link href="/privacy-policy" className="text-white/40 hover:text-[#a7d26d] transition-colors">{t('privacy')}</Link>
           <Link href="/terms-of-use" className="text-white/40 hover:text-[#a7d26d] transition-colors">{t('terms')}</Link>
           <Link href="/cookie-policy" className="text-white/40 hover:text-[#a7d26d] transition-colors">{t('cookies')}</Link>

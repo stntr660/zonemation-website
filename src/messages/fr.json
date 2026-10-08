@@ -55,10 +55,43 @@
     }
   },
   "home": {
-    "heroHeading": "Nous accompagnons les audacieux qui transforment le monde",
-    "heroSubheading": "Transformation Digitale & Conseil Strategique",
-    "ctaHeading": "Les grandes transformations commencent par une conversation.",
-    "ctaButton": "Parlons de votre projet"
+    "hero": {
+      "eyebrow": "Fabriqué à Casablanca.",
+      "titleLead": "Des solutions qui travaillent",
+      "titleAccent": "pendant que vous vendez.",
+      "subtitle": "Deux produits pour gérer vos ventes et vos conversations.",
+      "ctaProducts": "Voir ce qu'on a construit",
+      "ctaCall": "On en parle autour d’un café ?",
+      "fact1": "2 produits en ligne",
+      "fact2": "Sur App Store et Google Play",
+      "fact3": "Une IA qui parle darija"
+    },
+    "stores": {
+      "appStoreLine": "Télécharger sur",
+      "googlePlayLine": "Disponible sur"
+    },
+    "closing": {
+      "eyebrow": "Et ce n’est que le début"
+    },
+    "pillars": {
+      "eyebrow": "Notre savoir-faire",
+      "title": "L'avenir, déjà en production.",
+      "ai": {
+        "term": "IA",
+        "label": "Intelligence artificielle",
+        "text": "Une IA qui comprend votre métier. Et votre darija."
+      },
+      "data": {
+        "term": "Data",
+        "label": "Data-driven",
+        "text": "Chaque dirham raconte une histoire. On la lit pour vous."
+      },
+      "web3": {
+        "term": "Web3",
+        "label": "Confiance décentralisée",
+        "text": "La confiance, gravée dans le code."
+      }
+    }
   },
   "invoice": {
     "toolLabel": "Outil",
@@ -284,5 +317,93 @@
     "s8p1": "Les presentes mentions legales sont regies par le droit marocain. Tout litige sera soumis a la competence exclusive des tribunaux de Casablanca, Maroc.",
     "s9Title": "9. Contact",
     "s9p1": "Pour toute question :"
+  },
+  "products": {
+    "eyebrow": "Fait maison",
+    "title": "Nos produits",
+    "jmlapro": {
+      "name": "JMLA Pro",
+      "eyebrow": "JMLA Pro · Commerce de gros",
+      "title": "Moins de paperasse. Plus de ventes.",
+      "text": "Stock, crédit et factures pilotés par un agent IA qui parle darija. Vous gagnez des heures, vos clients paient à l'heure.",
+      "feature1": "Une commande créée en quelques secondes",
+      "feature2": "Le stock exact, à la pièce près",
+      "feature3": "Les retards de paiement repérés tout seuls",
+      "cta": "Découvrir JMLA Pro",
+      "agent": {
+        "header": "Agent jmlapro",
+        "status": "En ligne",
+        "inputPlaceholder": "Parlez à votre commerce…",
+        "tools": {
+          "resolveClient": "Recherche du client",
+          "clientBalance": "Vérification du solde",
+          "checkStock": "Vérification du stock",
+          "createOrder": "Création de la commande"
+        },
+        "askBalance": "Combien me doit encore Haj Mohammed ?",
+        "answerBalance": "Haj Mohammed doit 3 200 MAD. Dernier paiement le 4 juin.",
+        "makeOrder": "Crée-lui une commande : 10 cartons d’huile",
+        "orderSummaryTitle": "Nouvelle commande — Haj Mohammed",
+        "orderLine": "10 × carton d’huile 5L",
+        "orderTotal": "Total : 1 750 MAD",
+        "confirmQuestion": "Confirmer cette commande ?",
+        "confirmYes": "Confirmer",
+        "confirmNo": "Modifier",
+        "done": "C’est fait. La facture n°INV-2041 est prête à partager."
+      }
+    },
+    "atrapa": {
+      "name": "Atrapa",
+      "eyebrow": "Atrapa · Messagerie & CRM",
+      "title": "Zéro message perdu. Plus de ventes.",
+      "text": "WhatsApp, Instagram, Messenger et e-mail dans une seule boîte. L'IA répond, les automatisations relancent, vous encaissez.",
+      "feature1": "Des QR codes qui disent quelle affiche vend",
+      "feature2": "Des relances qui partent toutes seules",
+      "feature3": "Une IA qui répond 24h/24",
+      "cta": "Découvrir Atrapa",
+      "qr": {
+        "title": "Affiche promo",
+        "caption": "Scannée en magasin",
+        "ask": "Bonjour ! Je viens de l'affiche, le -20 % est toujours valable ?",
+        "aiLabel": "Agent IA Atrapa",
+        "reply": "Oui, jusqu'à dimanche ! Voici les 3 modèles en promo.",
+        "source": "Source enregistrée : affiche Maârif"
+      },
+      "workflow": {
+        "name": "De l'affiche à la vente",
+        "runs": "Personne ne touche à rien",
+        "published": "Publié",
+        "yes": "Oui",
+        "no": "Non",
+        "trigger": {
+          "kind": "Déclencheur",
+          "label": "Affiche scannée"
+        },
+        "ai": {
+          "kind": "IA",
+          "label": "Envoie l'offre"
+        },
+        "branch": {
+          "kind": "Si / Sinon",
+          "label": "A commandé ?"
+        },
+        "parcel": {
+          "kind": "Commande",
+          "label": "Confirmée"
+        },
+        "tracking": {
+          "kind": "Livraison",
+          "label": "Expédier + suivi"
+        },
+        "wait": {
+          "kind": "Délai",
+          "label": "Attendre 24 h"
+        },
+        "nudge": {
+          "kind": "WhatsApp",
+          "label": "Relance + offre"
+        }
+      }
+    }
   }
 }

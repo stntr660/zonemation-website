@@ -20,9 +20,9 @@ function AnimatedDots() {
   return <span className="text-[#a7d26d]">{dots}</span>
 }
 
-function AnimatedLogo() {
+export function AnimatedLogo({ className = "w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96" }: { className?: string }) {
   return (
-    <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+    <div className={className}>
       <svg viewBox="0 0 1200 1200" className="w-full h-full" suppressHydrationWarning>
         <g>
           <path fill="#0C130B" d="M1065.5,1178H140.5C73.4,1178,19,1123.6,19,1056.5V138.5C19,71.4,73.4,17,140.5,17h924.9c67.1,0,121.5,54.4,121.5,121.5v917.9C1187,1123.6,1132.6,1178,1065.5,1178z"/>
