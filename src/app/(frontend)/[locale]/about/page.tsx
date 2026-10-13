@@ -32,8 +32,7 @@ export default async function AboutPage() {
             Unlocking the Potential of Those Who Advance the World
           </h1>
           <p className="body-large text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            We are a consulting firm dedicated to helping organizations navigate complex
-            challenges and seize transformative opportunities.
+            We build software products. JMLA Pro runs wholesale stores; Atrapa runs customer conversations. Both are designed, coded and operated in-house.
           </p>
         </div>
 
@@ -43,7 +42,7 @@ export default async function AboutPage() {
             <div className="text-center mb-12">
               <h2 className="heading-h2 text-gray-900 dark:text-white mb-4">Our Leadership</h2>
               <p className="body-large text-gray-600 dark:text-gray-400">
-                Meet the team driving transformation.
+                Meet the team building our products.
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

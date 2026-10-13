@@ -204,7 +204,7 @@ function ContactForm() {
         <option value="" className="bg-[#181a0e] text-white">Type de projet</option>
         <option value="transformation" className="bg-[#181a0e] text-white">Transformation digitale</option>
         <option value="strategy" className="bg-[#181a0e] text-white">Stratégie business</option>
-        <option value="consulting" className="bg-[#181a0e] text-white">Conseil & accompagnement</option>
+        <option value="consulting" className="bg-[#181a0e] text-white">Démo produit</option>
         <option value="development" className="bg-[#181a0e] text-white">Développement sur mesure</option>
         <option value="other" className="bg-[#181a0e] text-white">Autre</option>
       </select>

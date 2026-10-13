@@ -21,6 +21,15 @@ const nextConfig = {
     ],
     formats: ['image/webp', 'image/avif'],
   },
+  // The old consultancy pages are retired: Zonemation is a product company
+  // (JMLA Pro, Atrapa). Temporary redirects so the content can come back.
+  async redirects() {
+    const retired = '(case-studies|capabilities|industries|insights)'
+    return [
+      { source: `/:locale(fr|en|es|ar)/:section${retired}/:path*`, destination: '/:locale', permanent: false },
+      { source: `/:section${retired}/:path*`, destination: '/', permanent: false },
+    ]
+  },
 }
 
 export default withNextIntl(withPayload(nextConfig))

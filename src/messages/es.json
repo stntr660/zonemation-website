@@ -3,7 +3,7 @@
     "contact": "Contacto"
   },
   "footer": {
-    "copyright": "Zonemation Consulting",
+    "copyright": "Zonemation",
     "privacy": "Privacidad",
     "terms": "Terminos",
     "cookies": "Cookies",
@@ -37,9 +37,9 @@
       "email": "Email *",
       "phone": "Telefono",
       "projectType": "Tipo de proyecto",
-      "projectTransformation": "Transformacion digital",
+      "projectTransformation": "Pregunta sobre el producto",
       "projectStrategy": "Estrategia empresarial",
-      "projectConsulting": "Consultoria y asesoria",
+      "projectConsulting": "Demo de producto",
       "projectDevelopment": "Desarrollo a medida",
       "projectOther": "Otro",
       "message": "Describa su vision... *",
@@ -87,9 +87,9 @@
         "text": "Cada dírham cuenta una historia. La leemos por ti."
       },
       "web3": {
-        "term": "Web3",
-        "label": "Confianza descentralizada",
-        "text": "La confianza, grabada en el código."
+        "term": "Apps",
+        "label": "En cada teléfono",
+        "text": "Apps nativas en Google Play y el App Store."
       }
     }
   },
@@ -114,7 +114,7 @@
     "description": "Descripcion",
     "qty": "Cant.",
     "unitPrice": "Precio unitario",
-    "itemPlaceholder": "Consultoria estrategica...",
+    "itemPlaceholder": "Suscripción JMLA Pro...",
     "addLine": "Agregar linea",
     "additional": "Adicional",
     "taxRate": "Tasa de impuesto (%)",
@@ -137,11 +137,11 @@
   },
   "underConstruction": {
     "comingSoon": "Proximamente",
-    "quote1": "La firma que digitaliza a todos aun no ha construido su propio sitio",
-    "quote2": "Apenas es una paradoja cuando estas demasiado ocupado entregando para tus clientes.",
-    "quote3": "Tu ventaja competitiva no espera. Nuestra vitrina, si.",
-    "brands": "Entre muchos otros, algunos grandes nombres que nos confiaron su vision.",
-    "cta": "Las grandes transformaciones comienzan con una conversacion.",
+    "quote1": "Construimos nuestro propio software, no el de otros.",
+    "quote2": "Dos productos, hechos en casa, usados cada día.",
+    "quote3": "Cada línea de código es nuestra.",
+    "brands": "Entre muchos otros, algunos nombres que confiaron en nosotros.",
+    "cta": "¿Quieres una demo? Hablemos.",
     "phone": "06 61 90 30 77"
   },
   "privacy": {
@@ -149,7 +149,7 @@
     "lastUpdated": "Ultima actualizacion: 9 de marzo de 2026",
     "phone": "Telefono",
     "s1Title": "1. Introduccion",
-    "s1p1": "Zonemation Consulting (\"Zonemation\", \"nosotros\", \"nuestro\") se compromete a proteger su privacidad y datos personales. Esta Politica de Privacidad explica como recopilamos, usamos, divulgamos y protegemos su informacion cuando visita nuestro sitio zonemation.com o utiliza nuestros servicios.",
+    "s1p1": "Zonemation (\"Zonemation\", \"nosotros\", \"nuestro\") se compromete a proteger su privacidad y datos personales. Esta Politica de Privacidad explica como recopilamos, usamos, divulgamos y protegemos su informacion cuando visita nuestro sitio zonemation.com o utiliza nuestros servicios.",
     "s1p2": "Zonemation esta establecida bajo la legislacion marroqui y cumple con las regulaciones de proteccion de datos aplicables.",
     "s2Title": "2. Responsable del tratamiento",
     "s2p1": "El responsable del tratamiento de sus datos personales es:",
@@ -170,7 +170,7 @@
     "s3networkDataDesc": "direccion IP, ubicacion geografica aproximada.",
     "s4Title": "4. Como usamos su informacion",
     "s4item1": "Responder a sus consultas y proporcionar los servicios solicitados.",
-    "s4item2": "Prestar servicios de consultoria y gestionar las relaciones con clientes.",
+    "s4item2": "Prestar nuestros servicios de software y gestionar las relaciones con clientes.",
     "s4item3": "Enviar comunicaciones relevantes sobre nuestros servicios (con su consentimiento).",
     "s4item4": "Mejorar nuestro sitio web, servicios y experiencia de usuario.",
     "s4item5": "Cumplir con las obligaciones legales bajo la legislacion marroqui.",
@@ -270,7 +270,7 @@
     "s3p1": "Todo el contenido de este Sitio es propiedad de Zonemation o sus licenciantes y esta protegido por las leyes de propiedad intelectual marroquies e internacionales, incluida la Ley n. 2-00 sobre Derechos de Autor y Derechos Conexos.",
     "s3p2": "No puede reproducir, distribuir, modificar, mostrar, publicar ni crear obras derivadas de ningun contenido sin consentimiento previo por escrito.",
     "s4Title": "4. Marcas registradas",
-    "s4p1": "\"Zonemation\", el logotipo de Zonemation y todos los nombres, logotipos y disenos relacionados son marcas registradas de Zonemation Consulting. No puede utilizar dichas marcas sin permiso previo por escrito.",
+    "s4p1": "\"Zonemation\", el logotipo de Zonemation y todos los nombres, logotipos y disenos relacionados son marcas registradas de Zonemation. No puede utilizar dichas marcas sin permiso previo por escrito.",
     "s5Title": "5. Contenido y analisis",
     "s5p1": "Los articulos, informes, casos de estudio y demas contenidos se proporcionan unicamente con fines informativos generales y no constituyen asesoramiento profesional. Cualquier confianza depositada en dicho contenido es bajo su propio riesgo.",
     "s6Title": "6. Enlaces de terceros",
@@ -298,7 +298,7 @@
     "s1email": "Email",
     "s1website": "Sitio web",
     "s2Title": "2. Director de publicacion",
-    "s2p1": "El director de publicacion de zonemation.com es el representante legal de Zonemation Consulting.",
+    "s2p1": "El director de publicacion de zonemation.com es el representante legal de Zonemation.",
     "s3Title": "3. Alojamiento",
     "s3p1": "El sitio esta alojado en servicios de alojamiento en la nube profesionales que garantizan la seguridad, disponibilidad y rendimiento.",
     "s4Title": "4. Propiedad intelectual",
