@@ -3,7 +3,7 @@
     "contact": "Contact"
   },
   "footer": {
-    "copyright": "Zonemation Consulting",
+    "copyright": "Zonemation",
     "privacy": "Privacy",
     "terms": "Terms",
     "cookies": "Cookies",
@@ -37,9 +37,9 @@
       "email": "Email *",
       "phone": "Phone",
       "projectType": "Project type",
-      "projectTransformation": "Digital transformation",
+      "projectTransformation": "Product question",
       "projectStrategy": "Business strategy",
-      "projectConsulting": "Consulting & advisory",
+      "projectConsulting": "Product demo",
       "projectDevelopment": "Custom development",
       "projectOther": "Other",
       "message": "Describe your vision... *",
@@ -87,9 +87,9 @@
         "text": "Every dirham tells a story. We read it for you."
       },
       "web3": {
-        "term": "Web3",
-        "label": "Decentralised trust",
-        "text": "Trust, written into the code."
+        "term": "Apps",
+        "label": "On every phone",
+        "text": "Native apps on Google Play and the App Store."
       }
     }
   },
@@ -114,7 +114,7 @@
     "description": "Description",
     "qty": "Qty",
     "unitPrice": "Unit price",
-    "itemPlaceholder": "Strategic consulting...",
+    "itemPlaceholder": "JMLA Pro subscription...",
     "addLine": "Add a line",
     "additional": "Additional",
     "taxRate": "Tax rate (%)",
@@ -137,11 +137,11 @@
   },
   "underConstruction": {
     "comingSoon": "Coming Soon",
-    "quote1": "The firm that digitizes everyone hasn't built its own site yet",
-    "quote2": "It's barely a paradox when you're too busy delivering for clients.",
-    "quote3": "Your competitive advantage won't wait. Our showcase will.",
-    "brands": "Among many others, a few big names who trusted us with their vision.",
-    "cta": "Great transformations start with a conversation.",
+    "quote1": "We build our own software, not other people's.",
+    "quote2": "Two products, built in-house, used every day.",
+    "quote3": "Every line of code is ours.",
+    "brands": "Among many others, a few names who trusted us.",
+    "cta": "Want a demo? Let's talk.",
     "phone": "06 61 90 30 77"
   },
   "privacy": {
@@ -149,7 +149,7 @@
     "lastUpdated": "Last updated: March 9, 2026",
     "phone": "Phone",
     "s1Title": "1. Introduction",
-    "s1p1": "Zonemation Consulting (\"Zonemation\", \"we\", \"us\", or \"our\") is committed to protecting your privacy and personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website zonemation.com or engage with our services.",
+    "s1p1": "Zonemation (\"Zonemation\", \"we\", \"us\", or \"our\") is committed to protecting your privacy and personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website zonemation.com or engage with our services.",
     "s1p2": "Zonemation is established under Moroccan law and complies with applicable data protection regulations.",
     "s2Title": "2. Data Controller",
     "s2p1": "The data controller responsible for your personal data is:",
@@ -170,7 +170,7 @@
     "s3networkDataDesc": "IP address, approximate geographic location.",
     "s4Title": "4. How We Use Your Information",
     "s4item1": "Responding to your inquiries and providing requested services.",
-    "s4item2": "Delivering consulting services and managing client relationships.",
+    "s4item2": "delivering our software products and managing client relationships.",
     "s4item3": "Sending relevant communications about our services (with your consent).",
     "s4item4": "Improving our website, services, and user experience.",
     "s4item5": "Complying with legal obligations under Moroccan law.",
@@ -179,7 +179,7 @@
     "s5consent": "Your consent",
     "s5consentDesc": "when you submit forms or opt into communications.",
     "s5contract": "Contractual necessity",
-    "s5contractDesc": "to perform consulting services.",
+    "s5contractDesc": "to provide our software services.",
     "s5legitimate": "Legitimate interests",
     "s5legitimateDesc": "to improve our services and maintain security.",
     "s5legal": "Legal compliance",
@@ -270,7 +270,7 @@
     "s3p1": "All content on this Site is the property of Zonemation or its licensors and is protected by Moroccan and international intellectual property laws, including Law No. 2-00 on Copyright and Related Rights.",
     "s3p2": "You may not reproduce, distribute, modify, display, publish, or create derivative works from any content without prior written consent.",
     "s4Title": "4. Trademarks",
-    "s4p1": "\"Zonemation\", the Zonemation logo, and all related names, logos, and designs are trademarks of Zonemation Consulting. You may not use such marks without prior written permission.",
+    "s4p1": "\"Zonemation\", the Zonemation logo, and all related names, logos, and designs are trademarks of Zonemation. You may not use such marks without prior written permission.",
     "s5Title": "5. Content and Insights",
     "s5p1": "Articles, reports, case studies, and other content are provided for general informational purposes only and do not constitute professional advice. Any reliance on such content is at your own risk.",
     "s6Title": "6. Third-Party Links",
@@ -298,7 +298,7 @@
     "s1email": "Email",
     "s1website": "Website",
     "s2Title": "2. Publication Director",
-    "s2p1": "The publication director of zonemation.com is the legal representative of Zonemation Consulting.",
+    "s2p1": "The publication director of zonemation.com is the legal representative of Zonemation.",
     "s3Title": "3. Hosting",
     "s3p1": "The site is hosted by professional cloud hosting services ensuring security, availability, and performance.",
     "s4Title": "4. Intellectual Property",

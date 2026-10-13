@@ -80,7 +80,7 @@ export const Homepage: GlobalConfig = {
     {
       name: 'ctaHeading',
       type: 'text',
-      defaultValue: 'Les grandes transformations commencent par une conversation.',
+      defaultValue: "Envie d'une démo ? Parlons-en.",
     },
     {
       name: 'ctaButtonText',
