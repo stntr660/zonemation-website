@@ -202,10 +202,8 @@ function ContactForm() {
         className="w-full px-6 py-4 text-xl bg-transparent border-2 border-slate-700 focus:border-[#a7d26d] rounded-lg text-white transition-all duration-300 outline-none"
       >
         <option value="" className="bg-[#181a0e] text-white">Type de projet</option>
-        <option value="transformation" className="bg-[#181a0e] text-white">Transformation digitale</option>
-        <option value="strategy" className="bg-[#181a0e] text-white">Stratégie business</option>
+        <option value="transformation" className="bg-[#181a0e] text-white">Question produit</option>
         <option value="consulting" className="bg-[#181a0e] text-white">Démo produit</option>
-        <option value="development" className="bg-[#181a0e] text-white">Développement sur mesure</option>
         <option value="other" className="bg-[#181a0e] text-white">Autre</option>
       </select>
 

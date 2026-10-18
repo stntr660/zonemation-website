@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Zonemation - Unlocking the Potential of Those Who Advance the World',
+  title: 'Zonemation - JMLA Pro & Atrapa, AI software for wholesale and customer messaging',
   description: 'Zonemation builds AI software products: JMLA Pro for wholesale trade and Atrapa for customer conversations.',
   keywords: 'JMLA Pro, Atrapa, AI software, SaaS, wholesale management, WhatsApp CRM, AI assistant',
   authors: [{ name: 'Zonemation' }],

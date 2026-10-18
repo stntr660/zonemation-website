@@ -10,7 +10,7 @@ async function getPayloadClient() {
 
 export const metadata = {
   title: 'About - Zonemation',
-  description: 'Learn about Zonemation, our mission, leadership, and commitment to transformation.',
+  description: 'Learn about Zonemation, our mission, leadership, and products: JMLA Pro and Atrapa.',
 }
 
 export default async function AboutPage() {
@@ -29,7 +29,7 @@ export default async function AboutPage() {
         <div className="text-center mb-20">
           <p className="caption text-gray-600 dark:text-gray-400 mb-4">ABOUT US</p>
           <h1 className="heading-h1 text-gray-900 dark:text-white mb-6">
-            Unlocking the Potential of Those Who Advance the World
+            Software that runs the business while you sell
           </h1>
           <p className="body-large text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             We build software products. JMLA Pro runs wholesale stores; Atrapa runs customer conversations. Both are designed, coded and operated in-house.
