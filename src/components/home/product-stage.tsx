@@ -28,6 +28,8 @@ export interface ProductStageProps {
   image: string
   imageAlt: string
   cta: string
+  /** Optional secondary link, e.g. the product's PDF brochure. */
+  brochure?: { href: string; label: string }
   stores: { store: Store; href: string }[]
   story?: StoryStep[]
   storyTitle?: string
@@ -196,7 +198,7 @@ function BrowserFrame({ url, domain, image, imageAlt }: { url: string; domain: s
 }
 
 export function ProductStage(props: ProductStageProps) {
-  const { id, eyebrow, title, text, features, url, domain, image, imageAlt, cta, stores, story, storyTitle, overlay, overlayClass, reverse, orbit, visualFooter } = props
+  const { id, eyebrow, title, text, features, url, domain, image, imageAlt, cta, brochure, stores, story, storyTitle, overlay, overlayClass, reverse, orbit, visualFooter } = props
 
   return (
     <section id={id} className="relative px-6 pt-8 pb-16 lg:pt-12 lg:pb-20 scroll-mt-8">
@@ -241,6 +243,16 @@ export function ProductStage(props: ProductStageProps) {
               {cta}
               <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1">&rarr;</span>
             </a>
+            {brochure && (
+              <a
+                href={brochure.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-[#a7d26d]/50 px-6 py-3 text-[#a7d26d] font-medium hover:border-white hover:text-white transition-colors duration-300"
+              >
+                {brochure.label}
+              </a>
+            )}
           </div>
           <StoreBadges stores={stores} />
         </motion.div>

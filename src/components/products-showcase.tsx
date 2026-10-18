@@ -75,6 +75,7 @@ export function ProductsShowcase() {
         image="/products/jmlapro.webp"
         imageAlt={t('jmlapro.name')}
         cta={t('jmlapro.cta')}
+        brochure={{ href: '/brochures/jmla-pro-brochure.pdf', label: t('jmlapro.brochure') }}
         stores={[
           { store: 'appStore', href: 'https://apps.apple.com/app/id6783318181' },
           { store: 'googlePlay', href: 'https://play.google.com/store/apps/details?id=com.jmlapro.pro' },
