@@ -54,15 +54,22 @@
   },
   "home": {
     "hero": {
-      "eyebrow": "Hecho en Casablanca.",
-      "titleLead": "Soluciones que trabajan",
-      "titleAccent": "mientras tú vendes.",
-      "subtitle": "Dos productos para gestionar tus ventas y conversaciones.",
+      "eyebrow": "IA agéntica · Datos · Estrategia",
+      "titleLead": "Soluciones de IA que piensan,",
+      "titleAccent": "actúan y cumplen.",
+      "subtitle": "Zonemation es tu socio en IA agéntica y explotación de datos. Creamos agentes y productos de IA, convertimos tus datos en decisiones y establecemos la gobernanza para escalarlos con confianza.",
       "ctaProducts": "Mira lo que hemos construido",
       "ctaCall": "¿Lo hablamos con un café?",
       "fact1": "2 productos en línea",
       "fact2": "En App Store y Google Play",
-      "fact3": "Una IA que habla dariya"
+      "fact3": "Una IA que habla dariya",
+      "ctaSolutions": "Descubre nuestras soluciones",
+      "ctaTeam": "Conoce a nuestros expertos",
+      "chips": {
+        "agents": "Sistemas de IA agéntica",
+        "data": "Explotación de datos",
+        "governance": "Gobernanza y estrategia de IA"
+      }
     },
     "stores": {
       "appStoreLine": "Descárgalo en",
@@ -88,6 +95,43 @@
         "term": "Apps",
         "label": "En cada teléfono",
         "text": "Apps nativas en Google Play y el App Store."
+      }
+    },
+    "team": {
+      "eyebrow": "Nuestros expertos",
+      "title": "Las mentes detrás de tus agentes.",
+      "subtitle": "Experiencia sénior en IA, datos, finanzas y estrategia, desde multinacionales y grandes consultoras hasta la investigación doctoral.",
+      "members": {
+        "aymane": {
+          "role": "Consultor en IA agéntica y gobernanza · Investigador PhD, IA agéntica (Norte de África)",
+          "badge": "Investigador PhD",
+          "bio": "Diseña sistemas de IA agéntica y los marcos de gobernanza que permiten escalarlos con seguridad. Su investigación doctoral sobre IA agéntica en el Norte de África se aplica directamente a los proyectos de clientes."
+        },
+        "ahmed": {
+          "role": "Consultor financiero",
+          "badge": "ex-VP Finanzas",
+          "bio": "Ex vicepresidente financiero en varias multinacionales. Convierte las iniciativas de IA en resultados financieros medibles: business cases, ROI y control de costes."
+        },
+        "amine": {
+          "role": "Consultor en ingeniería de datos y econometría",
+          "badge": "ex-BCG",
+          "bio": "Construye los cimientos de datos y los modelos econométricos que respaldan decisiones seguras, desde los datos brutos hasta previsiones que la dirección puede aplicar."
+        },
+        "ilyas": {
+          "role": "Ingeniero de IA (Ingénieur d'État)",
+          "badge": "Ingénieur d'État",
+          "bio": "Convierte la estrategia en sistemas que funcionan: modelos, agentes e integraciones listos para producción."
+        },
+        "domingues": {
+          "role": "Consultor de estrategia, estrategia digital y transformación",
+          "badge": "ex-McKinsey Digital",
+          "bio": "Dirige la estrategia digital y la transformación, alinea los programas de IA con las prioridades del negocio e impulsa su adopción en toda la organización."
+        },
+        "omar": {
+          "role": "Consultor de estrategia de crecimiento y marca",
+          "badge": "Growth",
+          "bio": "Convierte las capacidades de IA en un relato de mercado: posicionamiento, go-to-market y campañas basadas en datos que transforman la innovación en demanda."
+        }
       }
     }
   },

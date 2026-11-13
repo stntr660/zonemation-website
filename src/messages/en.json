@@ -54,15 +54,22 @@
   },
   "home": {
     "hero": {
-      "eyebrow": "Made in Casablanca.",
-      "titleLead": "Solutions that work",
-      "titleAccent": "while you sell.",
-      "subtitle": "Two products to manage your sales and conversations.",
+      "eyebrow": "Agentic AI · Data · Strategy",
+      "titleLead": "AI solutions that think,",
+      "titleAccent": "act and deliver.",
+      "subtitle": "Zonemation is your partner for Agentic AI and data exploitation. We build AI agents and products, turn your data into decisions, and set the governance to scale them with confidence.",
       "ctaProducts": "See what we've built",
       "ctaCall": "Talk over a coffee?",
       "fact1": "2 live products",
       "fact2": "On the App Store and Google Play",
-      "fact3": "AI that speaks Darija"
+      "fact3": "AI that speaks Darija",
+      "ctaSolutions": "Explore our solutions",
+      "ctaTeam": "Meet our experts",
+      "chips": {
+        "agents": "Agentic AI systems",
+        "data": "Data exploitation",
+        "governance": "AI governance & strategy"
+      }
     },
     "stores": {
       "appStoreLine": "Download on the",
@@ -88,6 +95,43 @@
         "term": "Apps",
         "label": "On every phone",
         "text": "Native apps on Google Play and the App Store."
+      }
+    },
+    "team": {
+      "eyebrow": "Our experts",
+      "title": "The minds behind your agents.",
+      "subtitle": "Senior expertise in AI, data, finance and strategy, from multinationals and top-tier firms to doctoral research.",
+      "members": {
+        "aymane": {
+          "role": "Agentic AI & Governance Consultant · PhD Researcher, Agentic AI (North Africa)",
+          "badge": "PhD Researcher",
+          "bio": "Designs agentic AI systems and the governance frameworks that make them safe to scale. His PhD research on agentic AI in North Africa feeds straight into client engagements."
+        },
+        "ahmed": {
+          "role": "Financial Consultant",
+          "badge": "ex-VP Finance",
+          "bio": "Former Financial Vice President at several multinationals. Turns AI initiatives into measurable financial outcomes: business cases, ROI and cost control."
+        },
+        "amine": {
+          "role": "Data Engineering & Econometrics Consultant",
+          "badge": "ex-BCG",
+          "bio": "Builds the data foundations and econometric models behind confident decisions, from raw data to forecasts leadership can act on."
+        },
+        "ilyas": {
+          "role": "AI Engineer (Ingénieur d'État)",
+          "badge": "State Engineer",
+          "bio": "Turns strategy into working systems: models, agents and integrations built for production."
+        },
+        "domingues": {
+          "role": "Strategy Consultant, Digital Strategy & Transformation",
+          "badge": "ex-McKinsey Digital",
+          "bio": "Leads digital strategy and transformation, aligning AI programmes with business priorities and driving adoption across the organisation."
+        },
+        "omar": {
+          "role": "Growth & Brand Strategy Consultant",
+          "badge": "Growth",
+          "bio": "Turns AI capabilities into a market story: positioning, go-to-market and data-driven campaigns that turn innovation into demand."
+        }
       }
     }
   },
