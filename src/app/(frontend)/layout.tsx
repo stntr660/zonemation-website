@@ -1,6 +1,7 @@
 import '../globals.css'
 import { ThemeProvider } from '@/lib/theme-provider'
 import { AnimatedFavicon } from '@/components/animated-favicon'
+import { GoogleAnalytics } from '@/components/google-analytics'
 
 export default function FrontendLayout({
   children,
@@ -19,6 +20,8 @@ export default function FrontendLayout({
         >
           {children}
         </ThemeProvider>
+        {/* GA4 lives only in the public (frontend) group, never in the Payload admin. */}
+        <GoogleAnalytics />
       </body>
     </html>
   )
