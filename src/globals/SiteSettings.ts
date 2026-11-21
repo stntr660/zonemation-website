@@ -55,6 +55,27 @@ export const SiteSettings: GlobalConfig = {
           admin: { description: 'Appears in invoice/devis footer next to ICE.' },
         },
         {
+          name: 'rc',
+          type: 'text',
+          label: 'RC (Registre de commerce)',
+          defaultValue: '717965',
+          admin: { description: 'Mention obligatoire (CGI art. 145). Imprimé sur les factures et devis.' },
+        },
+        {
+          name: 'tpId',
+          type: 'text',
+          label: 'Taxe professionnelle (TP)',
+          defaultValue: '32653091',
+          admin: { description: 'Mention obligatoire (CGI art. 145). Imprimé sur les factures et devis.' },
+        },
+        {
+          name: 'legalForm',
+          type: 'text',
+          label: 'Forme juridique et capital',
+          defaultValue: 'SARL au capital de 100 000 MAD',
+          admin: { description: 'Imprimé dans le pied de page des factures et devis.' },
+        },
+        {
           name: 'rib',
           type: 'text',
           label: 'RIB',
