@@ -15,7 +15,10 @@ export const Invoices: CollectionConfig = {
   },
   access: {
     create: ({ req: { user } }) => Boolean(user),
-    read: () => true,
+    // Invoices hold client names, amounts and bank details: admins only. The public
+    // verify page and the PDF route read them server-side (local API) after
+    // checking the verification token.
+    read: ({ req: { user } }) => Boolean(user),
     update: ({ req: { user } }) => Boolean(user),
     delete: ({ req: { user } }) => Boolean(user),
   },

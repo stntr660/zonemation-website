@@ -27,6 +27,24 @@ export async function GET(
     return NextResponse.json({ error: 'Invoice not found' }, { status: 404 })
   }
 
+  // Access: a logged-in admin, or a link carrying the invoice's verification
+  // token (?t=..., the same token as the QR code). Ids are sequential, so the
+  // id alone must never be enough. Same 404 either way, to reveal nothing.
+  const token = req.nextUrl.searchParams.get('t') || ''
+  const tokenOk = Boolean(token) && token === invoice.verificationToken
+  let isAdmin = false
+  if (!tokenOk) {
+    try {
+      const { user } = await payload.auth({ headers: req.headers })
+      isAdmin = Boolean(user)
+    } catch {
+      isAdmin = false
+    }
+  }
+  if (!tokenOk && !isAdmin) {
+    return NextResponse.json({ error: 'Invoice not found' }, { status: 404 })
+  }
+
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://zonemation.com'
   const verifyUrl = `${baseUrl}/fr/invoice/verify/${invoice.verificationToken}`
   const qrDataUrl = await QRCode.toDataURL(verifyUrl, {
