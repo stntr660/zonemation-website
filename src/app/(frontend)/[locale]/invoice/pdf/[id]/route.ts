@@ -341,7 +341,13 @@ export async function GET(
           ${invoice.senderAddress || invoice.senderCity ? `<div>${[invoice.senderAddress, invoice.senderCity].filter(Boolean).join(', ').toLowerCase()}</div>` : ''}
           ${invoice.senderEmail ? `<div>${invoice.senderEmail.toLowerCase()}</div>` : ''}
           ${invoice.senderPhone ? `<div>${invoice.senderPhone}</div>` : ''}
-          ${invoice.senderIce ? `<div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#888;margin-top:4px;">ice ${invoice.senderIce}</div>` : ''}
+          ${invoice.senderIce || (invoice as any).senderRc || (invoice as any).senderFiscalId || (invoice as any).senderTpId ? `<div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#888;margin-top:4px;line-height:1.5;">${[
+            (invoice as any).senderRc ? `rc ${(invoice as any).senderRc}` : '',
+            invoice.senderIce ? `ice ${invoice.senderIce}` : '',
+          ].filter(Boolean).join(' · ')}<br>${[
+            (invoice as any).senderFiscalId ? `if ${(invoice as any).senderFiscalId}` : '',
+            (invoice as any).senderTpId ? `tp ${(invoice as any).senderTpId}` : '',
+          ].filter(Boolean).join(' · ')}</div>` : ''}
         </div>
       </div>
       <div class="party">
@@ -442,6 +448,9 @@ export async function GET(
     .toLowerCase()
   const footerIce = invoice.senderIce || '—'
   const footerFiscalId = (invoice as any).senderFiscalId || '—'
+  const footerRc = (invoice as any).senderRc || ''
+  const footerTp = (invoice as any).senderTpId || ''
+  const footerLegal = [(invoice as any).senderName, (invoice as any).senderLegalForm].filter(Boolean).join(' ')
   const footerTel = invoice.senderPhone || '—'
   const footerEmail = (invoice.senderEmail || '—').toLowerCase()
 
@@ -468,17 +477,22 @@ export async function GET(
         font-size:10px;
         color:rgba(24,26,14,0.8);
         font-weight:500;
-      ">${escapeHtml(footerAddress)}</div>
+      ">${escapeHtml([footerLegal, footerAddress].filter(Boolean).join(' · '))}</div>
       <div style="
         display:flex;
         justify-content:center;
         align-items:center;
-        gap:18px;
-        font-size:9px;
+        gap:11px;
+        font-size:8.5px;
+        white-space:nowrap;
       ">
         <div><span style="color:rgba(24,26,14,0.45);font-weight:600;">ICE</span>&nbsp;<span style="color:#181a0e;font-weight:500;">${escapeHtml(footerIce)}</span></div>
         <div style="width:1px;height:10px;background:rgba(24,26,14,0.15);"></div>
+        ${footerRc ? `<div><span style="color:rgba(24,26,14,0.45);font-weight:600;">RC</span>&nbsp;<span style="color:#181a0e;font-weight:500;">${escapeHtml(footerRc)}</span></div>
+<div style="width:1px;height:10px;background:rgba(24,26,14,0.15);"></div>` : ''}
         <div><span style="color:rgba(24,26,14,0.45);font-weight:600;">IF</span>&nbsp;<span style="color:#181a0e;font-weight:500;">${escapeHtml(footerFiscalId)}</span></div>
+        ${footerTp ? `<div style="width:1px;height:10px;background:rgba(24,26,14,0.15);"></div>
+<div><span style="color:rgba(24,26,14,0.45);font-weight:600;">TP</span>&nbsp;<span style="color:#181a0e;font-weight:500;">${escapeHtml(footerTp)}</span></div>` : ''}
         <div style="width:1px;height:10px;background:rgba(24,26,14,0.15);"></div>
         <div><span style="color:rgba(24,26,14,0.45);font-weight:600;">TEL</span>&nbsp;<span style="color:#181a0e;font-weight:500;">${escapeHtml(footerTel)}</span></div>
         <div style="width:1px;height:10px;background:rgba(24,26,14,0.15);"></div>

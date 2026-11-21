@@ -21,6 +21,7 @@ export default async function VerifyInvoicePage({
   if (docs.length === 0) notFound()
 
   const invoice = docs[0]
+  const isDevis = String((invoice as any).stage || '').startsWith('devis')
 
   function formatCurrency(amount: number) {
     return new Intl.NumberFormat('fr-MA', {
@@ -38,11 +39,11 @@ export default async function VerifyInvoicePage({
             <path d="M9 12l2 2 4-4" />
             <circle cx="12" cy="12" r="10" />
           </svg>
-          <h1 className="text-xl text-white/90 font-light">Facture verifiee</h1>
+          <h1 className="text-xl text-white/90 font-light">{isDevis ? 'Devis vérifié' : 'Facture vérifiée'}</h1>
         </div>
 
         <p className="text-white/40 text-base mb-8">
-          Ce document est une facture authentique emise par Zonemation Consulting.
+          Ce document est {isDevis ? 'un devis authentique émis' : 'une facture authentique émise'} par Zonemation SARL.
         </p>
 
         <div className="space-y-4 text-base">
