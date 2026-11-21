@@ -72,6 +72,15 @@ export default async function VerifyInvoicePage({
             <span className="text-white/80 capitalize">{invoice.status || 'draft'}</span>
           </div>
         </div>
+
+        <a
+          href={`/fr/invoice/pdf/${invoice.id}?t=${encodeURIComponent(token)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 inline-flex items-center gap-2 rounded-md bg-[#a7d26d] px-4 py-2 text-sm font-medium text-[#0C130B] hover:bg-[#95c255]"
+        >
+          Télécharger le PDF
+        </a>
       </div>
     </div>
   )
